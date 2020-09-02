@@ -40,3 +40,14 @@ class PackageManagementView(View):
         self.data["add_package_form"] = packages_forms.AddPackageForm()
         
         return render(request, self.template_name, self.data)
+    
+    def post(self, request):
+        add_package_form = packages_forms.AddPackageForm(request.POST)
+
+        if add_package_form.is_valid():
+            inc = add_package_form.save(commit=False)
+            inc.user = request.user
+            inc.save()       
+        else:
+            print(add_package_form.errors.as_data())
+        return redirect('/staff/package_management/view/', self.data)
