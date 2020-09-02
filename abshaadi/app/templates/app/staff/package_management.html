@@ -1,0 +1,41 @@
+<div class="row">
+
+	<div class="col">
+		<div class="card-header card-header-blue card-header-border">
+			<strong>Package Information</strong>
+			<button data-toggle="modal" data-target="#add_package_form" style="width:80px; float:right; margin-right:-16px; margin-top:-8px;" class="btn btn-info">
+				<i class="mdi mdi-plus"></i> Add 
+			</button>
+		</div>
+		<div class="card-body" style="padding-top:10px; background:none;">
+			<table class="table table-bordered" style="margin:0px; padding:0px;">
+				<tr class="text-center"  style="font-weight:bold; background-color:#ae62e8; color:#FFFFFF;">
+					<td>Package Name</td>
+					<td>Description</td>
+					<td>Price</td>
+					<td>Tenure</td>
+					<td>Tenure Type</td>
+					<td>Is Active</td>
+					<td>Action</td>
+				<tr>
+				
+				{% for package in packages %}
+					<tr style="font-size:12px;  background-color:#FFF">
+					<td style="padding:5px">{{ package.package_name }}</td>
+					<td style="padding:5px">{{ package.description }}</td>
+					<td style="padding:5px">Price</td>
+					<td style="padding:5px">Tenure</td>
+					<td style="padding:5px">Tenure Type</td>
+					<td style="padding:5px" class="text-center">Is Active</td>
+					<td style="padding:5px" class="text-center">
+						<i class="mdi mdi-pencil"></i>
+						<i class="mdi mdi-delete" style="color:#FF0000"></i>
+					</td>
+				<tr>
+				{% endfor %}
+			</table>
+		</div>
+    </div>
+</div>    
+
+{% include 'app/modal_forms/add_package_modal.html' %}
