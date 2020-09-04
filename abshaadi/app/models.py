@@ -698,6 +698,7 @@ class Package(models.Model):
         (3, "Weeks"),
     )
 
+    IS_TRUE = ((True, 'YES'), (False, 'NO'))
 
     user = models.ForeignKey(
         CustomUser,
@@ -739,11 +740,9 @@ class Package(models.Model):
     
     is_active = models.BooleanField(
         default = True,
+        choices = IS_TRUE,
         db_index = True,
-        null = False,
-        blank = False,
     )
-    
     
     created_on = models.DateTimeField(
         auto_now_add = True,

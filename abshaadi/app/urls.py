@@ -32,6 +32,8 @@ urlpatterns += [
 # Package
 urlpatterns += [
     path('staff/package_management/view/', never_cache(login_required(package_management.PackageManagementView.as_view())), name="staff_package_management_view"),
+    path('staff/edit_package_management/', never_cache(login_required(package_management.edit_package_management)), name="edit_package_management"),
+    path('staff/delete_package_management/<int:ins>/', never_cache(login_required(package_management.delete_package_management)), name="delete_package_management"),
 ]
 
 #
