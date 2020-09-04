@@ -15,8 +15,8 @@ class AddPackageForm(ModelForm):
         
         widgets = {
             'package_name' : TextInput(attrs = {'class':'form-control', 'required':'true'}), 
-            'value' : NumberInput(attrs = {'class':'form-control', 'required':'true'}), 
-            'tenure' : NumberInput(attrs = {'class':'form-control', 'required':'true'}), 
+            'value' : TextInput(attrs = {'class':'form-control', 'required':'true'}), 
+            'tenure' : Select(attrs = {'class':'form-control', 'required':'true'}), 
             'tenure_types' : Select(attrs = {'class':'form-control', 'required':'true'}), 
             'description' : Textarea(attrs = {'class':'form-control', 'required':'true', 'rows':'3'}),
         }
@@ -31,8 +31,8 @@ class EditPackageForm(ModelForm):
         
         widgets = {
             'package_name' : TextInput(attrs = {'class':'form-control', 'required':'true'}), 
-            'value' : NumberInput(attrs = {'class':'form-control', 'required':'true'}), 
-            'tenure' : NumberInput(attrs = {'class':'form-control', 'required':'true'}), 
+            'value' : TextInput(attrs = {'class':'form-control', 'required':'true'}), 
+            'tenure' : Select(attrs = {'class':'form-control', 'required':'true'}), 
             'tenure_types' : Select(attrs = {'class':'form-control', 'required':'true'}), 
             'description' : Textarea(attrs = {'class':'form-control', 'required':'true', 'rows':'3'}),
             'is_active' : Select(attrs = {'class':'form-control', 'required':'true'}), 

@@ -23,16 +23,10 @@
 					<tr style="font-size:12px;  background-color:#FFF">
 					<td style="padding:5px">{{ package.package_name }}</td>
 					<td style="padding:5px">{{ package.description }}</td>
-					<td style="padding:5px">{{ package.value }}</td>
-					<td style="padding:5px">{{ package.tenure }}</td>
-					<td style="padding:5px">{{ package.get_tenure_types_display }}</td>
-					<td style="padding:5px" class="text-center">
-						{% if package.is_active == True %}
-						Yes
-						{% elif package.is_active == False %}
-						No
-						{% endif %}
-					</td>
+					<td style="padding:5px">Price</td>
+					<td style="padding:5px">Tenure</td>
+					<td style="padding:5px">Tenure Type</td>
+					<td style="padding:5px" class="text-center">Is Active</td>
 					<td style="padding:5px" class="text-center">
 						<i class="mdi mdi-pencil"></i>
 						<i class="mdi mdi-delete" style="color:#FF0000"></i>
