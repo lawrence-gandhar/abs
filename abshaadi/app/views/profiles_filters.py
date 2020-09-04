@@ -35,7 +35,17 @@ class UserProfileView(View):
     
     def get(self, request):
         
-        self.data["redirect_url"] = request.get_full_path()
+        try:
+            profile_pic = ProfilePictures.objects.get(user=request.user, set_as_profile_pic=True)
+            pro_pic = profile_pic.picture
+        except:
+            pro_pic = ""
+            pass
+        
+        self.data["pro_pic"] = pro_pic        
+        self.data["profile"] = Profile.objects.get(user=request.user)        
+        self.data["gallery"] = ProfilePictures.objects.filter(user=request.user, set_as_profile_pic=False)
+        
         
         return render(request, self.template_name, self.data)
         
