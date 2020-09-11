@@ -34,6 +34,9 @@ class UserManagementView(View):
     #
     
     def get(self, request):
+        
+        self.data["users"] = Profile.objects.all()
+        
         return render(request, self.template_name, self.data)
     
     

@@ -18,15 +18,17 @@
 					<td>Looking For</td>
 					<td>Action</td>
 				<tr>
-				<tr style="font-size:12px;  background-color:#FFF">
-					<td style="padding:5px">Username</td>
-					<td style="padding:5px">Fullname</td>
-					<td style="padding:5px">Is Active</td>
-					<td style="padding:5px">Package</td>
-					<td style="padding:5px">Gender</td>
-					<td style="padding:5px">Looking For</td>
-					<td style="padding:5px">Action</td>
-				</tr>
+				{% for row in users %}
+					<tr style="font-size:12px;  background-color:#FFF">
+						<td style="padding:5px">{{ row.user.email }}</td>
+						<td style="padding:5px">{{ row.fullname }}</td>
+						<td style="padding:5px">{{ row.user.is_active }}</td>
+						<td style="padding:5px">{{ row.package.package_name }}</td>
+						<td style="padding:5px">{{ row.get_gender_display }}</td>
+						<td style="padding:5px">{{ row.get_looking_for_gender_display }}</td>
+						<td style="padding:5px">Action</td>
+					</tr>
+				{% endfor %}
 			</table>
 		</div>
     </div>

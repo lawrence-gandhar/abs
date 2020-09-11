@@ -217,7 +217,76 @@ class CustomUser(AbstractUser):
         return self.email
 
       
-        
+ 
+#***********************************************************************
+# PACKAGES
+#***********************************************************************
+
+class Package(models.Model): 
+
+    TENURE_TYPE = (
+        (1, "Years"),
+        (2, "Months"),
+        (3, "Weeks"),
+    )
+
+    IS_TRUE = ((True, 'YES'), (False, 'NO'))
+
+    user = models.ForeignKey(
+        CustomUser,
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.CASCADE,
+    )
+    
+    package_name = models.CharField(
+        max_length = 255,
+        blank = False,
+        null = False,
+        unique = True,
+    )
+    
+    value = models.IntegerField(
+        db_index = True,
+        null = False,
+        blank = False,
+    )
+    
+    tenure = models.IntegerField(
+        db_index = True,
+        null = False,
+        blank = False,
+    )
+    
+    tenure_types = models.IntegerField(
+        default = 1,
+        choices = TENURE_TYPE,
+        db_index = True,
+    )
+    
+    description = models.TextField(
+        null = True,
+        blank = True,
+    )
+    
+    is_active = models.BooleanField(
+        default = True,
+        choices = IS_TRUE,
+        db_index = True,
+    )
+    
+    created_on = models.DateTimeField(
+        auto_now_add = True,
+        db_index = True,
+        null = True,
+        blank = True,
+    )
+    
+    class Meta:
+        verbose_name_plural = "Packages"
+    
+       
         
         
 #***********************************************************************
@@ -232,6 +301,14 @@ class Profile(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
+    
+    package = models.ForeignKey(
+        Package,
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.SET_NULL,
+    )    
     
     fullname = models.CharField(
         max_length = 250,
@@ -684,75 +761,6 @@ class ReportUser(models.Model):
     
     class Meta:
         verbose_name_plural = "Report User Center"
-    
-
-#***********************************************************************
-#
-#***********************************************************************
-
-class Package(models.Model): 
-
-    TENURE_TYPE = (
-        (1, "Years"),
-        (2, "Months"),
-        (3, "Weeks"),
-    )
-
-    IS_TRUE = ((True, 'YES'), (False, 'NO'))
-
-    user = models.ForeignKey(
-        CustomUser,
-        db_index = True,
-        null = True,
-        blank = True,
-        on_delete = models.CASCADE,
-    )
-    
-    package_name = models.CharField(
-        max_length = 255,
-        blank = False,
-        null = False,
-        unique = True,
-    )
-    
-    value = models.IntegerField(
-        db_index = True,
-        null = False,
-        blank = False,
-    )
-    
-    tenure = models.IntegerField(
-        db_index = True,
-        null = False,
-        blank = False,
-    )
-    
-    tenure_types = models.IntegerField(
-        default = 1,
-        choices = TENURE_TYPE,
-        db_index = True,
-    )
-    
-    description = models.TextField(
-        null = True,
-        blank = True,
-    )
-    
-    is_active = models.BooleanField(
-        default = True,
-        choices = IS_TRUE,
-        db_index = True,
-    )
-    
-    created_on = models.DateTimeField(
-        auto_now_add = True,
-        db_index = True,
-        null = True,
-        blank = True,
-    )
-    
-    class Meta:
-        verbose_name_plural = "Packages"
     
     
 
