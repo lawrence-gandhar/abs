@@ -11,9 +11,28 @@
 				<div class="row">
 					<div class="col-8">
 						<div class="card-body">
-							<table class="table">
+							<table class="table" style="border:none;">
 								<tr>
-									<td width="120px"><strong>Fullname</strong></td>
+									<td colspan="2" class="bg-success" style="color:#FFFFFF;">
+										<span style="font-weight:bold; display:inline-block; line-height:30px;">Package Name</span>
+										<span style="font-size:11px; display:inline-block; float:right; text-align:right;">
+											Remaining Duration
+											</br>1Year
+										</span>
+									</td>
+								</tr>
+							</table>
+						</div>
+						
+						<div class="card-body">
+							<table class="table" style="border:none;">
+								<tr>
+									<td colspan="2" class="bg-info" style="color:#FFFFFF;">
+										My Personal Information
+									</td>
+								</tr>
+								<tr>
+									<td width="150px"><strong>Fullname</strong></td>
 									<td><strong>:</strong> {{ profile.fullname }}</td>
 								</tr>
 								<tr>
@@ -23,6 +42,60 @@
 								<tr>
 									<td><strong>Looking For</strong></td>
 									<td><strong>:</strong> {{ profile.get_looking_for_gender_display }}</td>
+								</tr>
+								<tr>
+									<td><strong>Father's Name</strong></td>
+									<td><strong>:</strong> {{ profile.father_name|default_if_none:'-' }}</td>
+								</tr>
+								<tr>
+									<td><strong>Mother's Name</strong></td>
+									<td><strong>:</strong> {{ profile.mother_name|default_if_none:'-' }}</td>
+								</tr>
+								<tr>
+									<td><strong>Date Of Birth</strong></td>
+									<td><strong>:</strong> {{ profile.dob|default_if_none:'-' }}</td>
+								</tr>
+								<tr>
+									<td><strong>Religion</strong></td>
+									<td><strong>:</strong> {{ profile.religion|default_if_none:'-' }}</td>
+								</tr>
+								<tr>
+									<td><strong>Caste/Domination</strong></td>
+									<td><strong>:</strong> {{ profile.caste_creed|default_if_none:'-' }}</td>
+								</tr>
+							</table>
+						</div>
+						
+						<div class="card-body">
+							<table class="table" style="border:none;">
+								<tr>
+									<td colspan="2" class="bg-info" style="color:#FFFFFF;">
+										My Physical Attributes
+									</td>
+								</tr>
+								<tr>
+									<td width="150px"><strong>Fullname</strong></td>
+									<td><strong>:</strong> {{ profile.fullname|default_if_none:'-' }}</td>
+								</tr>
+								<tr>
+									<td><strong>Gender</strong></td>
+									<td><strong>:</strong> {{ profile.get_gender_display|default_if_none:'-' }}</td>
+								</tr>
+								<tr>
+									<td><strong>Looking For</strong></td>
+									<td><strong>:</strong> {{ profile.get_looking_for_gender_display|default_if_none:'-' }}</td>
+								</tr>
+								<tr>
+									<td><strong>Father's Name</strong></td>
+									<td><strong>:</strong> {{ profile.father_name|default_if_none:'-' }}</td>
+								</tr>
+								<tr>
+									<td><strong>Mother's Name</strong></td>
+									<td><strong>:</strong> {{ profile.mother_name|default_if_none:'-' }}</td>
+								</tr>
+								<tr>
+									<td><strong>Date Of Birth</strong></td>
+									<td><strong>:</strong> {{ profile.dob|default_if_none:'-' }}</td>
 								</tr>
 							</table>
 						</div>

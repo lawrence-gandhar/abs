@@ -6,7 +6,7 @@ from django.views.generic.base import RedirectView
 from django.conf.urls.static import static
 from django.conf import settings
 from app.views import home, dashboard, profiles_filters
-from app.views.staff import package_management
+from app.views.staff import package_management, user_management
 
 # Authorization
 urlpatterns = [    
@@ -35,6 +35,12 @@ urlpatterns += [
     path('staff/edit_package_management/', never_cache(login_required(package_management.edit_package_management)), name="edit_package_management"),
     path('staff/delete_package_management/<int:ins>/', never_cache(login_required(package_management.delete_package_management)), name="delete_package_management"),
 ]
+
+# User Management
+urlpatterns += [
+    path('staff/user_management/view/', never_cache(login_required(user_management.UserManagementView.as_view())), name="user_management_view"),
+]
+
 
 #
 if settings.DEBUG:
