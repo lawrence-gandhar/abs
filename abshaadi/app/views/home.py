@@ -144,7 +144,7 @@ class RegistrationView(View):
                     reg = register.save(commit=False)
                     reg.user = user
                     try: 
-                        path = os.path.join(settings.MEDIA_ROOT, str(instance.id))
+                        path = os.path.join(settings.MEDIA_ROOT, str(user.id))
                         os.mkdir(path, 0o777)
                         reg.save()
                     except:

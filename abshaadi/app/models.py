@@ -6,7 +6,7 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import AbstractUser
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.conf import settings
 
 import uuid
@@ -216,8 +216,19 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.email
 
-      
- 
+
+@receiver(post_delete, sender=CustomUser)
+def delete_file(sender, instance, *args, **kwargs):
+
+    path = os.path.join(settings.MEDIA_ROOT, str(instance.id))
+    try:
+        os.rmdir(path) 
+    except:
+        pass
+
+
+
+
 #***********************************************************************
 # PACKAGES
 #***********************************************************************

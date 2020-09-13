@@ -66,8 +66,8 @@ def pagination_html(page_obj, url = ""):
 @register.simple_tag
 def tick_mark(value):
     if value:
-        html = '<span class="mdi mdi-check" style="color:#000000"></span>'
+        html = '<span class="mdi mdi-check-all" style="color:#20cc35; font-size:15px;"></span>'
     else:
-        html = '<span class="mdi mdi-close" style="color:#000000"></span>'
+        html = '<span class="mdi mdi-close" style="color:#FF0000; font-size:15px;"></span>'
 
     return safestring.mark_safe(html)

@@ -2,10 +2,7 @@
 
 	<div class="col">
 		<div class="card-header card-header-blue card-header-border">
-			<strong>Users Information</strong>
-			<button data-toggle="modal" data-target="#add_package_form" style="width:80px; float:right; margin-right:-16px; margin-top:-8px;" class="btn btn-info">
-				<i class="mdi mdi-plus"></i> Add 
-			</button>
+			<strong>Users Information</strong>			
 		</div>
 		<div class="card-body" style="padding-top:10px; background:none;">
 			<table class="table table-bordered" style="margin:0px; padding:0px;">
@@ -20,16 +17,28 @@
 				<tr>
 				{% for row in users %}
 					<tr style="font-size:12px;  background-color:#FFF">
-						<td style="padding:5px">{{ row.user.email }}</td>
-						<td style="padding:5px">{{ row.fullname }}</td>
-						<td style="padding:5px">{{ row.user.is_active }}</td>
-						<td style="padding:5px">{{ row.package.package_name }}</td>
-						<td style="padding:5px">{{ row.get_gender_display }}</td>
-						<td style="padding:5px">{{ row.get_looking_for_gender_display }}</td>
-						<td style="padding:5px">Action</td>
+						<td style="padding:5px; line-height: 22px;">{{ row.user.email }}</td>
+						<td style="padding:5px; line-height: 22px;">{{ row.fullname }}</td>
+						<td style="padding:5px; line-height: 22px;">{{ row.user.is_active }}</td>
+						<td style="padding:5px; line-height: 22px;">{{ row.package.package_name }}</td>
+						<td style="padding:5px; line-height: 22px;">{{ row.get_gender_display }}</td>
+						<td style="padding:5px; line-height: 22px;">{{ row.get_looking_for_gender_display }}</td>
+						<td style="padding:5px; text-align:center;">
+							<i class="mdi mdi-pencil" style="margin-right:15px; cursor:pointer; font-size:12px;"></i>
+							<i class="mdi mdi-delete" onclick="delete_user({{row.user.id}})" style="cursor:pointer; color:#FF0000; font-size:15px;"></i>
+						</td>
 					</tr>
 				{% endfor %}
 			</table>
 		</div>
     </div>
 </div>
+
+
+{% include 'app/base/uploader_gif_modals.html' %}
+
+<script>
+
+var csrfmiddlewaretoken = '{{ csrf_token }}';
+
+</script>
