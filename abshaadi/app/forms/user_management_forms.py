@@ -1,11 +1,62 @@
 from django.forms import *
 from app.models import *
 from django.conf import settings 
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 from app.constants import form_constants
 
 import glob, os
-     
+   
+#
+#
+#
+"""
+class CreateUserForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', 'is_superuser',)
+        
+        widgets = {
+            'first_name' : TextInput(attrs = {'class':'form-control',}),
+            'last_name' : TextInput(attrs = {'class':'form-control',}),
+            'email' : TextInput(attrs = {'class':'form-control', 'type':'email',}),
+            'username' : TextInput(attrs = {'class':'form-control', 'required':'true'}),
+            'password1' : TextInput(attrs = {'class':'form-control', 'type':'password', 'required':'true', 'id':'passwd1'}),
+            'password2' : TextInput(attrs = {'class':'form-control', 'type':'password', 'required':'true', 'id':'passwd1'}),
+            'is_superuser' : Select(attrs = {'class':'form-control', 'required':'true', }, choices=((True, 'Yes'),(False, 'No')))
+        }
+ """
+class CreateUserForm(ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ('email', 'first_name', 'password', 'is_superuser',)
+        
+        widgets = {
+            'first_name' : TextInput(attrs = {'class':'form-control',}),
+            'last_name' : TextInput(attrs = {'class':'form-control',}),
+            'email' : TextInput(attrs = {'class':'form-control', 'type':'email',}),
+            'username' : TextInput(attrs = {'class':'form-control', 'required':'true'}),
+            'password' : TextInput(attrs = {'class':'form-control', 'type':'password', 'required':'true', 'id':'passwd1'}),
+            'is_superuser' : Select(attrs = {'class':'form-control', 'required':'true', }, choices=((True, 'Yes'),(False, 'No')))
+        }
+ 
+#
+#
+#
+class EditUserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email',)
+        
+        widgets = {
+            'username' : TextInput(attrs = {'class':'form-control', 'required':'true', 'readonly':'true'}),
+            'first_name' : TextInput(attrs = {'class':'form-control',}),
+            'last_name' : TextInput(attrs = {'class':'form-control',}),
+            'email' : TextInput(attrs = {'class':'form-control', 'type':'email',}),   
+        }
+
+   
 #******************************************************************************
 # PROFILE FORM
 #******************************************************************************          

@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from collections import defaultdict
 from django.conf import settings
 from app.models import * 
-from app.forms import *
+from app.forms import user_management_forms
 
 
 #******************************************************************************
@@ -65,6 +65,7 @@ class StaffManagementView(View):
     def get(self, request):
         
         self.data["users"] = CustomUser.objects.filter(is_staff = True)
+        self.data["add_user_form"] = user_management_forms.CreateUserForm(auto_id="form_%s")
         
         return render(request, self.template_name, self.data)
    
