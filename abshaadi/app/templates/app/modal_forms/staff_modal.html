@@ -25,7 +25,8 @@
 <div class="modal" tabindex="-1" role="dialog" id="add_staff_form">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-			<form method="post" action="{% url 'staff_package_management_view' %}" enctype="multipart/form-data">
+			<form method="post" onsubmit="add_staff()" id="add_staff_form">
+				{% csrf_token %}
 				<div class="modal-header">
 					<h5 class="modal-title">Add Staff</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -34,15 +35,15 @@
 				</div>
 				<div class="modal-body">
 					<div class="row" style="margin-top:0px; padding-left:10px; padding-right:10px;">
-						<div class="col-4">
-							Username
+						<div class="col-4" style="line-height: 35px;">
+							Username/Email
 						</div>
 						<div class="col-8">
 							{{add_user_form.email}}
 						</div>
 					</div>
 					<div class="row" style="margin-top:5px; padding-left:10px; padding-right:10px;">
-						<div class="col-4">
+						<div class="col-4" style="line-height: 35px;">
 							Password
 						</div>
 						<div class="col-8">
@@ -50,15 +51,7 @@
 						</div>
 					</div>
 					<div class="row" style="margin-top:5px; padding-left:10px; padding-right:10px;">
-						<div class="col-4">
-							Confirm Password
-						</div>
-						<div class="col-8">
-							<input type="password" class="form-control">
-						</div>
-					</div>
-					<div class="row" style="margin-top:5px; padding-left:10px; padding-right:10px;">
-						<div class="col-4">
+						<div class="col-4" style="line-height: 35px;">
 							First Name
 						</div>
 						<div class="col-8">
@@ -66,7 +59,15 @@
 						</div>
 					</div>
 					<div class="row" style="margin-top:5px; padding-left:10px; padding-right:10px;">
-						<div class="col-4">
+						<div class="col-4" style="line-height: 35px;">
+							Last Name
+						</div>
+						<div class="col-8">
+							{{add_user_form.last_name}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:5px; padding-left:10px; padding-right:10px;">
+						<div class="col-4" style="line-height: 35px;">
 							Is Superuser
 						</div>
 						<div class="col-8">
@@ -75,7 +76,7 @@
 					</div>
                 </div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-primary" style="width:80px;">Submit</button>
+					<button type="submit" class="btn btn-primary" style="width:80px;">Submit</button>
 					<button type="button" class="btn btn-warning" style="width:80px;">Cancel</button>
 				</div>
             </form>

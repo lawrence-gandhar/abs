@@ -40,7 +40,8 @@ urlpatterns += [
 urlpatterns += [
     path('staff/user_management/users/view/', never_cache(login_required(user_management.UserManagementView.as_view())), name="user_management_view"),
     path('staff/user_management/users/delete/<int:ins>/', never_cache(login_required(user_management.delete_user)), name="delete_user"),
-   path('staff/user_management/staff/view/', never_cache(login_required(user_management.StaffManagementView.as_view())), name="staff_management_view"),
+    path('staff/user_management/staff/view/', never_cache(login_required(user_management.StaffManagementView.as_view())), name="staff_management_view"),
+    path('staff/user_management/staff/add/', never_cache(login_required(user_management.add_staff)), name="add_staff"),
 ]
 
 #

@@ -20,3 +20,22 @@ function delete_user(id){
 		}
 	});
 }
+
+function add_staff(){
+	$("#data_process_modal").modal('show');
+	
+	$.post("/staff/user_management/staff/add/", $("#add_staff_form").serialize(), function(){
+		if(data==1){
+			location.reload();
+		}
+		else if(data==0){
+			$("#data_process_modal").modal('hide');	
+			alert("In Valid Operation");
+		}
+		else{
+			$("#data_process_modal").modal('hide');	
+			$("#error_modal").find(".modal-body").empty().append(data);
+			$("#error_modal").modal('show');	
+		}
+	});
+}

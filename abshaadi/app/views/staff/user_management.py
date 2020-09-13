@@ -69,7 +69,27 @@ class StaffManagementView(View):
         
         return render(request, self.template_name, self.data)
    
+  
+#******************************************************************************
+# ADD USER
+#******************************************************************************    
+
+def add_staff(request):
+    if request.POST:
+        add_staff = user_management_forms.CreateUserForm(request.POST, auto_id="form_%s")
     
+        if add_staff.is_valid():
+            add_staff.save(commit = False)
+            add_staff.is_satff = True
+            add_staff.save()
+            return HttpResponse('1')
+        else:
+            return HttpResponse(add_staff.errors)
+    return HttpResponse('0')
+    
+    
+
+  
 #******************************************************************************
 # DELETE USER
 #******************************************************************************    
