@@ -24,7 +24,7 @@ class UserProfileView(View):
     
     data = defaultdict()
 
-    data["included_template"] = 'app/users/profile1.html'
+    data["included_template"] = 'app/users/profile.html'
 
     data["page_title"] = "My Profile"
     
