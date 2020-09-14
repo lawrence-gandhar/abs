@@ -33,8 +33,9 @@ urlpatterns += [
 ]
 
 
-# Package
+# Staff
 urlpatterns += [
+    path('staff/package_management/view/', never_cache(login_required(package_management.PackageManagementView.as_view())), name="staff_package_management_view"),
     path('staff/user_management/users/view/', never_cache(login_required(user_management.UserManagementView.as_view())), name="user_management_view"),
     path('staff/user_management/users/delete/<int:ins>/', never_cache(login_required(user_management.delete_user)), name="delete_user"),
     path('staff/user_management/staff/view/', never_cache(login_required(user_management.StaffManagementView.as_view())), name="staff_management_view"),
