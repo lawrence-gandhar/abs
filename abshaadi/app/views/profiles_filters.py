@@ -53,6 +53,11 @@ class UserProfileView(View):
         
         return render(request, self.template_name, self.data)
 
+
+#******************************************************************************
+# USER PROFILE VIEW
+#******************************************************************************   
+
 class UserProfileEdit(View):
     template_name = 'app/base/base.html'
     
@@ -85,6 +90,9 @@ class UserProfileEdit(View):
         return render(request,self.template_name,self.data)
 
 
+#******************************************************************************
+# USER PROFILE VIEW
+#******************************************************************************   
         
 def update(request,id):
     if request.method=='POST':

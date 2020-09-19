@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="row">
-			<div class="col-9">
+			<div class="col-8">
 				<div class="card-body">
 					<table class="table" style="border:none;">
 						<tr>
@@ -78,62 +78,76 @@
 							</td>
 							<td><strong>:</strong> {{ profile.caste_creed|default_if_none:'-' }}</td>
 						</tr>
+						<tr>
+							<td style="text-align:right;">
+								<strong>Phone/Mobile</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.phone_number|default_if_none:'-' }}
+							</td>
+							<td style="text-align:right;">
+								<strong>Alternative Phone</strong>
+							</td>
+							<td><strong>:</strong> {{ profile.phone_number_alternative|default_if_none:'-' }}</td>
+						</tr>
+						<tr>
+							<td style="text-align:right;">
+								<strong>Address</strong>
+							</td>
+							<td colspan="3">
+								<strong>:</strong> {{ profile.address|default_if_none:'-' }}
+							</td>
+						</tr>
 					</table>
 				</div>
 				
 				<div class="card-body">
 					<table class="table" style="border:none;">
 						<tr>
-							<td colspan="4" class="bg-info" style="color:#FFFFFF;">
-								My Physical Attributes
+							<td colspan="6" class="bg-info" style="color:#FFFFFF;">
+								Other Details
 							</td>
 						</tr>
 						<tr>
 							<td width="150px" style="text-align:right;">
-								<strong>Fullname</strong>
+								<strong>Height</strong>
 							</td>
 							<td>
-								<strong>:</strong> {{ profile.fullname|default_if_none:'-' }}
+								<strong>:</strong> {{ profile.height|default_if_none:'-' }}
 							</td>
 							<td style="text-align:right;">
-								<strong>Gender</strong>
+								<strong>Weight</strong>
 							</td>
 							<td>
-								<strong>:</strong> {{ profile.get_gender_display|default_if_none:'-' }}
+								<strong>:</strong> {{ profile.weight|default_if_none:'-' }}
+							</td>
+							<td style="text-align:right;">
+								<strong>Complexion</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.complexion|default_if_none:'-' }}
 							</td>
 						</tr>
 						<tr>
 							<td style="text-align:right;">
-								<strong>Looking For</strong>
+								<strong>Educational Qual.</strong>
 							</td>
-							<td>
-								<strong>:</strong> {{ profile.get_looking_for_gender_display|default_if_none:'-' }}
-							</td>
-							<td style="text-align:right;">
-								<strong>Father's Name</strong>
-							</td>
-							<td>
-								<strong>:</strong> {{ profile.father_name|default_if_none:'-' }}
+							<td colspan="5">
+								<strong>:</strong> {{ profile.qualification|default_if_none:'-' }}
 							</td>
 						</tr>
 						<tr>
 							<td style="text-align:right;">
-								<strong>Mother's Name</strong>
+								<strong>Job Details</strong>
 							</td>
-							<td>
-								<strong>:</strong> {{ profile.mother_name|default_if_none:'-' }}
+							<td colspan="5">
+								<strong>:</strong> {{ profile.job_details|default_if_none:'-' }}
 							</td>
-							<td style="text-align:right;">
-								<strong>Date Of Birth</strong>
-							</td>
-							<td>
-								<strong>:</strong> {{ profile.dob|default_if_none:'-' }}
-							</td>
-						</tr>
+						</tr>						
 					</table>
 				</div>
 			</div>
-			<div class="col-3">
+			<div class="col-4">
 				<div class="card-header card-header-border">
 					My Pics
 					<button class="btn btn-sm btn-primary" style="float:right; margin-right: -10px; margin-top:-3px"><i class="mdi mdi-plus"></i> Add</button>
@@ -147,6 +161,22 @@
 						{% endfor %}
 					</div>
 				</div>
+				
+				<!-- -->
+				
+				<div class="card-header card-header-border" style="margin-top:10px;">
+					Filters
+					<button class="btn btn-sm btn-primary" style="float:right; margin-right: -10px; margin-top:-3px">
+						<i class="mdi mdi-save"></i> Save
+					</button>
+				</div>
+				<div class="card-body card-body-border" style="max-height:150px;">
+					<div class="row" style="padding:10px">
+						
+					</div>
+				</div>
+				
+				
 			</div>
 		</div>
 	</div>
