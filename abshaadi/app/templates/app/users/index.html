@@ -76,7 +76,9 @@
 
 
 <div class="row" style="margin-top:10px;">	
+
 	<div class="col-md-9">
+
 		<div class="card-header card-header-blue card-header-border">
 			<strong>Activity Monitor</strong>
 		</div>
@@ -186,6 +188,15 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- --> 
+		<div class="card-header card-header-border" style="background-color:#ae09bd; color:#FFFFFF; margin-top:10px;">
+			<strong>Latest Matches For You</strong>
+		</div>
+		<div class="card-body card-body-border" style="padding:10px;">
+		
+		</div>
+		
 	</div>
 	
 	<div class="col-md-3">
@@ -194,22 +205,15 @@
 		</div>
 		<div class="card-body card-body-border" style="padding:10px; height:300px;">
 		</div>
+		
+		<!-- -->
+		
+		{% include 'app/html_components/side_search_filters.html' %}
+		
 	</div>
 	
 </div>
 
-
-
-<div class="row" style="margin-top:10px;">	
-	<div class="col-md-9">
-		<div class="card-header card-header-border" style="background-color:#ae09bd; color:#FFFFFF;">
-			<strong>Latest Matches For You</strong>
-		</div>
-		<div class="card-body card-body-border" style="padding:10px;">
-		
-		</div>
-	</div>
-</div>
 
 
 {% include 'app/modal_forms/profile_picture_modal.html' %}
