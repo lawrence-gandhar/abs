@@ -450,6 +450,34 @@ class Profile(models.Model):
         blank = False,
     )
     
+    country = models.ForeignKey(
+        Countries,
+        db_index = True,
+        null = True,
+        blank = False,
+        on_delete = models.SET_NULL,
+        related_name = 'my_country',
+    )
+    
+    state = models.ForeignKey(
+        Countries_States,
+        db_index = True,
+        null = True,
+        blank = False,
+        on_delete = models.SET_NULL,
+        related_name = 'my_state',
+    )
+    
+    city = models.ForeignKey(
+        Countries_States,
+        db_index = True,
+        null = True,
+        blank = False,
+        on_delete = models.SET_NULL,
+        related_name = 'my_city',
+    )
+    
+    
     biodata = models.FileField(
         upload_to = 'resumes',
         null = True,
