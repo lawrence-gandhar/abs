@@ -15,8 +15,9 @@ class ProfileSearchForm(ModelForm):
         widgets = {
             'religion' : Select(attrs = {'class':'form-control',}),
             'caste_creed' : Select(attrs = {'class':'form-control',}),
-            'aged_to' : TextInput(attrs = {'class':'form-control', 'type':'email',}),
-            'aged_from' : TextInput(attrs = {'class':'form-control', 'required':'true'}),
+            'aged_to' : TextInput(attrs = {'class':'form-control', }),
+            'aged_from' : TextInput(attrs = {'class':'form-control', }),
             'complexion' : Select(attrs = {'class':'form-control',}),
-            'job_details' : Select(attrs = {'class':'form-control',}),
+            'qualification' : TextInput(attrs = {'class':'form-control', }),
+            'job_details' : TextInput(attrs = {'class':'form-control',}),
         }
