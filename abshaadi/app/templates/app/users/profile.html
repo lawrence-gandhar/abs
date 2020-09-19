@@ -2,316 +2,149 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="row">
-			<div class="col-2">
+			<div class="col-9">
 				<div class="card-body">
-					<img src="{% get_media_prefix %}{{pro_pic}}" class="img" width="100%" height="180px">
+					<table class="table" style="border:none;">
+						<tr>
+							<td colspan="2" class="bg-success" style="color:#FFFFFF;">
+								<span style="font-weight:bold; display:inline-block; line-height:30px;">Package Name</span>
+								<span style="font-size:11px; display:inline-block; float:right; text-align:right;">
+									Remaining Duration
+									</br>1Year
+								</span>
+							</td>
+						</tr>
+					</table>
 				</div>
-				<div class="card-body-blue card-body-border">
-					<div class="col">
-						<div class="col-4">
-							<canvas id="myChart" width="100" height="96" style="margin:5px 10px;"></canvas>
-						</div>
-						
-							<a href="#" data-toggle="modal" data-target="#profile_picture_modal">
-								<span class="mdi mdi-camera"></span> &nbsp; Update Profile Picture
-					</a>				
+				
+				<div class="card-body">
+					<table class="table" style="border:none;">						
+						<tr>
+							<td colspan="4" class="bg-info" style="color:#FFFFFF;">
+								My Personal Information
+							</td>							
+						</tr>
+						<tr>
+							<td width="150px" style="text-align:right;">
+								<strong>Fullname</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.fullname }}
+							</td>
+							<td width="150px" style="text-align:right;">
+								<strong>Gender</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.get_gender_display }}
+							</td>							
+						</tr>
+						<tr>
+							<td style="text-align:right;">
+								<strong>Looking For</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.get_looking_for_gender_display }}
+							</td>
+							<td style="text-align:right;">
+								<strong>Father's Name</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.father_name|default_if_none:'-' }}
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right;">
+								<strong>Mother's Name</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.mother_name|default_if_none:'-' }}
+							</td>
+							<td style="text-align:right;">
+								<strong>Date Of Birth</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.dob|default_if_none:'-' }}
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right;">
+								<strong>Religion</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.religion|default_if_none:'-' }}
+							</td>
+							<td style="text-align:right;">
+								<strong>Caste/Domination</strong>
+							</td>
+							<td><strong>:</strong> {{ profile.caste_creed|default_if_none:'-' }}</td>
+						</tr>
+					</table>
 				</div>
+				
+				<div class="card-body">
+					<table class="table" style="border:none;">
+						<tr>
+							<td colspan="4" class="bg-info" style="color:#FFFFFF;">
+								My Physical Attributes
+							</td>
+						</tr>
+						<tr>
+							<td width="150px" style="text-align:right;">
+								<strong>Fullname</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.fullname|default_if_none:'-' }}
+							</td>
+							<td style="text-align:right;">
+								<strong>Gender</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.get_gender_display|default_if_none:'-' }}
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right;">
+								<strong>Looking For</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.get_looking_for_gender_display|default_if_none:'-' }}
+							</td>
+							<td style="text-align:right;">
+								<strong>Father's Name</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.father_name|default_if_none:'-' }}
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right;">
+								<strong>Mother's Name</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.mother_name|default_if_none:'-' }}
+							</td>
+							<td style="text-align:right;">
+								<strong>Date Of Birth</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.dob|default_if_none:'-' }}
+							</td>
+						</tr>
+					</table>
 				</div>
 			</div>
-			<div class="col-10">
-				<div class="row">
-					<div class="col-8">
-						<div class="card-body">
-							<table class="table" style="border:none;">
-								<tr>
-									<td colspan="2" class="bg-success" style="color:#FFFFFF;">
-										<span style="font-weight:bold; display:inline-block; line-height:30px;">Package Name</span>
-										<span style="font-size:11px; display:inline-block; float:right; text-align:right;">
-											Remaining Duration
-											</br>1Year
-										</span>
-									</td>
-								</tr>
-							</table>
-						</div>
-						
-						<div class="card-body">
-							<table class="table" style="border:none;">
-								
-								{%if  abc%}
-								<tr>
-									<td colspan="2" class="bg-info" style="color:#FFFFFF;">
-										My Personal Information
-									</td>
-								</tr>
-								
-								<tr>
-									<td width="150px"><strong>Fullname</strong></td>
-									<td><strong>:</strong> {{ profile.fullname }}</td>
-								</tr>
-								<tr>
-									<td><strong>Gender</strong></td>
-									<td><strong>:</strong> {{ profile.get_gender_display }}</td>
-								</tr>
-								<tr>
-									<td><strong>Looking For</strong></td>
-									<td><strong>:</strong> {{ profile.get_looking_for_gender_display }}</td>
-								</tr>
-								<tr>
-									<td><strong>Father's Name</strong></td>
-									<td><strong>:</strong> {{ profile.father_name|default_if_none:'-' }}</td>
-								</tr>
-								<tr>
-									<td><strong>Mother's Name</strong></td>
-									<td><strong>:</strong> {{ profile.mother_name|default_if_none:'-' }}</td>
-								</tr>
-								<tr>
-									<td><strong>Date Of Birth</strong></td>
-									<td><strong>:</strong> {{ profile.dob|default_if_none:'-' }}</td>
-								</tr>
-								<tr>
-									<td><strong>Religion</strong></td>
-									<td><strong>:</strong> {{ profile.religion|default_if_none:'-' }}</td>
-								</tr>
-								<tr>
-									<td><strong>Caste/Domination</strong></td>
-									<td><strong>:</strong> {{ profile.caste_creed|default_if_none:'-' }}</td>
-								</tr>
-								<tr>
-									<td>
-										<a href="/edit/{{ profile.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>
-									</td>  
-								</tr>
-								{%else%}
-								<form method="POST" class="post-form" action="/update/{{profile.id}}">  
-									{% csrf_token %} 
-									
-									 
-								<tr>
-									<td width="120px"><strong>Full Name:</strong></td>
-									<td><strong>:</strong>    
-									<input type="text" name="fullname" id="id_fullname" required maxlength="20" value="{{ profile.fullname|upper }}"/></td>
-								</tr>
-								<tr>
-									<td width="120px"><strong>Gender:</strong></td>
-									<td><strong>:</strong> 
-									 <input type="text" name="gender" id="gender" required maxlength="20" value="{{profile.get_gender_display }}"/></td>
-								</tr>
-								<tr>
-									<td width="120px"><strong>Looking For:</strong></td>
-									<td><strong>:</strong>
-									 <input type="text" name="looking_for_gender" id="looking_for_gender" required maxlength="20" value="{{ profile.get_looking_for_gender_display }}"/></td>
-								</tr>
-								<tr>
-									<td width="120px"><strong>Aged From:</strong></td>
-									<td><strong>:</strong>
-									 <input type="text" name="aged_from" id="aged_from" required maxlength="20" value="{{ profile.aged_from }}"/></td>
-								</tr>
-								<tr>
-									<td width="120px"><strong>Aged To:</strong></td>
-									<td><strong>:</strong> 
-									<input type="text" name="aged_to" id="aged_to" required maxlength="20" value="{{ profile.aged_to }}"/></td>
-								</tr>
-								<tr>
-									<td width="120px"><strong>Father Name:</strong></td>
-									<td><strong>:</strong>    
-									<input type="text" name="father_name" id="id_father_name" required maxlength="20" value="{{ profile.father_name }}"/></td>
-								</tr>
-								<tr>
-									<td width="120px"><strong>Mother Name:</strong></td>
-									<td><strong>:</strong>    
-									<input type="text" name="mother_name" id="id_mother_name" required maxlength="20" value="{{ profile.mother_name }}"/></td>
-								</tr>
-								<tr>
-									<td width="120px"><strong>Date Of Birth:</strong></td>
-									<td><strong>:</strong>    
-									<input type="date" name="dob" id="id_dob" placeholder='YYYY-MM-DD' required maxlength="20" value="{{ profile.dob|default_if_none:'-' }}"/></td><br><br>
-									
-								</tr>
-								<tr>
-									<td width="120px"><strong>Religion:</strong></td>
-									<td><strong>:</strong>  
-										<select name="religion" class="form-control" id="id_religion">
-											<option value="" selected>---------</option>
-										  
-											<option value="1">ANY RELIGION</option>
-										  
-											<option value="2">HINDU</option>
-										  
-											<option value="3">MUSLIM</option>
-										  
-											<option value="4">CHRISTIAN</option>
-										  
-											<option value="5">SIKH</option>
-										  
-											<option value="6">JAIN</option>
-										  
-											<option value="7">BUDDHIST</option>
-										  
-											<option value="8">JEWISH</option>
-										  
-										</select>
-									</td>	
-								</tr>  
-								<td width="120px"><strong>Caste/Domination:</strong></td>
-									<td><strong>:</strong> 
-										<select name="caste_creed" class="form-control" id="id_caste_creed">
-											<option value="" selected>---------</option>
-										  
-											<option value="1">ANY CASTE</option>
-										  
-											<option value="2">BRAHMIN</option>
-										  
-											<option value="3">RAJPUT</option>
-										  
-											<option value="4">KURMI</option>
-										  
-											<option value="5">YADAV</option>
-										  
-											<option value="6">PASWAN</option>
-										  
-											<option value="7">KOYARI</option>
-										  
-											<option value="8">MANDAL</option>
-										  
-											<option value="9">KUSHWAHA</option>
-										  
-											<option value="10">HARIJAN</option>
-										  
-											<option value="11">KAHAR</option>
-										  
-											<option value="12">SHARMA</option>
-										  
-											<option value="13">BHUMIHAR</option>
-										  
-											<option value="14">RAJAK(DHOBI)</option>
-										  
-											<option value="15">KUMHAR(PANDIT)</option>
-										  
-											<option value="16">ADVENTISTS</option>
-										  
-											<option value="17">BAPTISTS</option>
-										  
-											<option value="18">CONGREGATIONALISTS</option>
-										  
-											<option value="19">LUTHERANS</option>
-										  
-											<option value="20">METHODISTS</option>
-										  
-											<option value="21">PENTECOSTALS</option>
-										  
-											<option value="22">PRESBYTERIANS</option>
-										  
-											<option value="23">CATHOLICS</option>
-										  
-											<option value="24">ORTHODOX</option>
-										  
-											<option value="25">PROTESTANTS</option>
-										  
-											<option value="26">SUNNI</option>
-										  
-											<option value="27">SHIA</option>
-										  
-											<option value="28">SUFISM</option>
-										  
-											<option value="29">AHMADDIYA</option>
-										  
-											<option value="30">ZIKRIS</option>
-										  
-											<option value="31">NIRANKARIS</option>
-										  
-											<option value="32">NAMDHARIS</option>
-										  
-											<option value="33">NIRMALA</option>
-										  
-											<option value="34">RADHA SOAMI</option>
-										  
-											<option value="35">SANATAN SIKHS</option>
-										  
-											<option value="36">UDASI</option>
-										  
-											<option value="37">MIHARVANS</option>
-										  
-											<option value="38">RAMRAIYAS</option>
-										  
-											<option value="39">NANAKPANTHI</option>
-										  
-											<option value="40">DIGAMBARA</option>
-										  
-											<option value="41">SVETAMBARA</option>
-										  
-											<option value="42">THERAVADA</option>
-										  
-											<option value="43">MAHAYANA</option>
-										  
-											<option value="44">VAJRAYANA</option>
-										  
-										</select>
-								<tr>
-									<td>
-										<div class="form-group row">  
-											<label class="col-sm-1 col-form-label"></label>  
-											<div class="col-sm-4">  
-											<button type="submit" class="btn btn-success">Update</button>  
-											</div>  
-										  </div>  
-										</div> 
-								</td>
-								</tr>
-								</form>
-									
-								{%endif%}
-							</table>
-						</div>
-						
-						<div class="card-body">
-							<table class="table" style="border:none;">
-								<tr>
-									<td colspan="2" class="bg-info" style="color:#FFFFFF;">
-										My Physical Attributes
-									</td>
-								</tr>
-								<tr>
-									<td width="150px"><strong>Fullname</strong></td>
-									<td><strong>:</strong> {{ profile.fullname|default_if_none:'-' }}</td>
-								</tr>
-								<tr>
-									<td><strong>Gender</strong></td>
-									<td><strong>:</strong> {{ profile.get_gender_display|default_if_none:'-' }}</td>
-								</tr>
-								<tr>
-									<td><strong>Looking For</strong></td>
-									<td><strong>:</strong> {{ profile.get_looking_for_gender_display|default_if_none:'-' }}</td>
-								</tr>
-								<tr>
-									<td><strong>Father's Name</strong></td>
-									<td><strong>:</strong> {{ profile.father_name|default_if_none:'-' }}</td>
-								</tr>
-								<tr>
-									<td><strong>Mother's Name</strong></td>
-									<td><strong>:</strong> {{ profile.mother_name|default_if_none:'-' }}</td>
-								</tr>
-								<tr>
-									<td><strong>Date Of Birth</strong></td>
-									<td><strong>:</strong> {{ profile.dob|default_if_none:'-' }}</td>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div class="col-4">
-						<div class="card-header card-header-border">
-							My Pics
-							<button class="btn btn-sm btn-primary" style="float:right; margin-right: -10px; margin-top:-3px"><i class="mdi mdi-plus"></i> Add</button>
-						</div>
-						<div class="card-body card-body-border">
-							<div class="row" style="padding:10px">
-								{% for pics in gallery %}
-									<div class="col-6" style="padding:10px">
-										<img src="{% get_media_prefix %}{{pics.picture}}" class="img" width="100%" height="120px">
-									</div>
-								{% endfor %}
+			<div class="col-3">
+				<div class="card-header card-header-border">
+					My Pics
+					<button class="btn btn-sm btn-primary" style="float:right; margin-right: -10px; margin-top:-3px"><i class="mdi mdi-plus"></i> Add</button>
+				</div>
+				<div class="card-body card-body-border" style="max-height:150px;">
+					<div class="row" style="padding:10px">
+						{% for pics in gallery %}
+							<div class="col-4" style="padding:10px">
+								<img src="{% get_media_prefix %}{{pics.picture}}" class="img" width="100%" height="auto">
 							</div>
-						</div>
+						{% endfor %}
 					</div>
 				</div>
 			</div>
