@@ -313,6 +313,13 @@ class Profile(models.Model):
         on_delete = models.CASCADE,
     )
     
+    uid = models.CharField(
+        max_length = 20,
+        blank = True,
+        null = True,
+        db_index = True,
+    )
+    
     package = models.ForeignKey(
         Package,
         db_index = True,
@@ -516,6 +523,11 @@ class Profile(models.Model):
     class Meta:
         verbose_name_plural = "User Profiles"
     
+    
+@receiver(post_save, sender=Profile)
+def create_uuid(sender, instance, *args, **kwargs): 
+    instance.uid = 'AB-{}'.format(1000000 + instance.user.id)
+    instance.save()
     
 #***********************************************************************
 #
