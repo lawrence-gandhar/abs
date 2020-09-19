@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from collections import defaultdict
 from django.conf import settings
 from app.models import * 
-from app.forms import *
+from app.forms import registration_forms, search_forms
 
 
 #******************************************************************************
@@ -67,6 +67,8 @@ class UserDashboardView(View):
         
         self.data["profile_picture"] = registration_forms.ProfilePicturesForm()
         self.data["redirect_url"] = request.get_full_path()
+        
+        self.data["search_profile"] = search_forms.ProfileSearchForm()
         
         
         return render(request, self.template_name, self.data)
