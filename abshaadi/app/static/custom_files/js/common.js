@@ -1,4 +1,9 @@
-$(document).ready(function(){});
+$(document).ready(function(){
+	
+	$(".states_select").hide();
+	
+	
+});
 
 $("#register").on("click", function(){
 	$("#login_form").hide();
@@ -128,3 +133,44 @@ $("#id_password1").on("focusout", function(){
 		$("#passwd1_error").text("");		
 	}
 });
+
+
+//***********************************************************************
+// Get States Dropdown
+//***********************************************************************
+//
+
+function get_states_dropdown(elem){
+	
+	id = $(elem).val();
+	
+	$(".state-div").hide();
+	
+	if(id !=""){
+		$.get("/get_states_dropdown/"+id+"/", function(data){
+			$(".states_select").empty().append(data);
+			$(".states_select").selectpicker();
+			
+			$(".state-div").show();
+		});
+	}	
+}
+
+
+//***********************************************************************
+// Get Cities Dropdown
+//***********************************************************************
+//
+
+
+$(".states_select").on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue){
+	arr = $(this).val();
+	
+	// Get Cities list
+	
+	
+	
+});
+
+	
+	

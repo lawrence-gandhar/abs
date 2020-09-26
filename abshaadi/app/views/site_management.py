@@ -1,11 +1,60 @@
 import urllib.request
-import json
 from django.conf import settings
-import os
+import os, json, csv
 from django.http import HttpResponse
 from app.models import *
 from django.utils import safestring 
+from collections import defaultdict
+from django.views import View
+from django.shortcuts import render
 
+
+
+#******************************************************************************
+# LOAD RELIGIONS INTO DB
+#******************************************************************************   
+
+RELIGIONS_LIST = os.path.join(settings.STATICFILES_DIRS[0], 'site_managers', 'app_religion.csv')
+CASTE_LIST = os.path.join(settings.STATICFILES_DIRS[0], 'site_managers', 'app_caste.csv')
+
+
+def load_religions_into_db(request):
+
+    Religion.objects.all().delete()
+
+    with open(RELIGIONS_LIST) as rel_file:
+
+        rel_reader = csv.reader(rel_file, delimiter=',')
+        
+        line_count = 0
+        for row in rel_reader:
+        
+            if line_count >= 1:
+                
+                rel = Religion(
+                    id =  row[0],
+                    religion_name = row[1]
+                )
+                
+                rel.save()
+                
+                with open(CASTE_LIST) as cas_file:
+                    cas_reader = csv.reader(cas_file, delimiter=',')
+        
+                    for cas in cas_reader:
+                        if cas[3] == row[0]:
+                        
+                            caste = Caste(
+                                id = cas[0],
+                                religion = rel,
+                                caste_name = cas[1]
+                            )
+                            
+                            caste.save()                
+            line_count += 1
+            
+    return HttpResponse('1')
+    
 
 #******************************************************************************
 # LOAD COUNTRIES INTO DB
@@ -15,7 +64,7 @@ COUNTRIES_LIST = os.path.join(settings.STATICFILES_DIRS[0], 'site_managers')
 COUNTRIES_LIST = os.path.join(COUNTRIES_LIST,'countries+states+cities.txt')
 
 
-def add_countries_to_db(request):
+def add_countries_to_db_2(request):
 
     with open(COUNTRIES_LIST, 'r', encoding='utf-8') as file:
         data = json.load(file)
@@ -67,6 +116,61 @@ def add_countries_to_db(request):
     return HttpResponse('1')
     
 
+    
+#******************************************************************************
+# LOAD COUNTRIES INTO DB
+#******************************************************************************   
+    
+def add_countries_to_db(request):
+
+    with open(COUNTRIES_LIST, 'r', encoding='utf-8') as file:
+        data = json.load(file)
+        
+        Countries_Cities.objects.all().delete()
+        
+        for row in data:
+        
+            country = Countries.objects.get(country_name = row["name"])
+                        
+            for state in row["states"]:
+                if "name" in state.keys():  
+                
+                    state_ins = Countries_States.objects.filter(country = country, state_name__iexact = state["name"])
+                    
+                    print(state_ins.query)
+                    
+                    print(state_ins.values())
+                    
+                    """
+                    for city in state["cities"]:
+                    
+                        city_ins = Countries_Cities(
+                            country = country,
+                            state_name = state_ins,
+                            city_name = city["name"]
+                        )
+                
+                    city_ins.save()
+                    """
+                
+                else:
+                    """
+                    for city in state["cities"]:
+                    
+                        city_ins = Countries_Cities(
+                            country = country,
+                            city_name = city["name"]
+                        )
+                    
+                        city_ins.save()
+                    """
+                    pass
+                   
+    return HttpResponse('1')    
+    
+    
+    
+
 #******************************************************************************
 # FETCH STATES HTML DROPDOWN
 #****************************************************************************** 
@@ -86,7 +190,69 @@ def get_states_dropdown(request, id):
 
         if states is not None:
             for state in states:
-                html.append("<option value='{}'>{}</option>".format(state.id, state))
+                html.append("<option  class='special' data-content=\"<span class='badge badge-info'>{1}</span>\" value='{0}'>{1}</option>".format(state.id, state))
             return HttpResponse(safestring.mark_safe(''.join(html)))
         else:
             return HttpResponse('')
+            
+            
+#******************************************************************************
+# FETCH CITIES HTML DROPDOWN
+#****************************************************************************** 
+
+def get_states_dropdown(request, id):
+    
+    if id is not None:
+    
+        html = []
+    
+        try:
+            country = Countries.objects.get(pk = id)
+        except:
+            return HttpResponse('')
+          
+        states = Countries_States.objects.filter(country = country)
+
+        if states is not None:
+            for state in states:
+                html.append("<option  class='special' data-content=\"<span class='badge badge-info'>{1}</span>\" value='{0}'>{1}</option>".format(state.id, state))
+            return HttpResponse(safestring.mark_safe(''.join(html)))
+        else:
+            return HttpResponse('')          
+
+
+#******************************************************************************
+# FETCH CITIES HTML DROPDOWN
+#****************************************************************************** 
+           
+           
+class ReligionManagementView(View):
+    
+    data = defaultdict()
+    
+    template_name = 'app/base/base.html'
+    
+    data["included_template"] = 'app/staff/religion_management.html'
+
+    data["page_title"] = "Site Management"
+    
+    data["css_files"] = []
+    data["js_files"] = []
+    
+    
+    def get(self, request):
+    
+        self.data["re_list"] = defaultdict()
+    
+        re_list = Religion.objects.all().values_list('id', 'is_active', 'religion_name')
+        cas_list = Caste.objects.all().values_list('id', 'is_active', 'religion', 'caste_name')
+        
+        for x in re_list:   
+            self.data["re_list"][x[0]] = {"castes":[],"is_active":x[1],  "name":x[2]}
+            
+            for y in cas_list:                
+                if y[2] == x[0]:
+                    self.data["re_list"][x[0]]["castes"].append(y)
+        
+        return render(request, self.template_name, self.data)
+           

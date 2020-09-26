@@ -136,7 +136,7 @@
 								<i class="mdi mdi-receipt"></i>
 								<span class="hide-menu">User Management</span>
 							</a>
-                            <ul aria-expanded="false" class="collapse first-level in">
+                            <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item">
 									<a href="{% url 'user_management_view' %}" class="sidebar-link">
 										<i class="mdi mdi-note-outline"></i>
@@ -157,23 +157,17 @@
 								<i class="mdi mdi-receipt"></i>
 								<span class="hide-menu">Site Management</span>
 							</a>
-                            <ul aria-expanded="false" class="collapse first-level in">
+                            <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item">
-									<a href="{% url 'user_management_view' %}" class="sidebar-link">
+									<a href="{% url 'religion_management' %}" class="sidebar-link">
 										<i class="mdi mdi-note-outline"></i>
-										<span class="hide-menu"> Religions </span>
-									</a>
-								</li>
-                                <li class="sidebar-item">
-									<a href="{% url 'staff_management_view' %}" class="sidebar-link">
-										<i class="mdi mdi-note-plus"></i>
-										<span class="hide-menu"> Caste/Denominations </span>
+										<span class="hide-menu"> Religion/Caste </span>
 									</a>
 								</li>
 								<li class="sidebar-item">
 									<a href="{% url 'add_countries_to_db' %}" class="sidebar-link">
 										<i class="mdi mdi-note-plus"></i>
-										<span class="hide-menu"> Load Countries </span>
+										<span class="hide-menu"> Countries/States </span>
 									</a>
 								</li>
                             </ul>

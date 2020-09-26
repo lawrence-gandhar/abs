@@ -200,5 +200,36 @@
 		color: #EEE;
 	}
 	
+	.special {
+		font-weight: bold !important;
+		color: #fff !important;
+		background: #2255a4 !important;
+		text-transform: uppercase;
+	}
+
+
+	.bg-red{
+		color: #fff !important;
+		background-color : #ff0000ba;
+		border-color : transparent;
+	}
+	
+	.bg-green{
+		color: #000 !important;
+		background-color : #5aef3094;
+		border-color : transparent !important;
+	}
+	
+	.bg-deactive{
+		color: #fff !important;
+		background-color : #011f25;
+		border-color : transparent !important;
+	}
+	
+	.bg-grey-light{
+		background-color : #e3e8e194;
+		border-color : transparent !important;
+	}
+	
 	
 </style>
