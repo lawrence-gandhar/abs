@@ -11,6 +11,9 @@
 			<button data-toggle="modal" data-target="#add_staff_form" style="float:right; margin-right:5px;  margin-top:-8px;" class="btn btn-info">
 				<i class="mdi mdi-plus"></i> Add Religion
 			</button>
+			<button style="float:right; margin-right:5px;  margin-top:-8px;" class="btn btn-warning" onclick="start_religion_auto_renew()">
+				<i class="mdi mdi-backup-restore"></i> Restore
+			</button>
 			
 		</div>
 		<div class="card-body" style="padding-top:10px; background:none;">
@@ -54,3 +57,9 @@
 		</div>
     </div>
 </div>
+
+{% include 'app/base/uploader_gif_modals.html' %}
+
+<script>
+	var csrfmiddlewaretoken = '{{ csrf_token }}';
+</script>

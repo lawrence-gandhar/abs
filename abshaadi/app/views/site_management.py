@@ -237,7 +237,7 @@ class ReligionManagementView(View):
     data["page_title"] = "Site Management"
     
     data["css_files"] = []
-    data["js_files"] = []
+    data["js_files"] = ['custom_files/js/site_management.js']
     
     
     def get(self, request):
