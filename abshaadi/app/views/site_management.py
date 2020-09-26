@@ -313,3 +313,20 @@ def delete_caste(request, ins=None):
         except:
             pass
     return redirect("/staff/religion-management/")
+  
+  
+#******************************************************************************
+# DELETE RELIGION 
+#****************************************************************************** 
+
+def delete_religion(request, ins=None):
+    
+    if ins is not None:
+        try:
+            rel = Religion.objects.get(pk = ins)
+            rel.delete()
+        except:
+            pass
+    return redirect("/staff/religion-management/")    
+    
+    

@@ -453,7 +453,6 @@ class Profile(models.Model):
     )
     
     address = models.TextField(
-        db_index = True,
         null = True,
         blank = False,
     )
@@ -500,7 +499,6 @@ class Profile(models.Model):
     block_profile_pics = models.BooleanField(
         default = False,
         db_index = True,
-        null = True,
         blank = True,
     )
     
@@ -557,7 +555,6 @@ class ProfilePictures(models.Model):
     
     set_as_profile_pic = models.BooleanField(
         db_index = True,
-        null = True,
         default = False,
         blank = True,
     )
@@ -840,7 +837,7 @@ class PaidUser(models.Model):
     
     is_active = models.BooleanField(
         default = True,
-        null = True,
+        db_index = True,
     )
     
     class Meta:

@@ -51,7 +51,10 @@
 						<td style="padding:5px; line-height: 22px; text-align:center; width:100px">{% tick_mark value.is_active %}</td>
 						<td style="padding:5px; text-align:center; width:80px">
 							<i class="mdi mdi-pencil" style="margin-right:15px; cursor:pointer; font-size:12px;"></i>
-							<i class="mdi mdi-delete" onclick="delete_user({{value.id}})" style="cursor:pointer; color:#FF0000; font-size:15px;"></i>
+							
+							<a href="{% url 'delete_religion' row %} " style="text-decoration:none; color:#FFFFFF">
+								<i class="mdi mdi-delete" style="cursor:pointer; color:#FF0000; font-size:15px;"></i>
+							</a>
 						</td>
 					</tr>
 				{% endfor %}
