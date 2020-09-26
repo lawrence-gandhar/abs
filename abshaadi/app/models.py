@@ -23,6 +23,7 @@ class Religion(models.Model):
         db_index = True,
         null = True,
         blank = False,
+        unique = True,
     )
     
     is_active = models.BooleanField(

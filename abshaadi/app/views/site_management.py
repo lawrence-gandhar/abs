@@ -7,7 +7,7 @@ from django.utils import safestring
 from collections import defaultdict
 from django.views import View
 from django.shortcuts import render
-
+from app.forms import site_management_forms
 
 
 #******************************************************************************
@@ -222,7 +222,7 @@ def get_states_dropdown(request, id):
 
 
 #******************************************************************************
-# FETCH CITIES HTML DROPDOWN
+# RELIGION MANAGEMENT
 #****************************************************************************** 
            
            
@@ -253,6 +253,32 @@ class ReligionManagementView(View):
             for y in cas_list:                
                 if y[2] == x[0]:
                     self.data["re_list"][x[0]]["castes"].append(y)
+                    
+        
+        self.data["add_religion_form"] = site_management_forms.AddReligionForm()
+        
+        self.data["add_caste_form"] = site_management_forms.AddCasteForm()
+        
         
         return render(request, self.template_name, self.data)
-           
+ 
+ 
+#******************************************************************************
+# ADD RELIGION 
+#****************************************************************************** 
+ 
+def add_religion(request):
+    
+    if request.POST:
+    
+        add_rel = site_management_forms.AddReligionForm(request.POST)
+        
+        if add_rel.is_valid():
+            add_rel.save()
+            return HttpResponse('1')
+        else:
+            print(add_rel.errors)
+            return HttpResponse(safestring.mark_safe(add_rel.errors))
+    return HttpResponse('0')
+    
+ 

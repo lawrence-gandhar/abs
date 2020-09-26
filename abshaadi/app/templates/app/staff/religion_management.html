@@ -5,10 +5,10 @@
 	<div class="col">
 		<div class="card-header card-header-blue card-header-border">
 			<strong>Religion & Caste Information</strong>
-			<button data-toggle="modal" data-target="#add_staff_form" style="float:right; margin-right:-16px;  margin-top:-8px;" class="btn btn-info">
+			<button data-toggle="modal" data-target="#add_caste_form" style="float:right; margin-right:-16px;  margin-top:-8px;" class="btn btn-info">
 				<i class="mdi mdi-plus"></i> Add Caste
 			</button>
-			<button data-toggle="modal" data-target="#add_staff_form" style="float:right; margin-right:5px;  margin-top:-8px;" class="btn btn-info">
+			<button data-toggle="modal" data-target="#add_religion_form" style="float:right; margin-right:5px;  margin-top:-8px;" class="btn btn-info">
 				<i class="mdi mdi-plus"></i> Add Religion
 			</button>
 			<button style="float:right; margin-right:5px;  margin-top:-8px;" class="btn btn-warning" onclick="start_religion_auto_renew()">
@@ -59,6 +59,7 @@
 </div>
 
 {% include 'app/base/uploader_gif_modals.html' %}
+{% include 'app/modal_forms/site_management_modal.html' %}
 
 <script>
 	var csrfmiddlewaretoken = '{{ csrf_token }}';
