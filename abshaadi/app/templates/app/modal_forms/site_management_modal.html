@@ -1,6 +1,6 @@
 <!-- ADD RELIGION MODAL -->
 
-<div class="modal" tabindex="-1" role="dialog" id="add_religion_form" style="background-color:#464e4ec2;" data-backdrop="static" data-keyboard="false">
+<div class="modal" tabindex="-1" role="dialog" id="add_religion_form_modal" style="background-color:#464e4ec2;" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 			<form method="post" id="add_religion_form" onsubmit="return validate_add_religion_form($(this))">
@@ -29,7 +29,7 @@
 						</div>
 					</div>
 					
-					<div class="row error-div"></div>
+					<div class="row error-div hide" style="text-align:center; color:#FF0000; font-weight:bold; margin-top:20px;"></div>
                 </div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-primary" style="width:80px;">Submit</button>
@@ -42,10 +42,10 @@
 
 <!-- ADD CASTE MODAL -->
 
-<div class="modal" tabindex="-1" role="dialog" id="add_caste_form" style="background-color:#464e4ec2;" data-backdrop="static" data-keyboard="false">
+<div class="modal" tabindex="-1" role="dialog" id="add_caste_form_modal" style="background-color:#464e4ec2;" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-			<form method="post" id="add_staff_form">
+			<form method="post" id="add_caste_form" onsubmit="return validate_add_caste_form($(this))">
 				{% csrf_token %}
 				<div class="modal-header">
 					<h5 class="modal-title">Add Caste</h5>

@@ -22,6 +22,8 @@ urlpatterns += [
     path('staff/religion-management/', never_cache(login_required(site_management.ReligionManagementView.as_view())), name='religion_management'),
     path('load_religions_into_db/', never_cache(site_management.load_religions_into_db), name="load_religions_into_db"),
     path('add_religion/', never_cache(site_management.add_religion), name="add_religion"),
+    path('add_caste/', never_cache(site_management.add_caste), name="add_caste"),
+    path('staff/delete_caste/<int:ins>', never_cache(site_management.delete_caste), name="delete_caste"),
     path('staff/site_managers/load_countries/', never_cache(login_required(site_management.add_countries_to_db)), name="add_countries_to_db"),
     path('get_states_dropdown/<int:id>/', never_cache(site_management.get_states_dropdown), name="get_states_dropdown"),
 ]

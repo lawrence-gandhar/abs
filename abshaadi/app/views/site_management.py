@@ -6,7 +6,7 @@ from app.models import *
 from django.utils import safestring 
 from collections import defaultdict
 from django.views import View
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from app.forms import site_management_forms
 
 
@@ -255,9 +255,9 @@ class ReligionManagementView(View):
                     self.data["re_list"][x[0]]["castes"].append(y)
                     
         
-        self.data["add_religion_form"] = site_management_forms.AddReligionForm()
+        self.data["add_religion_form"] = site_management_forms.AddReligionForm(prefix='rel')
         
-        self.data["add_caste_form"] = site_management_forms.AddCasteForm()
+        self.data["add_caste_form"] = site_management_forms.AddCasteForm(prefix='cas')
         
         
         return render(request, self.template_name, self.data)
@@ -271,14 +271,45 @@ def add_religion(request):
     
     if request.POST:
     
-        add_rel = site_management_forms.AddReligionForm(request.POST)
+        add_rel = site_management_forms.AddReligionForm(request.POST, prefix='rel')
         
         if add_rel.is_valid():
             add_rel.save()
-            return HttpResponse('1')
-        else:
-            print(add_rel.errors)
-            return HttpResponse(safestring.mark_safe(add_rel.errors))
-    return HttpResponse('0')
+            return HttpResponse(json.dumps({'code':'1', 'error':''}))
+        else:         
+            return HttpResponse(json.dumps({'code':'0', 'error':safestring.mark_safe(add_rel.errors)}))
+    return HttpResponse(json.dumps({'code':'0', 'error':'In-Valid Request'}))
     
- 
+
+#******************************************************************************
+# ADD CASTE 
+#****************************************************************************** 
+
+def add_caste(request):
+    
+    if request.POST:
+    
+        add_rel = site_management_forms.AddCasteForm(request.POST, prefix='cas')
+    
+        if add_rel.is_valid():
+            add_rel.save()
+            return HttpResponse(json.dumps({'code':'1', 'error':''}))
+        else:         
+            return HttpResponse(json.dumps({'code':'0', 'error':safestring.mark_safe(add_rel.errors)}))
+    return HttpResponse(json.dumps({'code':'0', 'error':'In-Valid Request'}))
+
+
+
+#******************************************************************************
+# DELETE CASTE 
+#****************************************************************************** 
+
+def delete_caste(request, ins=None):
+    
+    if ins is not None:
+        try:
+            cas = Caste.objects.get(pk = ins)
+            cas.delete()
+        except:
+            pass
+    return redirect("/staff/religion-management/")

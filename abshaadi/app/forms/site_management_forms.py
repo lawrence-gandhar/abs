@@ -8,7 +8,7 @@ import glob, os
 
 
 #******************************************************************************
-# REGISTRATION FORM
+# ADD RELIGION FORM
 #******************************************************************************    
 
 class AddReligionForm(ModelForm):
@@ -22,6 +22,10 @@ class AddReligionForm(ModelForm):
             'is_active' : Select(attrs = {'class':'form-control', 'required':'true',}, choices=((True, 'Yes'),(False, 'No'))),
         }
         
+
+#******************************************************************************
+# ADD CASTE FORM
+#******************************************************************************    
         
 class AddCasteForm(ModelForm):
  

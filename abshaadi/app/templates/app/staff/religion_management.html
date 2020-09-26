@@ -5,10 +5,10 @@
 	<div class="col">
 		<div class="card-header card-header-blue card-header-border">
 			<strong>Religion & Caste Information</strong>
-			<button data-toggle="modal" data-target="#add_caste_form" style="float:right; margin-right:-16px;  margin-top:-8px;" class="btn btn-info">
+			<button data-toggle="modal" data-target="#add_caste_form_modal" style="float:right; margin-right:-16px;  margin-top:-8px;" class="btn btn-info">
 				<i class="mdi mdi-plus"></i> Add Caste
 			</button>
-			<button data-toggle="modal" data-target="#add_religion_form" style="float:right; margin-right:5px;  margin-top:-8px;" class="btn btn-info">
+			<button data-toggle="modal" data-target="#add_religion_form_modal" style="float:right; margin-right:5px;  margin-top:-8px;" class="btn btn-info">
 				<i class="mdi mdi-plus"></i> Add Religion
 			</button>
 			<button style="float:right; margin-right:5px;  margin-top:-8px;" class="btn btn-warning" onclick="start_religion_auto_renew()">
@@ -40,7 +40,9 @@
 									
 									<span type="button" class="btn btn-primary">
 										<i class="mdi mdi-pencil" style="margin-right:10px;" title="Edit"></i>
-										<i class="mdi mdi-delete" title="Delete"></i>
+										<a href="{% url 'delete_caste' caste.0 %} " style="text-decoration:none; color:#FFFFFF">
+											<i class="mdi mdi-delete" title="Delete"></i>
+										</a>
 									</span>
 								</div>	
 							
