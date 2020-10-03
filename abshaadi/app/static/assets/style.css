@@ -97,7 +97,7 @@ h6 {
 
 img {
   max-width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 ul {
@@ -1524,10 +1524,10 @@ header .main-menus {
   height: 80px;
   line-height: 80px;
   position: absolute;
-  left: 15px;
-  right: 15px;
-  top: 80px;
-  z-index: 99999;
+  left: 0px;
+  right: 0px;
+  top: 30px;
+  z-index: 999;
   -webkit-border-radius: 38px;
   -moz-border-radius: 38px;
   -ms-border-radius: 38px;
@@ -1535,10 +1535,15 @@ header .main-menus {
 }
 @media only screen and (max-width: 768px) {
   header .main-menus {
-    top: 0;
-    line-height: 60px;
-    height: 60px;
-    background: #fff;
+	top: 0;
+	line-height: 60px;
+	height: 60px;
+	background: #fff;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	-ms-border-radius: 0px;
+	border-radius: 0px;
+	background-color:#2ca0f1;
   }
 }
 header.sticky {
@@ -1556,7 +1561,7 @@ header.sticky {
 @media only screen and (max-width: 768px) {
   header.sticky {
     height: 60px;
-    line-height: 60px;
+    line-height: 60px;	
   }
 }
 header.sticky .main-menus {
@@ -1664,9 +1669,11 @@ header .menus nav ul li a:hover {
     display: none;
   }
 }
+
 header .menus nav ul li:last-child a {
-  display: block;
-  padding: 0 65px;
+  text-align:right;
+  display: inline-block;
+  padding: 0 48px;
   background: #2ca0f1;
   color: #fff;
   font-size: 18px;
@@ -1679,6 +1686,7 @@ header .menus nav ul li:last-child a {
   -ms-border-radius: 38px;
   border-radius: 38px;
 }
+
 
 /*....................................
 3. Slider area start here

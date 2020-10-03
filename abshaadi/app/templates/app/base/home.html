@@ -33,7 +33,6 @@
 	<!-- Customization css -->
 	<!--If u need any change then use this css file-->
 	<link rel="stylesheet" href="{% static '/assets/css/custom.css' %}">
-
 	<!-- Modernizr JavaScript -->
 	<script src="{% static 'assets/js/vendor/modernizr-2.8.3.min.js' %}"></script>
 
@@ -55,6 +54,39 @@
 		#Sikhcast{display:none;}
         
 		#Anycast{display:none;}
+		
+		#lg-form > div {
+			margin:10px 5px;
+			padding:5px 0;
+		}
+		#lg-form label{
+			display: none;
+			font-size: 20px;
+			line-height: 25px;
+		}
+		#lg-form input[type="text"],
+		#lg-form input[type="password"]{
+			border:1px solid rgba(51,51,51,.5);
+			-webkit-border-radius:10px;
+			-moz-border-radius:10px;
+			padding: 5px;
+			font-size: 16px;
+			line-height: 20px;
+			width: 100%;
+			font-family: 'Oleo Script', cursive;
+			text-align:center;
+		}
+		#lg-form div:nth-child(3) {
+			text-align:center;
+		}
+
+		#message{width:100%;text-align:center}
+		.success {
+			color: green;
+		}
+		.error {
+			color: red;
+		}
 			
     </style>
 </head>
@@ -67,13 +99,13 @@
 			<div class="row">
 				<div class="col-md-12 col-sm-12">
 					<div class="main-menus">
-						<div class="col-md-3 col-sm-3 col-xs-12 pd-0">
+						<div class="col-md-2 col-sm-2 col-xs-12 pd-0">
 							<div class="logo">
 								<a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt=""/></a>
 							</div>
 						</div>
 
-						<div class="col-md-9 col-sm-9 pd-0 hidden-xs">
+						<div class="col-md-10 col-sm-9 pd-0 hidden-xs">
                                 <div class="menus menu_scroll">
                                     <nav>
                                         <ul>
@@ -82,7 +114,8 @@
                                             <li><a href="#FindSoulmate">Find  Soulmate</a></li>                                            
                                             <li><a href="#gallery">Gallery</a></li>
                                             <li><a href="#testimonials">Happy Couples</a></li>
-                                            <li><a href="{% url 'login' %}">Login</a></li>
+											<li><a href="#contact_us">Contact Us</a></li>
+                                            <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -103,6 +136,7 @@
                                 <li><a href="#gallery">Gallery</a></li>
                                 <li><a href="#testimonials">Happy Couples</a></li>
                                 <li><a href="#contact_us">Contact Us</a></li>
+								<li><a href="{% url 'login' %}">Login</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -595,6 +629,13 @@
                 </div>
             </div>
         </footer>
+		
+		
+		
+		{% include 'app/modal_forms/login_modal.html' %}
+		
+		
+		
 
         <!--Footer area end here-->
 
