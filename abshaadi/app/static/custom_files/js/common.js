@@ -140,21 +140,24 @@ $("#id_password1").on("focusout", function(){
 //***********************************************************************
 //
 
-function get_states_dropdown(elem){
+$(".country_select").on('hidden.bs.select', function (){
 	
-	id = $(elem).val();
+	kk = $(this).val();
+	
+	console.log(kk)
 	
 	$(".state-div").hide();
 	
-	if(id !=""){
-		$.get("/get_states_dropdown/"+id+"/", function(data){
+	if(kk.length>0){
+		$.get("/get_states_dropdown/", {'ids':kk}, function(data){
 			$(".states_select").empty().append(data);
 			$(".states_select").selectpicker();
 			
 			$(".state-div").show();
 		});
-	}	
-}
+	}
+		
+});
 
 
 //***********************************************************************
@@ -164,9 +167,13 @@ function get_states_dropdown(elem){
 
 
 $(".states_select").on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue){
-	arr = $(this).val();
+	id = $(this).val();
 	
-	// Get Cities list
+	if(id !=""){
+		$.get("/get_cities_dropdown/", function(data){
+			console.log(data);
+		});
+	}
 	
 	
 	

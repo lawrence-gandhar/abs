@@ -64,7 +64,7 @@ COUNTRIES_LIST = os.path.join(settings.STATICFILES_DIRS[0], 'site_managers')
 COUNTRIES_LIST = os.path.join(COUNTRIES_LIST,'countries+states+cities.txt')
 
 
-def add_countries_to_db_2(request):
+def add_countries_to_db(request):
 
     with open(COUNTRIES_LIST, 'r', encoding='utf-8') as file:
         data = json.load(file)
@@ -112,81 +112,32 @@ def add_countries_to_db_2(request):
                         )
                     
                         city_ins.save()
-                   
+            
+                print(state["name"])
+            
     return HttpResponse('1')
-    
-
-    
-#******************************************************************************
-# LOAD COUNTRIES INTO DB
-#******************************************************************************   
-    
-def add_countries_to_db(request):
-
-    with open(COUNTRIES_LIST, 'r', encoding='utf-8') as file:
-        data = json.load(file)
-        
-        Countries_Cities.objects.all().delete()
-        
-        for row in data:
-        
-            country = Countries.objects.get(country_name = row["name"])
-                        
-            for state in row["states"]:
-                if "name" in state.keys():  
-                
-                    state_ins = Countries_States.objects.filter(country = country, state_name__iexact = state["name"])
-                    
-                    print(state_ins.query)
-                    
-                    print(state_ins.values())
-                    
-                    """
-                    for city in state["cities"]:
-                    
-                        city_ins = Countries_Cities(
-                            country = country,
-                            state_name = state_ins,
-                            city_name = city["name"]
-                        )
-                
-                    city_ins.save()
-                    """
-                
-                else:
-                    """
-                    for city in state["cities"]:
-                    
-                        city_ins = Countries_Cities(
-                            country = country,
-                            city_name = city["name"]
-                        )
-                    
-                        city_ins.save()
-                    """
-                    pass
-                   
-    return HttpResponse('1')    
-    
-    
     
 
 #******************************************************************************
 # FETCH STATES HTML DROPDOWN
 #****************************************************************************** 
 
-def get_states_dropdown(request, id):
+def get_states_dropdown(request):
+    
+    id = request.GET.getlist("ids")
+    
+    print(id)
     
     if id is not None:
     
-        html = []
+        html = ["<option  class='special' data-content=\"<span class='badge badge-info'>{1}</span>\" value=''>Any State</option>"]
     
         try:
             country = Countries.objects.get(pk = id)
         except:
             return HttpResponse('')
           
-        states = Countries_States.objects.filter(country = country)
+        states = Countries_States.objects.filter(country__in = country)
 
         if states is not None:
             for state in states:
@@ -200,22 +151,22 @@ def get_states_dropdown(request, id):
 # FETCH CITIES HTML DROPDOWN
 #****************************************************************************** 
 
-def get_states_dropdown(request, id):
+def get_cities_dropdown(request):
     
     if id is not None:
     
-        html = []
+        html = ["<option  class='special' data-content=\"<span class='badge badge-info'>{1}</span>\" value=''>Any City</option>"]
     
         try:
-            country = Countries.objects.get(pk = id)
+            state = Countries_States.objects.get(pk = id)
         except:
             return HttpResponse('')
           
-        states = Countries_States.objects.filter(country = country)
+        cities = Countries_Cities.objects.filter(state_name = state)
 
-        if states is not None:
-            for state in states:
-                html.append("<option  class='special' data-content=\"<span class='badge badge-info'>{1}</span>\" value='{0}'>{1}</option>".format(state.id, state))
+        if cities is not None:
+            for city in cities:
+                html.append("<option  class='special' data-content=\"<span class='badge badge-info'>{1}</span>\" value='{0}'>{1}</option>".format(city.id, city))
             return HttpResponse(safestring.mark_safe(''.join(html)))
         else:
             return HttpResponse('')          
