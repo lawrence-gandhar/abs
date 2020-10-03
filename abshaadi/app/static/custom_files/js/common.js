@@ -174,10 +174,10 @@ $(".states_select").on('changed.bs.select', function (e, clickedIndex, isSelecte
 			console.log(data);
 		});
 	}
-	
-	
-	
 });
+
+
+
 
 	
 	

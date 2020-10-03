@@ -1,7 +1,29 @@
 <!-- Login Form -->
 
+<style>
 
-<div class="modal" tabindex="-1" role="dialog" id="loginModal" style="background-color:#464e4ec2;">
+	#message{
+		background-color:#181719c7;
+		color:#FFF;
+		text-align : center;
+		margin-top:10px;
+		padding:10px 3px;
+	}
+	
+	.input-cls{
+		display: block;
+		width: 100%;
+		height: 34px;
+		padding: 6px 12px;
+		font-size: 14px;
+		line-height: 1.42857143;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
+
+</style>
+
+<div class="modal" tabindex="-1" role="dialog" id="loginModal" style="background-color:#464e4ec2;" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 			
@@ -22,18 +44,19 @@
 						</div>
 					</div>
 					<div class="col-md-4">
-						<h1 style="font-family:none; font-weight: 300; font-size: 30px; text-align:center; color:#FFF; margin-top:40px;">Login</h1>
-											
-						<form action="" id="lg-form" name="lg-form" method="post">
+						<h1 style="font-family:none; font-weight: 300; font-size: 30px; text-align:center; color:#FFF; margin-top:15px; margin-bottom:7px;">Login</h1>
+						
+						<hr style="margin:0px; padding:0px;">					
+						<form id="login-form" name="lg-form" method="post" style="margin-top:15px;">
 							{% csrf_token %}
-							<div class="form-group">
-								<label for="username">Username:</label>
-								<input type="text" name="username" id="username" placeholder="username"/>
+							<div class="form-group text-center">
+								<label for="username" style="color:#000000">Username</label>
+								<input class="input-cls" type="text" name="username" id="username" placeholder="username"/>
 							</div>
 
-							<div class="form-group">
-								<label for="password">Password:</label>
-								<input type="password" name="password" id="password" placeholder="password" />
+							<div class="form-group text-center">
+								<label for="password" style="color:#000000">Password</label>
+								<input class="input-cls" type="password" name="password" id="password" placeholder="password" />
 							</div>
 							
 							{% if messages %}
@@ -47,15 +70,16 @@
 							{% endif %}
 							
 							<div class="form-group" style="text-align:right; margin-right:10px; font-family:none;">
-								<a href="" style="color:#FFF; text-decoration:none; font-weight:400;letter-spacing: 1px">Forgot password</a>
+								<a href="" style="color:#000; text-decoration:none; font-weight:bold; letter-spacing: 1px">Forgot password</a>
 							</div>
 							
 							<div style="text-align:center">
-								<button style="width:100px; background-color:#275d90; color:#fff;" class="btn" type="submit" id="login">Login</button>
-								<a style="width:100px; background-color:#ddddea; color:#000;" class="btn" href="{% url 'registration' %}">Register</a>
+								<button style="width:80px; background-color:#275d90; color:#fff;" class="btn" type="button" onclick="login()">Login</button>
+								<a style="width:80px; background-color:#ddddea; color:#000;" class="btn" href="{% url 'registration' %}">Register</a>
+								<button type="button" style="color:#FFF; background-color:#ffb100;" class="btn" data-dismiss="modal">Cancel</button>							
 							</div>				
 						</form>
-						<div id="message"></div>
+						<div id="message" class="hide"></div>
 					</div>
 				</div>
 			</div>

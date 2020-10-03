@@ -15,6 +15,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name = 'app/base/logout.html'), name = 'logout'),
     re_path(r'^accounts/*', RedirectView.as_view(pattern_name='login', permanent=True)),
     path('registration/', home.RegistrationView.as_view(), name='registration'),
+    path('my_redirect_page/', home.my_redirect_page, name='my_redirect_page'),
 ]
 
 # Site Managers

@@ -33,6 +33,8 @@
 	<!-- Customization css -->
 	<!--If u need any change then use this css file-->
 	<link rel="stylesheet" href="{% static '/assets/css/custom.css' %}">
+	
+		
 	<!-- Modernizr JavaScript -->
 	<script src="{% static 'assets/js/vendor/modernizr-2.8.3.min.js' %}"></script>
 
@@ -680,10 +682,30 @@
 		<!-- Init JavaScript -->
         <script src="{% static '/assets/js/main.js' %}"></script>
         <script src="https://maps.googleapis.com/maps/api/js"></script>
-
     
 
         <script>
+		
+			//
+			//
+			//
+
+			function login(){
+				
+				formdata = $("form#login-form").serialize();
+				
+				$.post('/login/', formdata, function(data){
+					if(data !='1'){
+						$("#message").removeClass("hide");
+						$("#message").empty().append(data);						
+					}else{
+						window.location = '{% url "my_redirect_page" %}';
+					}
+				});
+				
+			}
+		
+		
 		
 			function initialize() {
 

@@ -75,15 +75,25 @@ class LoginView(View):
         
         if user is not None:
             if user.is_active:
-                if user.is_staff or user.is_superuser:
-                    login(request, user)
-                    return redirect('/staff/dashboard/', permanent=True)                    
-                else:
-                    login(request, user)                    
-                    return redirect('/dashboard/', permanent=True)
-        else :
-            messages.error(request, "Invalid username or password")
-            return redirect('/login/', permanent=True) 
+                return HttpResponse('1') 
+        else:
+            return HttpResponse('Invalid username or password') 
+
+
+#
+#******************************************************************************
+#
+#******************************************************************************    
+
+def my_redirect_page(request):
+    if request.user.is_staff or request.user.is_superuser:
+        login(request, request.user)
+        return redirect('/staff/dashboard/', permanent=True)                    
+    else:
+        login(request, request.user)                    
+        return redirect('/dashboard/', permanent=True)
+        
+
 
 #
 #******************************************************************************
