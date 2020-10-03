@@ -562,111 +562,6 @@ class ProfilePictures(models.Model):
     class Meta:
         verbose_name_plural = "User Profile Pictures"
     
-    
-#***********************************************************************
-#
-#***********************************************************************
- 
-class Looking_For_Cities(models.Model):
-    user = models.ForeignKey(
-        CustomUser,
-        db_index = True,
-        null = True,
-        blank = True,
-        on_delete = models.CASCADE,
-    )
-
-    city = models.ForeignKey(
-        Countries_Cities,
-        db_index = True,
-        null = True,
-        blank = True,
-        on_delete = models.SET_NULL,
-    ) 
-    
-    class Meta:
-        verbose_name_plural = "Cities Filter"
-
-#***********************************************************************
-#
-#***********************************************************************
-
-class Looking_For_States(models.Model):    
-    user = models.ForeignKey(
-        CustomUser,
-        db_index = True,
-        null = True,
-        blank = True,
-        on_delete = models.CASCADE,
-    )
-
-    c_states = models.ForeignKey(
-        Countries_States,
-        db_index = True,
-        null = True,
-        blank = True,
-        on_delete = models.SET_NULL,
-    ) 
-    
-    class Meta:
-        verbose_name_plural = "State Filters"
-    
-#***********************************************************************
-#
-#***********************************************************************
-
-class Looking_For_Countries(models.Model):    
-    user = models.ForeignKey(
-        CustomUser,
-        db_index = True,
-        null = True,
-        blank = True,
-        on_delete = models.CASCADE,
-    )
-
-    country = models.ForeignKey(
-        Countries,
-        db_index = True,
-        null = True,
-        blank = True,
-        on_delete = models.SET_NULL,
-    ) 
-
-    class Meta:
-        verbose_name_plural = "Countries Filters"    
-    
-
-#***********************************************************************
-#
-#***********************************************************************
-
-class Looking_For_Religions(models.Model):  
-    user = models.ForeignKey(
-        CustomUser,
-        db_index = True,
-        null = True,
-        blank = True,
-        on_delete = models.CASCADE,
-    )
-
-    religion = models.ForeignKey(
-        Religion,
-        db_index = True,
-        null = True,
-        blank = True,
-        on_delete = models.SET_NULL,
-    ) 
-    
-    caste_creed = models.ForeignKey(
-        Caste,
-        db_index = True,
-        null = True,
-        blank = True,
-        on_delete = models.SET_NULL,
-    ) 
-    
-    class Meta:
-        verbose_name_plural = "Religion Filters"
  
 #***********************************************************************
 #
@@ -707,21 +602,34 @@ class Looking_For_Attr(models.Model):
 #
 #***********************************************************************
 
-class Looking_For_Jobs(models.Model): 
-    user = models.ForeignKey(
-        CustomUser,
-        db_index = True,
-        null = True,
-        blank = True,
-        on_delete = models.CASCADE,
-    )
-
+class Qualifications(models.Model): 
+    
+    IS_TRUE = ((True, 'YES'), (False, 'NO'))
+    
     qualification = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = False,
+    ) 
+    
+    is_active = models.BooleanField(
+        default = True,
+        choices = IS_TRUE,
+        db_index = True,
     )
+
+    class Meta:
+        verbose_name_plural = "Qualifications Filters"    
+
+
+#***********************************************************************
+# FILTERS MODEL
+#***********************************************************************
+
+class Jobs(models.Model):
+    
+    IS_TRUE = ((True, 'YES'), (False, 'NO'))
     
     job_details = models.CharField(
         max_length = 250,
@@ -730,12 +638,94 @@ class Looking_For_Jobs(models.Model):
         blank = False,
     )
     
+    is_active = models.BooleanField(
+        default = True,
+        choices = IS_TRUE,
+        db_index = True,
+    )
+    
     class Meta:
-        verbose_name_plural = "Job Filters"
+        verbose_name_plural = "Jobs Filters"
     
 
 #***********************************************************************
-#
+# FILTERS MODEL
+#***********************************************************************
+
+class MyFilters(models.Model):
+
+    IS_TRUE = ((True, 'YES'), (False, 'NO'))
+
+    user = models.ForeignKey(
+        CustomUser,
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.CASCADE,
+    )
+    
+    filter_name = models.CharField(
+        max_length = 250,
+        blank = True,
+        null = True,
+    )
+    
+    l_attr = models.ForeignKey(
+        Looking_For_Attr,        
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.SET_NULL,
+    )
+    
+    l_cities = models.ManyToManyField(
+        Countries_Cities,       
+    )
+    
+    l_states = models.ManyToManyField(
+        Countries_States,       
+    )
+    
+    l_countries = models.ManyToManyField(
+        Countries,       
+    )
+    
+    l_religions = models.ManyToManyField(
+        Religion,       
+    )
+    
+    l_caste = models.ManyToManyField(
+        Caste,       
+    )
+    
+    l_qualifications = models.ForeignKey(
+        Qualifications,        
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.SET_NULL,
+    )
+    
+    l_jobs = models.ForeignKey(
+        Jobs,        
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.SET_NULL,
+    )    
+    
+    is_active = models.BooleanField(
+        default = True,
+        choices = IS_TRUE,
+        db_index = True,
+    )
+    
+    class Meta:
+        verbose_name_plural = "Filters Table"
+    
+
+#***********************************************************************
+# MESSAGE CENTER MODEL
 #***********************************************************************
 
 class MessageCenter(models.Model):    
