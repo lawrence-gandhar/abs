@@ -1,7 +1,5 @@
 $(document).ready(function(){
 	
-	$(".states_select").hide();
-	
 	$("select").addClass("form-control");
 	$("input").addClass("form-control");
 });
@@ -145,10 +143,11 @@ $(".country_select").on('hidden.bs.select', function (){
 	
 	if(kk.length>0){
 		$.get("/get_states_dropdown/", {'ids':kk}, function(data){
+			
+			$(".state-div").show();
 			$(".states_select").empty().append(data);
 			$(".states_select").selectpicker();
 			
-			$(".state-div").show();
 		});
 	}
 		
@@ -171,6 +170,11 @@ $(".states_select").on('changed.bs.select', function (e, clickedIndex, isSelecte
 	}
 });
 
+
+//***********************************************************************
+// Get Castes Dropdown
+//***********************************************************************
+//
 
 
 

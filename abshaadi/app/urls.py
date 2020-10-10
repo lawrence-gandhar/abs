@@ -45,11 +45,13 @@ urlpatterns += [
     path('add_caste/', never_cache(staff_member_required(site_management.add_caste)), name="add_caste"),
     path('staff/delete_caste/<int:ins>/', never_cache(staff_member_required(site_management.delete_caste)), name="delete_caste"),
     path('staff/site_managers/load_countries/', never_cache(staff_member_required(site_management.add_countries_to_db)), name="add_countries_to_db"),
-    path('get_states_dropdown/', never_cache(staff_member_required(site_management.get_states_dropdown)), name="get_states_dropdown"),
-    path('get_cities_dropdown/', never_cache(staff_member_required(site_management.get_cities_dropdown)), name="get_cities_dropdown"),
-    
 ]
 
+# Common Urls
+urlpatterns += [
+    path('get_states_dropdown/', never_cache(login_required(site_management.get_states_dropdown)), name="get_states_dropdown"),
+    path('get_cities_dropdown/', never_cache(login_required(site_management.get_cities_dropdown)), name="get_cities_dropdown"),
+]
 
 # Dashboard
 urlpatterns += [    

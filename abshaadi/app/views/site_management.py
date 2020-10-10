@@ -281,3 +281,22 @@ def delete_religion(request, ins=None):
     return redirect("/staff/religion-management/")    
     
     
+#******************************************************************************
+# RELIGION DROPDOWN
+#****************************************************************************** 
+
+
+def get_castes_dropdown(request):
+    
+    if request.POST:
+    
+        ids = request.POST.getlist('religions')
+    
+        Caste.objects.filter(religion__in = ids)
+    
+    
+    
+    
+    
+    
+    
