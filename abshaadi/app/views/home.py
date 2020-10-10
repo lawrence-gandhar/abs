@@ -9,13 +9,26 @@ from django.http import HttpResponse
 from django.contrib.auth import *
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
-import sys, os
+import sys, os, json
+
+from django.utils import safestring
+
+from django.contrib.auth.hashers import make_password
 
 from collections import defaultdict
 
-from app.forms import registration_forms
+from app.forms.registration_forms import RegisterForm
 
 from app.models import *
+
+
+#******************************************************************************
+# 403 Page
+#******************************************************************************    
+
+def page_403(request):
+    return render(request, 'app/base/403_error.html')
+
 
 
 #******************************************************************************
@@ -40,9 +53,13 @@ def check_registered_email(email=None):
 class HomeView(View):
     
     template_name = 'app/base/home.html'
+    data = defaultdict()
     
-    def get(self, request):        
-        return render(request, self.template_name, {})
+    def get(self, request): 
+        
+        self.data["register_form"] = RegisterForm()
+        
+        return render(request, self.template_name, self.data)
         
 
 #
@@ -72,7 +89,7 @@ class LoginView(View):
         password = request.POST.get('password', '')
         
         user = authenticate(username=username, password=password)
-        
+                
         if user is not None:
             if user.is_active:
                 login(request, user)
@@ -99,76 +116,42 @@ def my_redirect_page(request):
 #
 #******************************************************************************    
         
-class RegistrationView(View):
-    
-    template_name = 'app/base/register.html'
-
-    data = defaultdict()
-    
-    data["css_files"] = []
-    data["js_files"] = ['custom_files/js/common.js']
-     
-    #
-    #
-    #    
-    def get(self, request): 
-        self.data["register_form"] = registration_forms.RegisterForm()    
-        return render(request, self.template_name, self.data)
-
-    #
-    #
-    #
-    def post(self, request):
-    
-        email = request.POST.get("email", None)
-        passwd = request.POST.get("passwd", None)
-        c_passwd = request.POST.get("c_passwd", None)
+def register_form(request):
+    if request.POST:
         
+        email = request.POST.get('email', None)
         #
         #
         #
         
         if email is not None:
-        
-            chk_email = check_registered_email(email)
-                            
-            if chk_email == 2:
-                messages.error(request, "Email is already registered")
-                
-            elif chk_email == 3:
-                messages.error(request, "Email cannot be blank")
-                
-            else:
-                
-                user = CustomUser(email = email)
-                user.set_password(passwd)
-                user.is_staff = False
-                user.is_superuser = False
-                user.is_active = True
-                user.save()
+            reg_form = RegisterForm(request.POST)
             
-                register = registration_forms.RegisterForm(request.POST)
-                
-                if register.is_valid():
-                    reg = register.save(commit=False)
-                    reg.user = user
-                    try: 
-                        path = os.path.join(settings.MEDIA_ROOT, str(user.id))
-                        os.mkdir(path, 0o777)
-                        reg.save()
-                    except:
-                        messages.error(request, "User Creation Failed. Try again later")
+            chk_email = check_registered_email(email)
                     
+            if chk_email == 2:
+                return HttpResponse("Email is already registered")
+                 
+            elif chk_email == 3:
+                return HttpResponse("Email cannot be blank")
+            else:
+        
+                if reg_form.is_valid():
+                    reg = reg_form.save(commit=False)
+                    reg.is_staff = False
+                    reg.is_superuser = False
                     
-                    return redirect("/dashboard/", permanent=False)
+                    reg.save()
+                    
+                    path = os.path.join(settings.MEDIA_ROOT, str(reg.id))
+                    os.mkdir(path, 0o777)
+                    return HttpResponse(json.dumps({'code':'1', 'error':''}))
                     
                 else:
-                    messages.error(register.errors)
-                    
-        else:
-            messages.error(request, "Email cannot be blank")    
+                    print(reg_form.errors)
+                    return HttpResponse(json.dumps({'code':'0', 'error':safestring.mark_safe(reg_form.errors)}))
             
-            return redirect("/registration/", permanent = True)
-        
+        else:
+            return HttpResponse("Email cannot be blank")
         
     

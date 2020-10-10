@@ -82,7 +82,7 @@
 			text-align:center;
 		}
 
-		#message{width:100%;text-align:center}
+		#message, #message2{width:100%;text-align:center}
 		.success {
 			color: green;
 		}
@@ -635,6 +635,7 @@
 		
 		
 		{% include 'app/modal_forms/login_modal.html' %}
+		{% include 'app/modal_forms/registration_modal.html' %}
 		
 		
 		
@@ -686,10 +687,118 @@
 
         <script>
 		
-			//
-			//
+			$("#id_password1, #id_password2").addClass("form-control");
+			$("#id_email, #id_password1, #id_password2").val("");
+		
+			function ValidateEmail(elem){
+				if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test($(elem).val())){
+					return (true);
+				}
+				alert("You have entered an invalid email address!");
+				$(elem).focus();
+				return (false);
+			}
+		
+			
+			//***********************************************************************
+			// Match Two Strings
+			//***********************************************************************
 			//
 
+			function match_fields_data(input1, input2, elem=null){
+				
+				var field1 = $(input1).val();
+				var field2 = $(input2).val();
+				
+				if(field1 !== field2){		
+					if(elem) $(elem).text("Both fields should match. It is case-sensitive");
+					$(input1).addClass("is-invalid");
+					$(input2).addClass("is-invalid");
+					alert("Did not match");
+				}else{
+					$(input1).removeClass("is-invalid");
+					$(input2).removeClass("is-invalid");
+				}
+			}
+
+
+			//***********************************************************************
+			// Check Confirm Password
+			//***********************************************************************
+			//
+
+			$("#id_password2").on("focusout", function(){
+				
+				confirm_passwd = $(this).val();
+				main_passwd = $("#id_password1").val();
+					
+				if(confirm_passwd!=""){
+					if(main_passwd !== confirm_passwd){
+						$("#passwd1_error").text("Password and Confirm Password does not match");
+						$(".save_button").prop("disabled", true);
+					}else{
+						
+						if(main_passwd.length < 8){
+							$("#passwd1_error").text("This password must contain at least 8 characters.");
+						}else{
+							$("#passwd1_error").text("");		
+							$(".save_button").prop("disabled", false);
+							$(".error").text("");
+						}
+					}
+				}else{
+					$("#passwd1_error").text("Confirm Password is required.");
+				}
+			});
+
+
+			//***********************************************************************
+			// Validate Password
+			//***********************************************************************
+			//
+
+			$("#id_password1").on("focusout", function(){
+				passwd = $(this).val();
+				
+				if(passwd.length < 8){
+					$("#passwd1_error").text("This password must contain at least 8 characters.");
+				}else{
+					
+					confirm_passwd = $("#id_password2").val();
+					main_passwd = $("#id_password1").val();
+						
+					if(confirm_passwd!=""){
+						if(main_passwd !== confirm_passwd){
+							$("#passwd1_error").text("Password and Confirm Password does not match");
+							$(".save_button").prop("disabled", true);
+						}else{
+							
+							if(main_passwd.length < 8){
+								$("#passwd1_error").text("This password must contain at least 8 characters.");
+							}else{
+								$("#passwd1_error").text("");		
+								$(".save_button").prop("disabled", false);
+								$(".error").text("");
+							}
+						}
+					}else{
+						$("#passwd1_error").text("Confirm Password is required.");
+					}
+					
+					$("#passwd1_error").text("");		
+				}
+			});
+		
+			//***********************************************************************
+			// Open Login Modal
+			//***********************************************************************
+			
+			function openLogin(){
+				$("#loginModal").modal('hide');
+				$("#registrationModal").modal('hide');
+				$("#loginModal").modal('show');
+			}
+			
 			function login(){
 				
 				formdata = $("form#login-form").serialize();
@@ -704,8 +813,48 @@
 				});
 				
 			}
+			
+			//***********************************************************************
+			// Open Registration Modal
+			//***********************************************************************
+			//
+
+			function registration(){
+				$("#loginModal").modal('hide');
+				
+				$("#registrationModal").modal('show');
+			}
+		
+			function register_user(){
+				formdata = $("form#register-form").serialize();
+				
+				$.post('/registration/', formdata, function(data){
+					
+					data = $.parseJSON(data);
+					
+					if(data.code !='1'){
+						htm = '';
+					
+						$.each(data.error, function (key, val) {
+							htm +='<span class="display:block;">'+val+'</span>';
+						});
+					
+						$("#message2").removeClass("hide");
+						$("#message2").empty().append(htm);	
+						$(".save_button").prop("disabled", true);
+						
+					}else{
+						$("#message2").removeClass("hide");
+						$("#message2").empty().append("You registered successfully. Please Login");	
+					}
+				});
+			}
 		
 		
+			//***********************************************************************
+			// Google
+			//***********************************************************************
+			//
 		
 			function initialize() {
 

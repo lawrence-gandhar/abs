@@ -2,14 +2,7 @@ $(document).ready(function(){
 	
 	$(".states_select").hide();
 	
-	
 });
-
-$("#register").on("click", function(){
-	$("#login_form").hide();
-	$("#registeration_form").show();
-});
-
 
 /**
  * Convert a base64 string in a Blob according to the data and contentType.

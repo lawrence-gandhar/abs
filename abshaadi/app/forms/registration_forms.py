@@ -6,23 +6,22 @@ from app.constants import form_constants
 
 import glob, os
 
+from django.contrib.auth.forms import UserCreationForm
+
+
 
 #******************************************************************************
 # REGISTRATION FORM
 #******************************************************************************    
 
-class RegisterForm(ModelForm):
+class RegisterForm(UserCreationForm):
  
-    class Meta:
-        model = Profile
-        fields = ('fullname', 'gender', 'looking_for_gender', 'aged_from', 'aged_to')
+    class Meta(UserCreationForm):
+        model = CustomUser
+        fields = ('email',)
         
         widgets = {
-            'fullname' : TextInput(attrs = {'class':'form-control', 'required':'true'}),
-            'gender' : Select(attrs = {'class':'form-control', 'required':'true'}),
-            'looking_for_gender' : Select(attrs = {'class':'form-control', 'required':'true'}),
-            'aged_from' : TextInput(attrs = {'class':'form-control', 'required':'true', 'type':'number'}),
-            'aged_to' : TextInput(attrs = {'class':'form-control', 'required':'true', 'type':'number'}),
+            'email' : TextInput(attrs = {'class':'form-control', 'required':'true'}),
         }
         
        
