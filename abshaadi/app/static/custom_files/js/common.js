@@ -137,12 +137,10 @@ $(".country_select").on('hidden.bs.select', function (){
 	
 	kk = $(this).val();
 	
-	console.log(kk)
-	
-	$(".state-div").hide();
+	console.log(kk);
 	
 	if(kk.length>0){
-		$.get("/get_states_dropdown/", {'ids':kk}, function(data){
+		$.post("/get_states_dropdown/", {'csrfmiddlewaretoken': csrf, 'ids':kk}, function(data){
 			
 			$(".state-div").show();
 			$(".states_select").empty().append(data);

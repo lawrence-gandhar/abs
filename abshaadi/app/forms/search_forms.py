@@ -21,6 +21,6 @@ class ProfileSearchForm(ModelForm):
             'qualification' : TextInput(attrs = {'class':'form-control', }),
             'job_details' : TextInput(attrs = {'class':'form-control',}),
             'country' : Select(attrs = {'class':'form-control selectpicker country_select', 'multiple':'true'}),
-            'state' : Select(attrs = {'class':'form-control states_select', 'multiple':'true', 'data-actions-box':'true'}),
+            'state' : Select(attrs = {'class':'form-control states_select selectpicker', 'multiple':'true', 'data-actions-box':'true'}),
             'city' : Select(attrs = {'class':'form-control', 'multiple':'true'}),
         }
