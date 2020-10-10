@@ -75,6 +75,7 @@ class LoginView(View):
         
         if user is not None:
             if user.is_active:
+                login(request, user)
                 return HttpResponse('1') 
         else:
             return HttpResponse('Invalid username or password') 
@@ -86,11 +87,9 @@ class LoginView(View):
 #******************************************************************************    
 
 def my_redirect_page(request):
-    if request.user.is_staff or request.user.is_superuser:
-        login(request, request.user)
+    if request.user.is_staff or request.user.is_superuser:        
         return redirect('/staff/dashboard/', permanent=True)                    
-    else:
-        login(request, request.user)                    
+    else:                  
         return redirect('/dashboard/', permanent=True)
         
 
