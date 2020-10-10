@@ -373,14 +373,14 @@ class Profile(models.Model):
         max_length = 250,
         db_index = True,
         null = True,
-        blank = False,
+        blank = True,
     )
     
     mother_name = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
-        blank = False,
+        blank = True,
     )
     
     dob = models.DateField(
@@ -524,10 +524,11 @@ class Profile(models.Model):
     
     
 @receiver(post_save, sender=Profile)
-def create_uuid(sender, instance, *args, **kwargs): 
-    instance.uid = 'AB-{}'.format(1000000 + instance.user.id)
-    instance.save()
-    
+def create_uuid(sender, instance, created, **kwargs): 
+    if created:
+        instance.uid = 'AB-{}'.format(1000000 + instance.user.id)
+        instance.save()
+        
 #***********************************************************************
 #
 #***********************************************************************

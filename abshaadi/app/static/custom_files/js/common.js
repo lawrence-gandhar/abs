@@ -2,6 +2,8 @@ $(document).ready(function(){
 	
 	$(".states_select").hide();
 	
+	$("select").addClass("form-control");
+	$("input").addClass("form-control");
 });
 
 /**

@@ -14,6 +14,10 @@ from django.shortcuts import get_object_or_404
 from app.forms.registration_forms import RegisterForm,ProfileForm
 from django.http import Http404
 
+from django.utils import safestring
+
+import json
+
 #******************************************************************************
 # USER PROFILE VIEW
 #******************************************************************************   
@@ -29,7 +33,7 @@ class UserProfileView(View):
     data["page_title"] = "My Profile"
     
     data["css_files"] = ['custom_files/css/Chart.min.css', 'custom_files/css/croppie.css']
-    data["js_files"] = ['custom_files/js/Chart.min.js', 'custom_files/js/croppie.js', 'custom_files/js/user_dashboard.js', 'custom_files/js/common.js']
+    data["js_files"] = ['custom_files/js/Chart.min.js', 'custom_files/js/croppie.js', 'custom_files/js/user_dashboard.js', 'custom_files/js/common.js', 'custom_files/js/profile_management.js']
     
     #
     #
@@ -50,6 +54,7 @@ class UserProfileView(View):
         self.data["gallery"] = ProfilePictures.objects.filter(user=request.user, set_as_profile_pic=False)
         self.data['abc']=1
         
+        self.data["edit_form"] = ProfileForm(instance=self.data["profile"])
         
         return render(request, self.template_name, self.data)
 
@@ -136,6 +141,29 @@ def upload_profile_pic(request):
         profile_pic.save()
         
         return HttpResponse('1')
+    
+    
+#******************************************************************************
+# EDIT PROFILE
+#****************************************************************************** 
+    
+def edit_personal_info(request):
+    if request.POST:
+       
+        try:
+            profile = Profile.objects.get(user = request.user)
+        except:
+            return redirect('/page_403/') 
+
+        pers_info = ProfileForm(request.POST, instance=profile)
+        
+        if pers_info.is_valid():
+            pers_info.save()            
+        else:
+            print(pers_info.errors)
+        
+        return redirect('/profile/')
+    return redirect('/page_403/')        
     
     
     

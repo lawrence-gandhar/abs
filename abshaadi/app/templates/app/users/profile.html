@@ -23,7 +23,7 @@
 							<td colspan="4" class="bg-info" style="color:#FFFFFF;">
 								My Personal Information
 								
-								<button class="btn btn-sm btn-warning" style="float:right; margin-right: -10px; margin-top:-3px">
+								<button class="btn btn-sm btn-warning" style="float:right; margin-right: -10px; margin-top:-3px" data-toggle="modal" data-target="#editProfileModal">
 									<i class="mdi mdi-pencil"></i> Edit
 								</button>
 							</td>							
@@ -195,3 +195,7 @@
 	</div>
 </div>
 {% include 'app/modal_forms/profile_picture_modal.html' %}
+
+{% include 'app/modal_forms/edit_profile_modal.html' %}
+
+

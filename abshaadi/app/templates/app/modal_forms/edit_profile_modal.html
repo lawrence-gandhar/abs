@@ -1,0 +1,171 @@
+<!-- My Personal Information -->
+
+<div class="modal" tabindex="-1" role="dialog" id="editProfileModal" style="background-color:#464e4ec2;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+			
+			<form method="post" id="edit_profile_form_modal" action="{% url 'edit_personal_info' %}"> 
+				{% csrf_token %}
+				<div class="modal-header">
+					<h5 class="modal-title">Edit Personal Information</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				
+				<div class="modal-body" style="font-size:80%">
+					<div class="row" style="margin-top:0px; padding-left:10px; padding-right:10px;">
+						<div class="col-2" style="line-height: 35px;">
+							Name
+						</div>
+						<div class="col-4">
+							{{edit_form.fullname}}
+						</div>						
+						<div class="col-2" style="line-height: 35px; text-align:right;">
+							Gender
+						</div>
+						<div class="col-4">
+							{{edit_form.gender}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-2" style="line-height: 35px;">
+							Looking For
+						</div>
+						<div class="col-4">
+							{{edit_form.looking_for_gender}}
+						</div>
+						<div class="col-2" style="line-height: 35px; text-align:right;">
+							Father's Name
+						</div>
+						<div class="col-4">
+							{{edit_form.father_name}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-2" style="line-height: 35px;">
+							Mother's Name
+						</div>
+						<div class="col-4">
+							{{edit_form.mother_name}}
+						</div>
+						<div class="col-2" style="line-height: 35px;">
+							Date Of Birth
+						</div>
+						<div class="col-4">
+							{{edit_form.dob}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-2" style="line-height: 35px;">
+							Religion
+						</div>
+						<div class="col-4">
+							{{edit_form.religion}}
+						</div>
+						<div class="col-2" style="line-height: 35px;">
+							Caste/Domination
+						</div>
+						<div class="col-4">
+							{{edit_form.caste_creed}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-2" style="line-height: 35px;">
+							Phone/Mobile
+						</div>
+						<div class="col-4">
+							{{edit_form.phone_number}}
+						</div>
+						<div class="col-2" style="line-height: 35px;">
+							Alternative Phone
+						</div>
+						<div class="col-4">
+							{{edit_form.phone_number_alternative}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-2" style="line-height: 35px;">
+							Address	
+						</div>
+						<div class="col-10">
+							{{edit_form.address}}
+						</div>
+					</div>
+            	 </div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" style="width:80px;">Submit</button>
+					<button type="button" class="btn btn-warning" style="width:80px;" data-dismiss="modal">Cancel</button>
+				</div>
+            </form>
+        </div>
+    </div>
+</div> 
+<!-- Other Details -->
+
+
+<div class="modal" tabindex="-1" role="dialog" id="edit_other_form_modal" style="background-color:#464e4ec2;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+			
+			<form method="post" id="edit_other_form_modal" onsubmit="return validate_add_edit_other_form($(this))"> 
+				{% csrf_token %}
+				<div class="modal-header">
+					<h5 class="modal-title">Edit</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				
+				<div class="modal-body">
+					<div class="row" style="margin-top:0px; padding-left:10px; padding-right:10px;">
+						<div class="col-4" style="line-height: 35px;">
+							Height
+						</div>
+						<div class="col-8">
+							{{edit_form.height}}
+						</div>
+					</div>
+					
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-4" style="line-height: 35px;">
+							Weight
+						</div>
+						<div class="col-8">
+							{{edit_form.weight}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-4" style="line-height: 35px;">
+							Complexion
+						</div>
+						<div class="col-8">
+							{{edit_form.complexion}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-4" style="line-height: 35px;">
+							Educational Qual.
+						</div>
+						<div class="col-8">
+							{{edit_form.qualification}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-4" style="line-height: 35px;">
+							Job Details
+						</div>
+						<div class="col-8">
+							{{edit_form.job_details}}
+						</div>
+					</div>
+					
+            	 </div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" style="width:80px;">Submit</button>
+					<button type="button" class="btn btn-warning" style="width:80px;" data-dismiss="modal">Cancel</button>
+				</div>
+            </form>
+        </div>
+    </div>
+</div> 
