@@ -124,24 +124,19 @@ def add_countries_to_db(request):
 
 def get_states_dropdown(request):
     
-    id = request.GET.getlist("ids")
+    id = request.POST.getlist("ids[]")
     
-    print(id)
     
-    if id is not None:
+    if len(id) > 0 :
     
-        html = ["<option  class='special' data-content=\"<span class='badge badge-info'>{1}</span>\" value=''>Any State</option>"]
+        html = ["<option value=''>Any State</option>"]
     
-        try:
-            country = Countries.objects.get(pk = id)
-        except:
-            return HttpResponse('')
           
-        states = Countries_States.objects.filter(country__in = country)
+        states = Countries_States.objects.filter(country__in = id)
 
         if states is not None:
             for state in states:
-                html.append("<option  class='special' data-content=\"<span class='badge badge-info'>{1}</span>\" value='{0}'>{1}</option>".format(state.id, state))
+                html.append("<option value='{0}'>{1}</option>".format(state.id, state))
             return HttpResponse(safestring.mark_safe(''.join(html)))
         else:
             return HttpResponse('')
@@ -153,20 +148,17 @@ def get_states_dropdown(request):
 
 def get_cities_dropdown(request):
     
-    if id is not None:
+    id = request.POST.getlist("ids[]")
     
-        html = ["<option  class='special' data-content=\"<span class='badge badge-info'>{1}</span>\" value=''>Any City</option>"]
+    if len(id) > 0 :
     
-        try:
-            state = Countries_States.objects.get(pk = id)
-        except:
-            return HttpResponse('')
-          
-        cities = Countries_Cities.objects.filter(state_name = state)
+        html = ["<option value=''>Any City</option>"]
+                  
+        cities = Countries_Cities.objects.filter(state_name__in = id)
 
         if cities is not None:
             for city in cities:
-                html.append("<option  class='special' data-content=\"<span class='badge badge-info'>{1}</span>\" value='{0}'>{1}</option>".format(city.id, city))
+                html.append("<option value='{0}'>{1}</option>".format(city.id, city))
             return HttpResponse(safestring.mark_safe(''.join(html)))
         else:
             return HttpResponse('')          

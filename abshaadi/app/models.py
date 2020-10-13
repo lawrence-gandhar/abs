@@ -118,7 +118,7 @@ class Countries_States(models.Model):
     )
 
     def __str__(self):
-        return self.state_name.upper()
+        return self.state_name.capitalize()
 
     class Meta:
         verbose_name_plural = "States List"
@@ -157,7 +157,7 @@ class Countries_Cities(models.Model):
     )
 
     def __str__(self):
-        return self.city_name.upper()
+        return self.city_name.capitalize()
 
     class Meta:
         verbose_name_plural = "Cities List"

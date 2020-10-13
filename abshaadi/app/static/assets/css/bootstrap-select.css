@@ -288,6 +288,8 @@ select.selectpicker {
   cursor: not-allowed;
 }
 .bootstrap-select .dropdown-menu li a {
+	padding:3px 10px;
+	font-size:85%;
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;

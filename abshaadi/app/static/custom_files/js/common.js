@@ -2,6 +2,33 @@ $(document).ready(function(){
 	
 	$("select").addClass("form-control");
 	$("input").addClass("form-control");
+	
+	//
+	//
+	
+	age_to = document.getElementById('id_aged_from');
+	age_from = document.getElementById('id_aged_to');
+	
+	var inputs = [age_to, age_from];
+	
+	var stepsSlider  = document.getElementById('age_slider');
+	
+	noUiSlider.create(stepsSlider , {
+		start: [18, 25],
+		connect: true,
+		step: 1,
+		range: {
+			'min': 18,
+			'max': 70
+		},
+		tooltips: [true, wNumb({decimals: false,})],
+		format : wNumb({decimals: false,}),
+	});
+	
+	stepsSlider.noUiSlider.on('update', function (values, handle) {
+		inputs[handle].value = values[handle];
+	});
+	
 });
 
 /**
@@ -133,18 +160,18 @@ $("#id_password1").on("focusout", function(){
 //***********************************************************************
 //
 
-$(".country_select").on('hidden.bs.select', function (){
+$("#country_select").on('hidden.bs.select', function (e){
+	
+	e.stopImmediatePropagation();
 	
 	kk = $(this).val();
-	
-	console.log(kk);
-	
+		
 	if(kk.length>0){
 		$.post("/get_states_dropdown/", {'csrfmiddlewaretoken': csrf, 'ids':kk}, function(data){
 			
 			$(".state-div").show();
-			$(".states_select").empty().append(data);
-			$(".states_select").selectpicker();
+			$("select.states_select").empty().append(data);
+			$("select.states_select").selectpicker('refresh');
 			
 		});
 	}
@@ -158,12 +185,19 @@ $(".country_select").on('hidden.bs.select', function (){
 //
 
 
-$(".states_select").on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue){
-	id = $(this).val();
+$(".states_select").on('hidden.bs.select', function (e){
 	
-	if(id !=""){
-		$.get("/get_cities_dropdown/", function(data){
-			console.log(data);
+	e.stopImmediatePropagation();
+	
+	kk = $(this).val();
+	
+	if(kk.length>0){
+		$.post("/get_cities_dropdown/", {'csrfmiddlewaretoken': csrf, 'ids':kk}, function(data){
+			
+			$(".city-div").show();
+			$("select.city_select").empty().append(data);
+			$("select.city_select").selectpicker('refresh');
+			
 		});
 	}
 });

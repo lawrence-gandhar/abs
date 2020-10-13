@@ -15,12 +15,12 @@ class ProfileSearchForm(ModelForm):
         widgets = {
             'religion' : Select(attrs = {'class':'form-control selectpicker',}),
             'caste_creed' : Select(attrs = {'class':'form-control selectpicker',}),
-            'aged_to' : TextInput(attrs = {'class':'form-control', }),
-            'aged_from' : TextInput(attrs = {'class':'form-control', }),
-            'complexion' : Select(attrs = {'class':'form-control',}),
+            'aged_to' : TextInput(attrs = {'class':'form-control hide', }),
+            'aged_from' : TextInput(attrs = {'class':'form-control hide', }),
+            'complexion' : Select(attrs = {'class':'form-control ',}),
             'qualification' : TextInput(attrs = {'class':'form-control', }),
             'job_details' : TextInput(attrs = {'class':'form-control',}),
-            'country' : Select(attrs = {'class':'form-control selectpicker country_select', 'multiple':'true'}),
-            'state' : Select(attrs = {'class':'form-control states_select selectpicker', 'multiple':'true', 'data-actions-box':'true'}),
-            'city' : Select(attrs = {'class':'form-control', 'multiple':'true'}),
+            'country' : Select(attrs = {'class':'form-control selectpicker', 'id':'country_select' ,'multiple':'true'}),
+            'state' : Select(attrs = {'class':'form-control states_select selectpicker', 'multiple':'true',}),
+            'city' : Select(attrs = {'class':'form-control selectpicker city_select', 'multiple':'true'}),
         }

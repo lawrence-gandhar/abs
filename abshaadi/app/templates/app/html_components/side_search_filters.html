@@ -34,7 +34,7 @@
 			{{search_profile.country}}
 		</div>
 		
-		<div class="col-12 state-div" style="margin-top:10px;">
+		<div class="col-12 state-div hide" style="margin-top:10px;">
 			<label>State</label>
 			{{search_profile.state}}
 		</div>
@@ -45,11 +45,16 @@
 		</div>
 		
 		<div class="col-12" style="margin-top:10px;">
-			<label>Age</label>
+			<label>Select Age</label>
+			{{search_profile.aged_from}}
 			{{search_profile.aged_to}}
 		</div>
 		
-		<div class="col-12" style="margin-top:10px;">
+		<div class="col-12" style="margin-top:35px;">
+			<div id="age_slider" style="width:94%"></div>
+		</div>
+		
+		<div class="col-12" style="margin-top:20px;">
 			<label>Complexion</label>
 			{{search_profile.complexion}}
 		</div>
@@ -64,7 +69,7 @@
 			{{search_profile.qualification}}
 		</div>
 		
-		<div class="col-12" style="margin-top:10px;">
+		<div class="col-12 text-center" style="margin-top:10px;">
 			<button class="btn btn-sm btn-warning">
 				<i class="mdi mdi-search"></i> Search
 			</button>
