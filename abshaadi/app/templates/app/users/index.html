@@ -30,12 +30,12 @@
 			<div class="row">
 				<div class="col">
 					<div class="row">
-						<div class="col-6">
+						<div class="col-md-6 col-sm-12 col-xs-12">
 							<div class="row">
-								<div class="col-3">
+								<div class="col-md-3 col-sm-12 text-center">
 									<img src="{% static 'images/user.png' %}" class="img img-responsive pull-left" width="100px"/>
 								</div>
-								<div class="col">
+								<div class="col-md-8 col-sm-12">
 									<ul class="ul">
 										<li> 
 											<a href="{% url 'user_profile' %}">
@@ -56,7 +56,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-6" style="padding:0px 25px;">
+						<div class="col-md-6 col-sm-12 col-xs-12" style="padding:0px 25px;">
 							<label style="padding-top:10px;">Profile Completion</label>
 							<div class="progress" style="border-radius:12px; height:22px;">
 								<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 79%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -84,7 +84,7 @@
 		</div>
 		<div class="card-body card-body-border" style="padding:10px;">
 			<div class="row">
-				<div class="col">
+				<div class="col-md-6 col-sm-12 col-xs-12">
 					<div class="card-header">
 						Interests
 					</div>
@@ -109,7 +109,7 @@
 						</table>
 					</div>
 				</div>
-				<div class="col">
+				<div class="col-md-6 col-sm-12 col-xs-12">
 					<div class="card-header">
 						Requests
 					</div>
@@ -136,7 +136,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col">
+				<div class="col-md-6 col-sm-12 col-xs-12">
 					<div class="card-header">
 						Message Center
 					</div>
@@ -161,7 +161,7 @@
 						</table>
 					</div>
 				</div>
-				<div class="col">
+				<div class="col-md-6 col-sm-12 col-xs-12">
 					<div class="card-header">
 						Profiles Summary
 					</div>
@@ -190,24 +190,12 @@
 		</div>
 		
 		<!-- --> 
-		<div class="card-header card-header-border" style="background-color:#ae09bd; color:#FFFFFF; margin-top:10px;">
-			<strong>Latest Matches For You</strong>
-		</div>
-		<div class="card-body card-body-border" style="padding:10px;">
-		
-		</div>
+		{% include 'app/html_components/latest_matches.html' %}	
 		
 	</div>
 	
 	<div class="col-md-3">
-		<div class="card-header card-header-border" style="background-color:#ae62e8; color:#FFFFFF;">
-			<strong>Recent Profile Visitors</strong>
-		</div>
-		<div class="card-body card-body-border" style="padding:10px; height:300px;">
-		</div>
-		
-		<!-- -->
-		
+		{% include 'app/html_components/recent_profiles.html' %}		
 		{% include 'app/html_components/side_search_filters.html' %}
 		
 	</div>
