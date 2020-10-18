@@ -33,7 +33,8 @@ class UserProfileView(View):
     data["page_title"] = "My Profile"
     
     data["css_files"] = ['custom_files/css/Chart.min.css', 'custom_files/css/croppie.css']
-    data["js_files"] = ['custom_files/js/Chart.min.js', 'custom_files/js/croppie.js', 'custom_files/js/user_dashboard.js', 'custom_files/js/common.js', 'custom_files/js/profile_management.js']
+    data["js_files"] = ['custom_files/js/Chart.min.js', 'custom_files/js/croppie.js', 'custom_files/js/user_dashboard.js', 
+                        'custom_files/js/common.js', 'custom_files/js/search_filters.js']
     
     #
     #
@@ -74,7 +75,8 @@ class UserProfileEdit(View):
     data["page_title"] = "My Profile"
     
     data["css_files"] = ['custom_files/css/Chart.min.css', 'custom_files/css/croppie.css']
-    data["js_files"] = ['custom_files/js/Chart.min.js', 'custom_files/js/croppie.js', 'custom_files/js/user_dashboard.js', 'custom_files/js/common.js']
+    data["js_files"] = ['custom_files/js/Chart.min.js', 'custom_files/js/croppie.js', 'custom_files/js/user_dashboard.js', 
+                    'custom_files/js/common.js', 'custom_files/js/search_filters.js']
     
     def get(self,request,id):
         try:
@@ -171,10 +173,13 @@ def edit_personal_info(request):
 # SEARCH FILTER SAVE
 #******************************************************************************  
 
+
 def save_partner_preferences(request):
-    
+ 
     if request.POST:
         form = search_forms.MyFiltersForm(request.POST)
+        
+        print(request.POST)
         
         inp = request.POST.get("inp", None)
         
@@ -188,6 +193,7 @@ def save_partner_preferences(request):
                 return HttpResponse(json.dumps({'code':'1', 'error':''}))
             else:
                 return HttpResponse(json.dumps({'code':'0', 'error':safestring.mark_safe(form.errors)}))
+            
         else:
             return HttpResponse(json.dumps({'code':'0', 'error':'Filter Name is required'}))
     return HttpResponse(json.dumps({'code':'0', 'error':'Invalid Operation'}))
@@ -208,7 +214,7 @@ class MySearchView(View):
     data["page_title"] = "Ratner Profile Search"
     
     data["css_files"] = []
-    data["js_files"] = ['custom_files/js/common.js',]
+    data["js_files"] = ['custom_files/js/common.js', 'custom_files/js/search_filters.js']
     
     #
     #

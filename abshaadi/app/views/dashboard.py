@@ -55,7 +55,8 @@ class UserDashboardView(View):
     data["page_title"] = "User Dashboard"
     
     data["css_files"] = ['custom_files/css/Chart.min.css', 'custom_files/css/croppie.css']
-    data["js_files"] = ['custom_files/js/Chart.min.js', 'custom_files/js/croppie.js', 'custom_files/js/user_dashboard.js', 'custom_files/js/common.js']
+    data["js_files"] = ['custom_files/js/Chart.min.js', 'custom_files/js/croppie.js', 'custom_files/js/user_dashboard.js', 
+                        'custom_files/js/common.js', 'custom_files/js/search_filters.js']
     
     #
     #

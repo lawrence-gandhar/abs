@@ -65,8 +65,7 @@ urlpatterns += [
 urlpatterns += [
     path('profile/', never_cache(login_required(profiles_filters.UserProfileView.as_view())), name="user_profile"),
     path('edit_personal_info/', never_cache(login_required(profiles_filters.edit_personal_info)), name="edit_personal_info"),
-    path('update/<int:id>', never_cache(login_required(profiles_filters.update)), name="user_update"),
-    
+    path('update/<int:id>', never_cache(login_required(profiles_filters.update)), name="user_update"),    
     path('upload_profile_pic/', never_cache(login_required(profiles_filters.upload_profile_pic)), name="upload_profile_pic"),
 ]
 
@@ -80,10 +79,11 @@ urlpatterns += [
     path('staff/user_management/staff/add/', never_cache(staff_member_required(user_management.add_staff)), name="add_staff"),
 ]
 
+
 # Search Pages
 urlpatterns += [
     path('search_results/', never_cache(login_required(profiles_filters.MySearchView.as_view())), name="user_search_results"),
-    path('save_partner_preferences/', never_cache(login_required(profiles_filters.MySearchView.as_view())), name="save_partner_preferences")
+    path('save_partner_preferences/', never_cache(login_required(profiles_filters.save_partner_preferences)), name="save_partner_preferences")
 ]
 
 

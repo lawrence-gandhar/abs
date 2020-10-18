@@ -27,6 +27,7 @@ class ProfileSearchForm(ModelForm):
 #
 #
 
+
 class MyFiltersForm(ModelForm):
     
     class Meta:
@@ -48,4 +49,4 @@ class MyFiltersForm(ModelForm):
             'aged_from' : TextInput(attrs = {'class':'form-control hide', }),
             
         }
-        
+       

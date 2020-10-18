@@ -669,23 +669,33 @@ class MyFilters(models.Model):
     )
     
     l_cities = models.ManyToManyField(
-        Countries_Cities,       
+        Countries_Cities, 
+        blank = True,
+        db_index = True,
     )
     
     l_states = models.ManyToManyField(
-        Countries_States,       
+        Countries_States, 
+        blank = True,
+        db_index = True,
     )
     
     l_countries = models.ManyToManyField(
-        Countries,       
+        Countries,
+        blank = True,
+        db_index = True,
     )
     
     l_religions = models.ManyToManyField(
-        Religion,       
+        Religion,     
+        blank = True,
+        db_index = True,        
     )
     
     l_caste = models.ManyToManyField(
-        Caste,       
+        Caste,
+        blank = True,
+        db_index = True,
     )
     
     l_qualifications = models.ForeignKey(
@@ -707,13 +717,13 @@ class MyFilters(models.Model):
     aged_from = models.IntegerField(
         db_index = True,
         null = True,
-        blank = False,
+        blank = True,
     )
     
     aged_to = models.IntegerField(
         db_index = True,
         null = True,
-        blank = False,
+        blank = True,
     )    
     
     is_active = models.BooleanField(
