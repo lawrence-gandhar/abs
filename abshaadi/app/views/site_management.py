@@ -129,7 +129,7 @@ def get_states_dropdown(request):
     
     if len(id) > 0 :
     
-        html = ["<option value=''>Any State</option>"]
+        html = ["<option value='0'>Any State</option>"]
     
           
         states = Countries_States.objects.filter(country__in = id)
@@ -152,7 +152,7 @@ def get_cities_dropdown(request):
     
     if len(id) > 0 :
     
-        html = ["<option value=''>Any City</option>"]
+        html = ["<option value='0'>Any City</option>"]
                   
         cities = Countries_Cities.objects.filter(state_name__in = id)
 
@@ -274,21 +274,25 @@ def delete_religion(request, ins=None):
     
     
 #******************************************************************************
-# RELIGION DROPDOWN
+# CASTES DROPDOWN
 #****************************************************************************** 
-
 
 def get_castes_dropdown(request):
     
     if request.POST:
+        
+        id = request.POST.getlist("ids[]")
+        
+        if len(id) > 0 :
+        
+            html = []
     
-        ids = request.POST.getlist('religions')
-    
-        Caste.objects.filter(religion__in = ids)
-    
-    
-    
-    
-    
-    
+            castes = Caste.objects.filter(religion__in = id)
+            
+            if castes is not None:
+                for caste in castes:
+                    html.append("<option value='{0}'>{1}</option>".format(caste.id, caste.caste_name))
+                return HttpResponse(safestring.mark_safe(''.join(html)))
+            else:
+                return HttpResponse('')   
     

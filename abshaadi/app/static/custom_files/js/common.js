@@ -1,20 +1,31 @@
 $(document).ready(function(){
 	
+	//*******************************************************************************
+	// SET CLASS
+	//*******************************************************************************
+	
 	$("select").addClass("form-control");
 	$("input").addClass("form-control");
 	
-	//
-	//
+	//*******************************************************************************
+	// AGE SLIDER
+	//*******************************************************************************
 	
 	age_to = document.getElementById('id_aged_from');
 	age_from = document.getElementById('id_aged_to');
 	
 	var inputs = [age_to, age_from];
 	
+	if(age_to.value == '') age_to_val = 25;
+	else age_to_val = age_to.value;
+	
+	if(age_from.value == '') age_from_val = 18;
+	else age_from_val = age_from.value;
+	
 	var stepsSlider  = document.getElementById('age_slider');
 	
 	noUiSlider.create(stepsSlider , {
-		start: [18, 25],
+		start: [age_from_val, age_to_val],
 		connect: true,
 		step: 1,
 		range: {
@@ -28,6 +39,9 @@ $(document).ready(function(){
 	stepsSlider.noUiSlider.on('update', function (values, handle) {
 		inputs[handle].value = values[handle];
 	});
+	
+	//*******************************************************************************
+	//*******************************************************************************
 	
 });
 
@@ -160,7 +174,7 @@ $("#id_password1").on("focusout", function(){
 //***********************************************************************
 //
 
-$("#country_select").on('hidden.bs.select', function (e){
+$(".country_select").on('hidden.bs.select', function (e){
 	
 	e.stopImmediatePropagation();
 	
@@ -207,6 +221,57 @@ $(".states_select").on('hidden.bs.select', function (e){
 // Get Castes Dropdown
 //***********************************************************************
 //
+
+$(".religion_select").on('hidden.bs.select', function (e){
+	
+	e.stopImmediatePropagation();
+	
+	kk = $(this).val();
+	
+	if(kk.length>0){
+		$.post("/get_castes_dropdown/", {'csrfmiddlewaretoken': csrf, 'ids':kk}, function(data){
+			
+			$(".caste-div").show();
+			$("select.castes_select").empty().append(data);
+			$("select.castes_select").selectpicker('refresh');
+			
+		});
+	}
+	
+});
+
+
+//***********************************************************************
+// Save Partner Search
+//***********************************************************************
+//
+
+function save_partner_search(elem, inp_name){
+	formdata = $(elem).serialize();
+	
+	inp = $(inp_name).val();
+	
+	if($.trim(inp)!=""){
+		
+		$("#data_process_modal").modal('show');
+		
+		f_data = formdata + "&inp="+inp;
+		
+		$("#save_partner_preferences_modal").modal('hide');
+				
+		$.post("/save_partner_preferences/", f_data, function(data){
+			console.log(data);
+			$("#data_process_modal").modal('hide');
+		});
+		
+	}else{
+		$("#data_process_modal").modal('hide');
+		alert('Filter Name is required');
+		$(inp_name).focus();
+	}
+	
+	
+}
 
 
 

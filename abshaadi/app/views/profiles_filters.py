@@ -101,9 +101,10 @@ class UserProfileEdit(View):
         
 def update(request,id):
     if request.method=='POST':
-        form =RegisterForm(request.POST) 
-        form1 =ProfileForm(request.POST)
-        # print(form1['father_name'].value())
+        form = RegisterForm(request.POST) 
+        form1 = ProfileForm(request.POST)
+        
+        
         obj = Profile.objects.get(id=id)
         obj.fullname = form['fullname'].value()
         obj.gender = form['gender'].value()
@@ -165,6 +166,70 @@ def edit_personal_info(request):
         return redirect('/profile/')
     return redirect('/page_403/')        
     
+
+#******************************************************************************
+# SEARCH FILTER SAVE
+#******************************************************************************  
+
+def save_partner_preferences(request):
     
+    if request.POST:
+        form = search_forms.MyFiltersForm(request.POST)
+        
+        inp = request.POST.get("inp", None)
+        
+        if inp is not None:
+        
+            if form.is_valid():
+                ins = form.save(commit=False)
+                ins.filter_name = inp
+                ins.user = request.user
+                ins.save()
+                return HttpResponse(json.dumps({'code':'1', 'error':''}))
+            else:
+                return HttpResponse(json.dumps({'code':'0', 'error':safestring.mark_safe(form.errors)}))
+        else:
+            return HttpResponse(json.dumps({'code':'0', 'error':'Filter Name is required'}))
+    return HttpResponse(json.dumps({'code':'0', 'error':'Invalid Operation'}))
     
+     
+#******************************************************************************
+# SEARCH FILTERS
+#******************************************************************************    
+
+class MySearchView(View):
+
+    template_name = 'app/base/base.html'
+    
+    data = defaultdict()
+
+    data["included_template"] = 'app/users/search_results.html'
+
+    data["page_title"] = "Ratner Profile Search"
+    
+    data["css_files"] = []
+    data["js_files"] = ['custom_files/js/common.js',]
+    
+    #
+    #
+    #
+    
+    def get(self, request):
+        self.data["search_profile"] = search_forms.MyFiltersForm()
+        return render(request, self.template_name, self.data)
+    
+    #
+    #
+    #
+    
+    def post(self, request):
+        self.data["search_profile"] = search_forms.MyFiltersForm(request.POST)
+
+        if self.data["search_profile"].is_valid():
+            pass
+        return render(request, self.template_name, self.data)
+  
+  
+  
+
     

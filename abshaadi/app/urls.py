@@ -51,6 +51,7 @@ urlpatterns += [
 urlpatterns += [
     path('get_states_dropdown/', never_cache(login_required(site_management.get_states_dropdown)), name="get_states_dropdown"),
     path('get_cities_dropdown/', never_cache(login_required(site_management.get_cities_dropdown)), name="get_cities_dropdown"),
+    path('get_castes_dropdown/', never_cache(login_required(site_management.get_castes_dropdown)), name="get_castes_dropdown"),
 ]
 
 # Dashboard
@@ -77,6 +78,12 @@ urlpatterns += [
     path('staff/user_management/users/delete/<int:ins>/', never_cache(staff_member_required(user_management.delete_user)), name="delete_user"),
     path('staff/user_management/staff/view/', never_cache(staff_member_required(user_management.StaffManagementView.as_view())), name="staff_management_view"),
     path('staff/user_management/staff/add/', never_cache(staff_member_required(user_management.add_staff)), name="add_staff"),
+]
+
+# Search Pages
+urlpatterns += [
+    path('search_results/', never_cache(login_required(profiles_filters.MySearchView.as_view())), name="user_search_results"),
+    path('save_partner_preferences/', never_cache(login_required(profiles_filters.MySearchView.as_view())), name="save_partner_preferences")
 ]
 
 

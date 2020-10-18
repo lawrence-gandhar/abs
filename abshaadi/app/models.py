@@ -357,17 +357,6 @@ class Profile(models.Model):
         choices = gender_choices,
     )
     
-    aged_from = models.IntegerField(
-        db_index = True,
-        null = True,
-        blank = False,
-    )
-    
-    aged_to = models.IntegerField(
-        db_index = True,
-        null = True,
-        blank = False,
-    )
     
     father_name = models.CharField(
         max_length = 250,
@@ -713,6 +702,18 @@ class MyFilters(models.Model):
         null = True,
         blank = True,
         on_delete = models.SET_NULL,
+    ) 
+    
+    aged_from = models.IntegerField(
+        db_index = True,
+        null = True,
+        blank = False,
+    )
+    
+    aged_to = models.IntegerField(
+        db_index = True,
+        null = True,
+        blank = False,
     )    
     
     is_active = models.BooleanField(

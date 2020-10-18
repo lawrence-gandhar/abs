@@ -68,7 +68,7 @@ class UserDashboardView(View):
         self.data["profile_picture"] = registration_forms.ProfilePicturesForm()
         self.data["redirect_url"] = request.get_full_path()
         
-        self.data["search_profile"] = search_forms.ProfileSearchForm()
+        self.data["search_profile"] = search_forms.MyFiltersForm()
         
         
         return render(request, self.template_name, self.data)
