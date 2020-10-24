@@ -765,18 +765,41 @@ class MessageCenter(models.Model):
         blank = True,
     )
     
-    seen_on = models.DateTimeField(
+    class Meta:
+        verbose_name_plural = "Message Thread Center"
+
+
+class MessageHistory(models.Model):
+    
+    msg = models.ForeignKey(
+        MessageCenter,
+        on_delete = models.CASCADE,
         db_index = True,
-        null = True,
-        blank = True,
+    )
+    
+    message = models.TextField(
+        null = False,
+        blank = False,
+    )
+    
+    seen = models.BooleanField(
+        db_index = True,
+        default = False,
+    )
+    
+    sent_on = models.DateTimeField(
+        db_index = True,
+        auto_now_add = True,
     )
     
     class Meta:
-        verbose_name_plural = "Message Center"
+        verbose_name_plural = "Message History"
+    
+
     
 
 #***********************************************************************
-#
+# REPORT USER
 #***********************************************************************
 
 class ReportUser(models.Model):      
@@ -816,7 +839,7 @@ class ReportUser(models.Model):
     
 
 #***********************************************************************
-#
+# PAID USER
 #***********************************************************************
 
 class PaidUser(models.Model):     
@@ -847,7 +870,7 @@ class PaidUser(models.Model):
         
     
 #***********************************************************************
-#
+# PAYMENT DETAILS
 #***********************************************************************
 
 class PaymentDetails(models.Model):         
