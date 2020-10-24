@@ -51,8 +51,9 @@ $(document).ready(function(){
 // Connect/Message Modal
 //*******************************************************************************
 
-function open_connect_modal(id){
+function open_connect_modal(to_id){
 	$("#connect_modal_form").modal('show');
+	$("#to_user_id").val(to_id);
 }
 
 

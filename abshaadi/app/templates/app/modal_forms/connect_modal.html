@@ -3,6 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 			<form method="post" action="">
+				{% csrf_token %}
 				<div class="modal-header">
 					<h5 class="modal-title">Connect/Message</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -10,7 +11,11 @@
 					</button>
 				</div>
 				<div class="modal-body">
-				
+					<input type="text" name="from_user_id" value="{{user_id}}">
+					<input type="text" name="to_user_id" id="to_user_id">
+					
+					<label>Message</label>
+					<textarea name="message" rows="3" class="form-control"></textarea>
 				</div>
                 <div class="modal-footer">
 					<button type="reset" class="btn btn-warning" style="width:80px;">Cancel</button>

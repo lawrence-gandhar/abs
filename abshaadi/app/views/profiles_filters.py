@@ -222,7 +222,8 @@ class MySearchView(View):
     #
     #
     
-    def get(self, request):
+    def get(self, request):        
+        
         self.data["search_profile"] = search_forms.MyFiltersForm()        
         return render(request, self.template_name, self.data)
     
@@ -235,6 +236,8 @@ class MySearchView(View):
         my_profile = Profile.objects.get(user = request.user)
         
         self.data["search_profile"] = search_forms.MyFiltersForm()  
+        
+        self.data["user_id"] = request.user.id 
         
         looking_for_gender = my_profile.looking_for_gender   
 
@@ -252,8 +255,6 @@ class MySearchView(View):
         l_qualifications = request.POST.getlist('l_qualifications', None)
         l_jobs = request.POST.getlist('l_jobs', None)
         l_attr = request.POST.getlist('l_attr', None)
-        
-        print(request.POST)
         
         
         search = Profile.objects.filter(gender = looking_for_gender,)
@@ -275,13 +276,16 @@ class MySearchView(View):
         if len(l_countries) > 0:
             countries = Countries.objects.filter(pk__in = l_countries).values_list('id', flat=True)
             search = search.filter(country__in = countries)
-            
-        
-        print(search.query)    
+             
             
         return render(request, self.template_name, self.data)
   
   
+#******************************************************************************
+# CONNECT MEASSAGE
+#******************************************************************************    
   
+def connect_message(request):
+    pass
 
     
