@@ -237,7 +237,7 @@ class MySearchView(View):
         
         self.data["search_profile"] = search_forms.MyFiltersForm()  
         
-        self.data["user_id"] = request.user.id 
+        self.data["user_id"] = request.user.id  
         
         looking_for_gender = my_profile.looking_for_gender   
 
@@ -277,7 +277,11 @@ class MySearchView(View):
             countries = Countries.objects.filter(pk__in = l_countries).values_list('id', flat=True)
             search = search.filter(country__in = countries)
              
-            
+        
+        search = search.values('id', 'fullname', 'dob', 'city', 'country')
+        
+        self.data["search_results"] = search
+        
         return render(request, self.template_name, self.data)
   
   

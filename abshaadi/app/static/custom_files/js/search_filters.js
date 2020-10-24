@@ -43,6 +43,18 @@ $(document).ready(function(){
 	//*******************************************************************************
 	//*******************************************************************************
 	
+	
+	$("textarea#word_count").on('keyup', function() {
+		
+		var mlen = $(this).val().length;
+		
+		if(mlen <= 250){
+			$("#display_count").empty().text(250 - mlen);
+		}else{
+			alert("Maximum reached");
+		}
+	});
+	
 });
 
 
@@ -57,3 +69,7 @@ function open_connect_modal(to_id){
 }
 
 
+function connect_modal_form_cancel(){
+	$("#display_count").empty().text(250);
+	$("#connect_modal_form").modal('hide');
+}
