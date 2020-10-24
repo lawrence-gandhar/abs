@@ -1,7 +1,30 @@
-$(document).ready(function(){
+$(document).ready(function(){});
+
+
+
+//***********************************************************************
+// Match Two Strings
+//***********************************************************************
+//
+
+function success_msg(msg){
+	htm = '<div class="alert alert-success">';
+	htm += '<i class="fa fa-check"></i> <strong>Success!</strong> '+msg+'!';
+	htm += '</div>';
 	
+	return htm;
+}
+
+function error_msg(msg){
+	htm = '<div class="alert alert-warning">';
+	htm += '<i class="fa fa-exclamation-triangle"></i> <strong>Error!</strong> '+msg+'!';
+	htm += '</div>';
 	
-});
+	return htm;
+}
+
+
+
 
 /**
  * Convert a base64 string in a Blob according to the data and contentType.
@@ -134,6 +157,13 @@ $("#id_password1").on("focusout", function(){
 
 $(".country_select").on('hidden.bs.select', function (e){
 	
+	$(".state-div").hide();
+	$(".city-div").hide();
+	$(".city-div-spinner").hide();
+	
+	$(".state-div-spinner").show();
+	
+	
 	e.stopImmediatePropagation();
 	
 	kk = $(this).val();
@@ -141,13 +171,12 @@ $(".country_select").on('hidden.bs.select', function (e){
 	if(kk.length>0){
 		$.post("/get_states_dropdown/", {'csrfmiddlewaretoken': csrf, 'ids':kk}, function(data){
 			
+			$(".state-div-spinner").hide();
 			$(".state-div").show();
 			$("select.states_select").empty().append(data);
-			$("select.states_select").selectpicker('refresh');
-			
+			$("select.states_select").selectpicker('refresh');			
 		});
 	}
-		
 });
 
 
@@ -159,6 +188,8 @@ $(".country_select").on('hidden.bs.select', function (e){
 
 $(".states_select").on('hidden.bs.select', function (e){
 	
+	$(".city-div-spinner").show();
+	
 	e.stopImmediatePropagation();
 	
 	kk = $(this).val();
@@ -166,6 +197,7 @@ $(".states_select").on('hidden.bs.select', function (e){
 	if(kk.length>0){
 		$.post("/get_cities_dropdown/", {'csrfmiddlewaretoken': csrf, 'ids':kk}, function(data){
 			
+			$(".city-div-spinner").hide();
 			$(".city-div").show();
 			$("select.city_select").empty().append(data);
 			$("select.city_select").selectpicker('refresh');
@@ -205,30 +237,26 @@ $(".religion_select").on('hidden.bs.select', function (e){
 //
 
 function save_partner_search(elem, inp_name){
+	
+	$(".processing-div-spinner").show();
+	
 	formdata = $(elem).serialize();
 	
 	inp = $(inp_name).val();
 	
+	
 	if($.trim(inp)!=""){
 		
-		$("#data_process_modal").modal('show');
-		
 		f_data = formdata + "&inp="+inp;
-		
-		$("#save_partner_preferences_modal").modal('hide');
 				
 		$.post("/save_partner_preferences/", f_data, function(data){
-			console.log(data);
-			$("#data_process_modal").modal('hide');
-		});
-		
+			$(".processing-div-spinner").hide();
+			$(".message_div").append(success_msg('Data Saved'));
+		});		
 	}else{
-		$("#data_process_modal").modal('hide');
-		alert('Filter Name is required');
+		$(".message_div").empty().append(error_msg('Filter Name is required'));
 		$(inp_name).focus();
 	}
-	
-	
 }
 
 

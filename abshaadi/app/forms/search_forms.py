@@ -49,4 +49,3 @@ class MyFiltersForm(ModelForm):
             'aged_from' : TextInput(attrs = {'class':'form-control hide', }),
             
         }
-       
