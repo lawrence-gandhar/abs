@@ -1,15 +1,15 @@
+{% load static %}
+
 <!-- Filters -->
 
 <div class="card-header card-header-border" style="margin-top:10px;">
     <strong style="margin-left:-10px;">Filters</strong>
-    <button class="btn btn-sm btn-primary" style="float:right; margin-right: -10px; margin-top:-3px" type="button" 
-		 data-target="#save_partner_preferences_modal" data-toggle="modal" data-backdrop="static" data-keyboard="false">
-        <i class="mdi mdi-content-save"></i> Save
-    </button>
     
-    <button class="btn btn-sm btn-warning" style="float:right; margin-right: 10px; margin-top:-3px">
-        <i class="mdi mdi-eye"></i> View Saved
-    </button>
+	
+	<button class="btn btn-sm btn-warning" style="float:right; margin-right: 10px; margin-top:-3px">
+		<i class="mdi mdi-eye"></i> View Saved
+	</button>
+	
 </div>
 
 <div class="card-body card-body-border" style="font-size:10px;">
@@ -27,9 +27,13 @@
 				{{search_profile.l_religions}}
 			</div>
 			
+			<div class="col-12 caste-div-spinner hide text-center" style="margin-top:10px;">
+				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
+			</div>
+			
 			<div class="col-12 caste-div hide" style="margin-top:10px;">
 				<label>Caste/Denomination/Ethinicity</label>
-				{{search_profile.l_caste}}
+				<select name="l_caste" class="form-control selectpicker castes_select" multiple></select>
 			</div>
 			
 			<div class="col-12" style="margin-top:10px;">
@@ -37,14 +41,22 @@
 				{{search_profile.l_countries}}
 			</div>
 			
+			<div class="col-12 state-div-spinner hide text-center" style="margin-top:10px;">
+				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
+			</div>
+			
 			<div class="col-12 state-div hide" style="margin-top:10px;">
 				<label>State</label>
-				{{search_profile.l_states}}
+				<select name="l_states" class="form-control selectpicker states_select" multiple></select>
+			</div>
+
+			<div class="col-12 city-div-spinner hide text-center" style="margin-top:10px;">
+				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
 			</div>
 
 			<div class="col-12 city-div hide" style="margin-top:10px;">
 				<label>City</label>
-				{{search_profile.l_cities}}
+				<select class="form-control selectpicker city_select" name="l_cities" multiple></select>
 			</div>
 			
 			<div class="col-12" style="margin-top:10px;">
@@ -59,23 +71,28 @@
 			
 			<div class="col-12" style="margin-top:20px;">
 				<label>Complexion</label>
-				{{search_profile.l_attr}}
+				<select></select>
 			</div>
 			
 			<div class="col-12" style="margin-top:10px;">
 				<label>Job</label>
-				{{search_profile.l_jobs}}
+				<select></select>
 			</div>
 			
 			<div class="col-12" style="margin-top:10px;">
 				<label>Qualification</label>
-				{{search_profile.l_qualifications}}
+				<select></select>
 			</div>
 			
 			<div class="col-12 text-center" style="margin-top:10px;">
 				<button type="submit" class="btn btn-sm btn-warning">
 					<i class="mdi mdi-search"></i> Search
 				</button>
+				<button style="margin-left:5px;" class="btn btn-sm btn-primary" type="button" 
+					 data-target="#save_partner_preferences_modal" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+					<i class="mdi mdi-content-save"></i> Save
+				</button>  
+				
 			</div>
 		</div>
 	</form>

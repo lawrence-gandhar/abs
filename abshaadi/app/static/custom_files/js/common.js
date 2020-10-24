@@ -176,6 +176,13 @@ $(".country_select").on('hidden.bs.select', function (e){
 			$("select.states_select").empty().append(data);
 			$("select.states_select").selectpicker('refresh');			
 		});
+	}else{
+		$(".state-div-spinner").hide();
+		$(".city-div-spinner").hide();
+		$("select.states_select").val('');
+		$("select.states_select").selectpicker('refresh');	
+		$("select.city_select").val('');
+		$("select.city_select").selectpicker('refresh');
 	}
 });
 
@@ -194,15 +201,22 @@ $(".states_select").on('hidden.bs.select', function (e){
 	
 	kk = $(this).val();
 	
+	
 	if(kk.length>0){
-		$.post("/get_cities_dropdown/", {'csrfmiddlewaretoken': csrf, 'ids':kk}, function(data){
-			
+				
+		$.post("/get_cities_dropdown/", {'csrfmiddlewaretoken': csrf, 'ids':kk}, function(data){			
 			$(".city-div-spinner").hide();
 			$(".city-div").show();
 			$("select.city_select").empty().append(data);
 			$("select.city_select").selectpicker('refresh');
 			
 		});
+	}else{
+				
+		$(".city-div").hide();
+		$("select.city_select").val('');
+		$("select.city_select").selectpicker('refresh');
+		$(".city-div-spinner").hide();
 	}
 });
 

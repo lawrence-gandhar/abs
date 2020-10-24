@@ -40,7 +40,6 @@ class MyFiltersForm(ModelForm):
             'l_cities' : Select(attrs = {'class':'form-control selectpicker city_select', 'multiple':'true'}),
             'l_states' : Select(attrs = {'class':'form-control selectpicker states_select', 'multiple':'true'}),
             'l_countries' : Select(attrs = {'class':'form-control selectpicker country_select', 'multiple':'true'}),
-            'l_religions' : Select(attrs = {'class':'form-control selectpicker religion_select', 'multiple':'true'}),
             'l_caste' : Select(attrs = {'class':'form-control selectpicker castes_select', 'multiple':'true'}),
             'l_qualifications' : Select(attrs = {'class':'form-control selectpicker qualification_select', 'multiple':'true'}),
             'l_jobs' : Select(attrs = {'class':'form-control selectpicker jobs_select', 'multiple':'true'}),

@@ -18,6 +18,8 @@ from django.utils import safestring
 
 import json
 
+from app.helpers import *
+
 #******************************************************************************
 # USER PROFILE VIEW
 #******************************************************************************   
@@ -211,7 +213,7 @@ class MySearchView(View):
 
     data["included_template"] = 'app/users/search_results.html'
 
-    data["page_title"] = "Ratner Profile Search"
+    data["page_title"] = "Patner Profile Search"
     
     data["css_files"] = []
     data["js_files"] = ['custom_files/js/common.js', 'custom_files/js/search_filters.js']
@@ -221,7 +223,7 @@ class MySearchView(View):
     #
     
     def get(self, request):
-        self.data["search_profile"] = search_forms.MyFiltersForm()
+        self.data["search_profile"] = search_forms.MyFiltersForm()        
         return render(request, self.template_name, self.data)
     
     #
@@ -229,10 +231,54 @@ class MySearchView(View):
     #
     
     def post(self, request):
-        self.data["search_profile"] = search_forms.MyFiltersForm(request.POST)
+        
+        my_profile = Profile.objects.get(user = request.user)
+        
+        self.data["search_profile"] = search_forms.MyFiltersForm()  
+        
+        looking_for_gender = my_profile.looking_for_gender   
 
-        if self.data["search_profile"].is_valid():
-            pass
+        # 
+        # GET INPUTS
+        #
+        
+        aged_from = request.POST.get('aged_from', None)
+        aged_to = request.POST.get('aged_to', None)
+        l_religions = request.POST.getlist('l_religions', None)
+        l_cities = request.POST.getlist('l_cities', None)
+        l_states = request.POST.getlist('l_states', None)
+        l_countries = request.POST.getlist('l_countries', None)
+        l_caste = request.POST.getlist('l_caste', None)
+        l_qualifications = request.POST.getlist('l_qualifications', None)
+        l_jobs = request.POST.getlist('l_jobs', None)
+        l_attr = request.POST.getlist('l_attr', None)
+        
+        print(request.POST)
+        
+        
+        search = Profile.objects.filter(gender = looking_for_gender,)
+        
+        if aged_to is not None:            
+            search = search.filter(dob__gte = get_birth_full_from_age(aged_to))
+            
+        if aged_from is not None:            
+            search = search.filter(dob__lte = get_birth_full_from_age(aged_from))
+        
+        if len(l_religions) > 0:
+            rel = Religion.objects.filter(pk__in = l_religions).values_list('id', flat = True)
+            search = search.filter(religion_id__in = rel)
+        
+        if len(l_caste) > 0:
+            castes = Caste.objects.filter(pk__in = l_caste).values_list('id', flat = True)
+            search = search.filter(caste_creed_id__in = castes)
+        
+        if len(l_countries) > 0:
+            countries = Countries.objects.filter(pk__in = l_countries).values_list('id', flat=True)
+            search = search.filter(country__in = countries)
+            
+        
+        print(search.query)    
+            
         return render(request, self.template_name, self.data)
   
   

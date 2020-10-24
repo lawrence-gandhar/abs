@@ -1,3 +1,5 @@
+{% load static %}
+
 <div class="modal" tabindex="-1" role="dialog" id="save_partner_preferences_modal" style="background-color:#464e4ec2;" >
     <div class="modal-dialog" role="document">
         <div class="modal-content">	
@@ -15,6 +17,10 @@
 							<input type="text" class="form-control" name="filter_name" id="filter_name" required>
 						</div>
 					</div>
+					<div class="col-12 processing-div-spinner hide text-center" style="margin-top:10px;">
+						<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
+					</div>
+					<div class="row message_div" style="padding:10px;"></div>
 				</div>
 			</div>
 			<div class="modal-footer">

@@ -231,6 +231,18 @@
 		border-color : transparent !important;
 	}
 	
+	.bg-dark-green{		
+		color: #fff !important;
+		background-color : #50ca18;
+		border-color : transparent !important;
+	}
+	
+	.bg-dark-red{
+		color: #fff !important;
+		background-color : #ff4848;
+		border-color : transparent !important;
+	}
+	
 	
 	
 </style>
