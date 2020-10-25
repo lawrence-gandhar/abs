@@ -12,7 +12,7 @@
 					<div class="col-md-3 col-sm-6 col-xs-12" style="padding:5px 10px 0px 10px;">
 						<div class="card card-body-border">
 							<img class="img" src="{% static 'images/user.png' %}" height="175px">
-							<div style="padding:4px;">
+							<div style="padding:2px 8px">
 								<label style="font-size:13px; display:block; margin-bottom:20px;">
 									<span style="float:left; display:inline-block;">{{row.fullname}}</span>
 									<span style="float:right; display:inline-block;"> ({{row.age}} yrs)</span>								
@@ -21,7 +21,7 @@
 									{{row.city}} - {{row.country}}
 								</label>
 							</div>
-							<div style="padding:4px;" class="col-md-12 text-center">							
+							<div style="padding:4px; padding-top:0px; margin-top: -5px;" class="col-md-12 text-center">							
 								<button type="button" class="btn bg-dark-green btn-sm" style="width: 80px" onclick="open_connect_modal({{row.user}})">
 									<i class="mdi mdi-comment"></i> Connect
 								</button>
@@ -29,6 +29,11 @@
 									<i class="mdi mdi-heart"></i> Like
 								</button>
 							</div>
+							<div style="padding:6px; padding-top:0px;" class="col-md-12 text-center">
+								<a href="" target="_blank" class="btn btn-sm" style="width: 100%; background-color:#7c6cb9; color:#FFFFFF;">
+									<i class="mdi mdi-eye"></i> View
+								</a>
+							</div>	
 						</div>
 					</div>	
 				{% endfor %}				

@@ -939,12 +939,35 @@ class ProfileLike(models.Model):
         related_name = 'by_user'
     )
     
-    created_on = models.DateTimeField(
-        auto_now_add = True,
+    viewed = models.BooleanField(
+        default = False,
+        db_index = True,
+    )
+    
+    shortlisted = models.BooleanField(
+        default = False,
+        db_index = True,
+    )
+    
+    liked = models.BooleanField(
+        default = False,
+        db_index = True,
+    )
+    
+    viewed_on = models.DateTimeField(        
         db_index = True,
         null = True,
-        blank = True,
+    )    
+    
+    shortlisted_on = models.DateTimeField(        
+        db_index = True,
+        null = True,
     )
+    
+    liked_on =  models.DateTimeField(        
+        db_index = True,
+        null = True,
+    ) 
     
     class Meta:
         verbose_name_plural = "Profile Like & Save"

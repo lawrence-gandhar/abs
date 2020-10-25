@@ -14,6 +14,7 @@ from app.forms import *
 from django.shortcuts import get_object_or_404
 from app.forms.registration_forms import RegisterForm,ProfileForm
 from django.http import Http404
+from django.utils import timezone
 
 from django.utils import safestring
 
@@ -215,7 +216,7 @@ class MySearchView(View):
 
     data["included_template"] = 'app/users/search_results.html'
 
-    data["page_title"] = "Patner Profile Search"
+    data["page_title"] = "Partner Profile Search"
     
     data["css_files"] = []
     data["js_files"] = ['custom_files/js/common.js', 'custom_files/js/search_filters.js']
@@ -322,6 +323,7 @@ def connect_message(request):
             msg_thread = MessageCenter(
                 user = request.user,
                 to_user = to_user,
+                liked_on = date.today()
             )
 
             msg_thread = msg_thread.save()
@@ -349,9 +351,44 @@ def profile_like(request, to_user_id = None):
         
         pro_like = ProfileLike(
             by_user = request.user,
-            user = to_user
+            user = to_user,
+            liked = True,
+            liked_on = timezone.now(),
         )       
             
         pro_like.save()    
         return HttpResponse(json.dumps({'code':'1', 'error':''}))  
     return HttpResponse(json.dumps({'code':'0', 'error':'Invalid Operation'}))
+    
+    
+    
+#******************************************************************************
+# PARTNER PROFILE
+#******************************************************************************  
+
+def partner_profile_view(request, user_id=None):
+    
+    if user_id is not None:
+    
+        template_name = 'app/base/base.html'
+        
+        data = defaultdict()    
+        
+        data["included_template"] = 'app/users/partner_profile.html'
+
+        data["page_title"] = "Patner Profile"
+        
+        data["css_files"] = []
+        data["js_files"] = []
+        
+        try:            
+            user = CustomUser.objects.get(pk = user_id)
+        except:
+            return redirect('/page_403/')
+        
+        data["my_profile"] = Profile.objects.get(user = user)
+        
+        return render(template_name, )
+        
+    return redirect('/page_403/')
+    
