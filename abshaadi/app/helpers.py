@@ -5,11 +5,13 @@ from datetime import date, datetime
 # CALCULATE AGE FROM DOB
 #
 
-def get_age_from_dob(dob):
+def get_age_from_dob(dob, only_years = False):
     today = date.today()
     dob = datetime.strptime(dob,"%Y-%m-%d")
     age = relativedelta(today, dob)
     
+    if only_years:
+        return age.years    
     return age
     
     

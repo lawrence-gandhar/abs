@@ -917,7 +917,37 @@ class PaymentDetails(models.Model):
         verbose_name_plural = "Payment Details"
     
     
+#***********************************************************************
+# PROFILE LIKE
+#***********************************************************************
     
+class ProfileLike(models.Model):
+    user = models.ForeignKey(
+        CustomUser,
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.CASCADE,
+    )
+    
+    by_user = models.ForeignKey(
+        CustomUser,
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.CASCADE,
+        related_name = 'by_user'
+    )
+    
+    created_on = models.DateTimeField(
+        auto_now_add = True,
+        db_index = True,
+        null = True,
+        blank = True,
+    )
+    
+    class Meta:
+        verbose_name_plural = "Profile Like & Save"
     
     
     

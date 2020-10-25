@@ -73,3 +73,21 @@ function connect_modal_form_cancel(){
 	$("#display_count").empty().text(250);
 	$("#connect_modal_form").modal('hide');
 }
+
+function on_connect_save(){
+	
+	if($.trim($("textarea#word_count").val()).length == 0){
+		alert('Cannot')
+	}else{
+		formdata = $("#connect_save_form").serialize();
+		
+		$.post("/connect_msg_save/", formdata, function(data){
+			
+		});
+	}
+}
+
+
+function profile_like(to_user){
+	$.get("/profile_like/"+to_user+"/", function(data){});
+}

@@ -7,6 +7,7 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from collections import defaultdict
+from django.core import serializers
 
 from app.models import * 
 from app.forms import *
@@ -16,6 +17,7 @@ from django.http import Http404
 
 from django.utils import safestring
 
+from datetime import date, datetime
 import json
 
 from app.helpers import *
@@ -237,8 +239,6 @@ class MySearchView(View):
         
         self.data["search_profile"] = search_forms.MyFiltersForm()  
         
-        self.data["user_id"] = request.user.id  
-        
         looking_for_gender = my_profile.looking_for_gender   
 
         # 
@@ -257,7 +257,7 @@ class MySearchView(View):
         l_attr = request.POST.getlist('l_attr', None)
         
         
-        search = Profile.objects.filter(gender = looking_for_gender,)
+        search = Profile.objects.filter(gender = looking_for_gender, user__is_active = True)
         
         if aged_to is not None:            
             search = search.filter(dob__gte = get_birth_full_from_age(aged_to))
@@ -278,9 +278,23 @@ class MySearchView(View):
             search = search.filter(country__in = countries)
              
         
-        search = search.values('id', 'fullname', 'dob', 'city', 'country')
+        search = search.values('user', 'fullname', 'dob', 'city', 'country',)
         
-        self.data["search_results"] = search
+        
+        profile_like = ProfileLike.objects.filter(by_user = request.user).values_list('user_id', flat = True)
+        
+        search_res = []
+        for row in search:   
+
+            row['age'] = get_age_from_dob(row['dob'].strftime("%Y-%m-%d"), True)
+            
+            if row["user"] not in profile_like:
+                row["profile_counter"] = False
+            else:
+                row["profile_counter"] = True
+            search_res.append(row)
+                
+        self.data["search_results"] = search_res
         
         return render(request, self.template_name, self.data)
   
@@ -290,6 +304,54 @@ class MySearchView(View):
 #******************************************************************************    
   
 def connect_message(request):
-    pass
-
     
+    if request.POST:
+        
+        to_user_id = request.POST.get('to_user_id', None)
+        from_user_id = request.POST.get('from_user_id', None)
+        connect_msg = request.POST.get('connect_msg', None)
+    
+        try:
+            to_user = CustomUser.objects.get(pk = to_user_id)
+        except:
+            return HttpResponse(json.dumps({'code':'0', 'error':'Invalid Operation'}))
+    
+        try:
+            msg_thread = MessageCenter.objects.get(user = request.user, to_user = to_user)
+        except:
+            msg_thread = MessageCenter(
+                user = request.user,
+                to_user = to_user,
+            )
+
+            msg_thread = msg_thread.save()
+    
+        msgs = MessageHistory(        
+            msg = msg_thread,
+            message = connect_msg,            
+        )
+        
+        msgs.save()
+        return HttpResponse(json.dumps({'code':'1', 'error':''}))
+        
+        
+#******************************************************************************
+# CONNECT MEASSAGE
+#******************************************************************************    
+
+def profile_like(request, to_user_id = None):     
+    
+    if to_user_id is not None:
+        try:
+            to_user = CustomUser.objects.get(pk = to_user_id)
+        except:
+            return HttpResponse(json.dumps({'code':'0', 'error':'Invalid Operation'}))
+        
+        pro_like = ProfileLike(
+            by_user = request.user,
+            user = to_user
+        )       
+            
+        pro_like.save()    
+        return HttpResponse(json.dumps({'code':'1', 'error':''}))  
+    return HttpResponse(json.dumps({'code':'0', 'error':'Invalid Operation'}))

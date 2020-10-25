@@ -2,7 +2,7 @@
 <div class="modal" tabindex="-1" role="dialog" id="connect_modal_form" style="background-color:#464e4ec2;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-			<form method="post" action="">
+			<form method="post" action="" id="connect_save_form">
 				{% csrf_token %}
 				<div class="modal-header">
 					<h5 class="modal-title">Connect/Message</h5>
@@ -11,16 +11,15 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<input type="text" name="from_user_id" value="{{user_id}}" class="hide">
 					<input type="text" name="to_user_id" id="to_user_id" class="hide">
 					
 					<label>Message</label>
-					<textarea name="message" rows="3" class="form-control" id="word_count" maxlength="250"></textarea>
+					<textarea name="connect_msg" rows="3" class="form-control" id="word_count" maxlength="250"></textarea>
 					Characters Left : <span id="display_count">0</span> 
 				</div>
                 <div class="modal-footer">
 					<button type="reset" class="btn btn-warning" style="width:80px;" onclick="connect_modal_form_cancel()">Cancel</button>
-					<button type="submit" class="btn btn-success" style="width:80px;">Save</button>
+					<button onclick="on_connect_save()" type="button" class="btn btn-success" style="width:80px;">Save</button>
 				</div>
 			</form>
         </div>
