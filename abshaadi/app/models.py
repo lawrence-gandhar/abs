@@ -32,7 +32,7 @@ class Religion(models.Model):
     )
 
     def __str__(self):
-        return self.religion_name.upper()
+        return self.religion_name.capitalize()
 
     class Meta:
         verbose_name_plural = "Religions"
@@ -64,7 +64,7 @@ class Caste(models.Model):
     )
 
     def __str__(self):
-        return self.caste_name.upper()
+        return self.caste_name.capitalize()
 
     class Meta:
         verbose_name_plural = "Religious Castes"
@@ -208,6 +208,11 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
+    
+    online_now = models.BooleanField(
+        db_index = True,
+        default = False,
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -365,8 +370,58 @@ class Profile(models.Model):
         blank = True,
     )
     
+    father_job = models.CharField(
+        max_length = 250,
+        db_index = True,
+        null = True,
+        blank = False,
+    )
+    
+    mother_job = models.CharField(
+        max_length = 250,
+        db_index = True,
+        null = True,
+        blank = False,
+    )
+    
     mother_name = models.CharField(
         max_length = 250,
+        db_index = True,
+        null = True,
+        blank = True,
+    )
+    
+    siblings = models.IntegerField(
+        db_index = True,
+        null = True,
+        blank = True,
+    )
+    
+    sibling_male = models.IntegerField(
+        db_index = True,
+        null = True,
+        blank = True,
+    )
+    
+    sibling_female = models.IntegerField(
+        db_index = True,
+        null = True,
+        blank = True,
+    )
+    
+    sibling_elder = models.IntegerField(
+        db_index = True,
+        null = True,
+        blank = True,
+    )
+    
+    sibling_younger = models.IntegerField(
+        db_index = True,
+        null = True,
+        blank = True,
+    )
+    
+    sibling_married = models.IntegerField(
         db_index = True,
         null = True,
         blank = True,
@@ -491,6 +546,11 @@ class Profile(models.Model):
         blank = True,
     )
     
+    partner_preference = models.TextField(
+        blank = True,
+        null = True,
+    )
+    
     created_on = models.DateTimeField(
         auto_now_add = True,
         db_index = True,
@@ -505,8 +565,6 @@ class Profile(models.Model):
         blank = True,
     )
     
-    def __str__(self):
-        return self.fullname.upper()
 
     class Meta:
         verbose_name_plural = "User Profiles"

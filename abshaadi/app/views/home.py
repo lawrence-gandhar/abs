@@ -22,6 +22,22 @@ from app.forms.registration_forms import RegisterForm
 from app.models import *
 
 
+from django.contrib.auth.signals import user_logged_out
+from django.dispatch import receiver
+
+
+#******************************************************************************
+# LOGOUT SIGNALS
+#******************************************************************************    
+   
+    
+@receiver(user_logged_out)
+def post_login(sender, user, request, **kwargs):
+    cus = CustomUser.objects.get(pk = request.user.id)
+    cus.online_now = False
+    cus.save()
+
+
 #******************************************************************************
 # 403 Page
 #******************************************************************************    
@@ -93,6 +109,11 @@ class LoginView(View):
         if user is not None:
             if user.is_active:
                 login(request, user)
+                
+                cus = CustomUser.objects.get(pk = user.id)
+                cus.online_now = True
+                cus.save()
+                
                 return HttpResponse('1') 
         else:
             return HttpResponse('Invalid username or password') 
@@ -104,6 +125,7 @@ class LoginView(View):
 #******************************************************************************    
 
 def my_redirect_page(request):
+    
     if request.user.is_staff or request.user.is_superuser:        
         return redirect('/staff/dashboard/', permanent=True)                    
     else:                  

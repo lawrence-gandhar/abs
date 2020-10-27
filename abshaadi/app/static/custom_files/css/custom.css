@@ -243,6 +243,14 @@
 		border-color : transparent !important;
 	}
 	
+	p.after-sel::before{
+		height : 10px;
+		width : 200px;
+		background-color : #FF0000;
+		content: "";
+		display: inline-block;
+	}
+	
 	
 	
 </style>

@@ -86,10 +86,13 @@ urlpatterns += [
     path('save_partner_preferences/', never_cache(login_required(profiles_filters.save_partner_preferences)), name="save_partner_preferences")
 ]
 
-# Message and Email
+# Partner Profile Views
 urlpatterns += [
     path('connect_msg_save/', never_cache(login_required(profiles_filters.connect_message)), name="connect_msg_save"),
     path('profile_like/<int:to_user_id>/', never_cache(login_required(profiles_filters.profile_like)), name="profile_like"), 
+    path('partner_profile/<int:user_id>/', never_cache(login_required(profiles_filters.partner_profile_view)), name="partner_profile"), 
+    
+    
 ]
 
 #
