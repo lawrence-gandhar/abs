@@ -26,7 +26,7 @@ def staff_member_required(view_func=None, login_url='/page_403/'):
 
 
 # Authorization
-urlpatterns = [    
+urlpatterns = [
     path('',home.HomeView.as_view(), name="home"),
     path('page_403/',home.page_403, name="page_403" ),
     path('login/', home.LoginView.as_view(template_name = 'app/base/login.html'), name='login'),
@@ -37,7 +37,7 @@ urlpatterns = [
 ]
 
 # Site Managers
-urlpatterns += [    
+urlpatterns += [
     path('staff/religion-management/', never_cache(staff_member_required(site_management.ReligionManagementView.as_view())), name='religion_management'),
     path('load_religions_into_db/', never_cache(staff_member_required(site_management.load_religions_into_db)), name="load_religions_into_db"),
     path('add_religion/', never_cache(staff_member_required(site_management.add_religion)), name="add_religion"),
@@ -55,7 +55,7 @@ urlpatterns += [
 ]
 
 # Dashboard
-urlpatterns += [    
+urlpatterns += [
     path('staff/dashboard/', never_cache(staff_member_required(dashboard.StaffDashboardView.as_view())), name="staff_dashboard"),
     path('dashboard/', never_cache(login_required(dashboard.UserDashboardView.as_view())), name="dashboard"),
 ]
@@ -65,8 +65,9 @@ urlpatterns += [
 urlpatterns += [
     path('profile/', never_cache(login_required(profiles_filters.UserProfileView.as_view())), name="user_profile"),
     path('edit_personal_info/', never_cache(login_required(profiles_filters.edit_personal_info)), name="edit_personal_info"),
-    path('update/<int:id>', never_cache(login_required(profiles_filters.update)), name="user_update"),    
     path('upload_profile_pic/', never_cache(login_required(profiles_filters.upload_profile_pic)), name="upload_profile_pic"),
+    path('edit_other_detalis/', never_cache(login_required(profiles_filters.edit_other_detalis)), name="edit_other_detalis"),
+    path('edit_summary_detalis/', never_cache(login_required(profiles_filters.edit_summary_detalis)), name="edit_summary_detalis"),
 ]
 
 
@@ -89,10 +90,10 @@ urlpatterns += [
 # Partner Profile Views
 urlpatterns += [
     path('connect_msg_save/', never_cache(login_required(profiles_filters.connect_message)), name="connect_msg_save"),
-    path('profile_like/<int:to_user_id>/', never_cache(login_required(profiles_filters.profile_like)), name="profile_like"), 
-    path('partner_profile/<int:user_id>/', never_cache(login_required(profiles_filters.partner_profile_view)), name="partner_profile"), 
-    
-    
+    path('profile_like/<int:to_user_id>/', never_cache(login_required(profiles_filters.profile_like)), name="profile_like"),
+    path('partner_profile/<int:user_id>/', never_cache(login_required(profiles_filters.partner_profile_view)), name="partner_profile"),
+
+
 ]
 
 #
