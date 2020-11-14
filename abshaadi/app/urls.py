@@ -34,6 +34,7 @@ urlpatterns = [
     re_path(r'^accounts/*', RedirectView.as_view(pattern_name='login', permanent=True)),
     path('registration/', home.register_form, name='registration'),
     path('my_redirect_page/', home.my_redirect_page, name='my_redirect_page'),
+    path('change_password/', home.change_password, name='change_password'),
 ]
 
 # Site Managers

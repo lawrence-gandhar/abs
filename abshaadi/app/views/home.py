@@ -182,3 +182,29 @@ def register_form(request):
 
         else:
             return HttpResponse("Email cannot be blank")
+
+#======================================================================
+# Change Password
+#======================================================================
+#
+
+def change_password(request):
+    if request.POST:
+        if validate_password(request.POST["password1"]):
+            request.user.set_password(request.POST["password1"])
+            update_session_auth_hash(request, request.user)
+            request.user.save()
+            return HttpResponse("Password Changed Successfully")
+        return HttpResponse('This password must contain at least 8 characters.')
+    return HttpResponse(0)
+
+
+#======================================================================
+# Validate Password
+#======================================================================
+#
+
+def validate_password(password):
+    if len(password) < 8:
+        return False
+    return True
