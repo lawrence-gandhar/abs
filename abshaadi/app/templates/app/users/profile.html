@@ -7,8 +7,11 @@
 					<table class="table" style="border:none;">
 						<tr>
 							<td colspan="2" class="bg-success" style="color:#FFFFFF;">
-								<span style="font-weight:bold; display:inline-block; line-height:30px;">Package Name</span>
-								<span style="font-size:11px; display:inline-block; float:right; text-align:right;">
+								<span style="font-weight:bold; display:inline-block; line-height:35px;">Package Name</span>
+								<button class="btn btn-sm" style="float:right; margin-right: -10px; margin-top: -1px; padding: 8px; background-color:#af27f5; color: #FFF;" data-toggle="modal" data-target="#packagesModal">
+									<i class="mdi mdi-square-inc-cash"></i> Upgrade
+								</button>
+								<span style="font-size:11px; display:inline-block; float:right; text-align:right; margin-right:10px;">
 									Remaining Duration
 									<br/>1Year
 								</span>
@@ -23,14 +26,14 @@
 							<td colspan="4" class="bg-info" style="color:#FFFFFF;">
 								Summary
 
-								<button class="btn btn-sm btn-warning" style="float:right; margin-right: -10px; margin-top:-3px" data-toggle="modal" data-target="#editProfileModal">
+								<button class="btn btn-sm btn-warning" style="float:right; margin-right: -10px; margin-top:-3px" data-toggle="modal" data-target="#editProfile_summary_Modal">
 									<i class="mdi mdi-pencil"></i> Edit
 								</button>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<strong>{{ profile.descriptions }}</strong> 
+								<strong>{{ profile.descriptions }}</strong>
 							</td>
 						</tr>
 					</table>
@@ -180,7 +183,7 @@
 					<strong>My Pics</strong>
 					<button class="btn btn-sm btn-primary" style="float:right; margin-right: -10px; margin-top:-3px"><i class="mdi mdi-plus"></i> Add</button>
 				</div>
-				<div class="card-body card-body-border" style="max-height:150px;">
+				<div class="card-body card-body-border" style="min-height:150px;">
 					<div class="row" style="padding:10px">
 						{% for pics in gallery %}
 							<div class="col-4" style="padding:10px">
@@ -192,26 +195,12 @@
 
 				<!-- Filters -->
 
-				<div class="card-header card-header-border" style="margin-top:10px;">
-					<strong>Filters</strong>
-					<button class="btn btn-sm btn-primary" style="float:right; margin-right: -10px; margin-top:-3px">
-						<i class="mdi mdi-content-save"></i> Save
-					</button>
+				{% include 'app/html_components/side_search_filters.html' %}
 
-					<button class="btn btn-sm btn-warning" style="float:right; margin-right: 10px; margin-top:-3px">
-						<i class="mdi mdi-eye"></i> View Saved
-					</button>
-
-				</div>
-				<div class="card-body card-body-border" style="max-height:150px;">
-					<div class="row" style="padding:10px">
-
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
 </div>
 {% include 'app/modal_forms/profile_picture_modal.html' %}
-
 {% include 'app/modal_forms/edit_profile_modal.html' %}
+{% include 'app/html_components/packages_list.html' %}

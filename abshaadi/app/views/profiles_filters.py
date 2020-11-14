@@ -58,6 +58,11 @@ class UserProfileView(View):
         self.data["pro_pic"] = pro_pic
         self.data["profile"] = Profile.objects.get(user=request.user)
         self.data["gallery"] = ProfilePictures.objects.filter(user=request.user, set_as_profile_pic=False)
+
+        self.data["packages_list"] = Package.objects.filter(is_active = True)
+
+        self.data["search_profile"] = search_forms.MyFiltersForm()
+
         self.data['abc']=1
 
         self.data["edit_form"] = ProfileForm(instance=self.data["profile"])
@@ -180,18 +185,22 @@ def edit_other_detalis(request):
 #******************************************************************************
 
 def edit_summary_detalis(request):
-    if request.POST and request.FILES['biodata']:
+    if request.POST:
 
         try:
             profile = Profile.objects.get(user = request.user)
         except:
             return redirect('/page_403/')
 
-        pers_info = SummaryForm(request.POST,request.FILES, instance=profile)
+        pers_info = SummaryForm(request.POST, request.FILES, instance=profile)
 
         if pers_info.is_valid():
 
-            handle_uploaded_file(request.FILES['biodata'],profile.user_id)
+            try:
+                handle_uploaded_file(request.FILES['biodata'],profile.user_id)
+            except:
+                pass
+
             pers_info.save()
 
         else:
