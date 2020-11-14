@@ -12,7 +12,7 @@ from django.core import serializers
 from app.models import *
 from app.forms import *
 from django.shortcuts import get_object_or_404
-from app.forms.registration_forms import RegisterForm, ProfileForm, SummaryForm, OtherProfileForm
+from app.forms.registration_forms import RegisterForm, ProfileForm, SummaryForm, OtherProfileForm, ProfilePicturesForm
 from django.http import Http404
 from django.utils import timezone
 
@@ -62,6 +62,8 @@ class UserProfileView(View):
         self.data["packages_list"] = Package.objects.filter(is_active = True)
 
         self.data["search_profile"] = search_forms.MyFiltersForm()
+        self.data["profile_picture"] = ProfilePicturesForm()
+
 
         self.data['abc']=1
 
