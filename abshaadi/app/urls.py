@@ -98,8 +98,8 @@ urlpatterns += [
 
 # EMAILS
 urlpatterns += [
-    path('confirmemail/<qstr>', never_cache(login_required(home.confirmemail)), name="confirmemail"),
-    path('confirmemail/<qstr>/', never_cache(login_required(home.confirmemail)), name="confirmemail"),
+    path('confirmemail/<qstr>', home.confirmemail, name="confirmemail"),
+    path('confirmemail/<qstr>/', home.confirmemail, name="confirmemail"),
 ]
 
 #

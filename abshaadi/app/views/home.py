@@ -236,21 +236,19 @@ def validate_password(password):
 
 def confirmemail(request, qstr = None):
     if qstr is not None:
-        try:
-            customer = ConfirmEmail.objects.get(key = qstr)
 
-            # update CustomUser
+        customer = ConfirmEmail.objects.get(key = qstr)
 
-            user = CustomUser.objects.get(pk = customer.id)
-            user.email_verified  =  True
-            user.subscribe_email = True
-            user.save()
+        # update CustomUser
 
-            # Delete from confirmemail
+        user = CustomUser.objects.get(pk = customer)
+        user.email_verified  =  True
+        user.subscribe_email = True
+        user.save()
 
-            customer.delete()
+        # Delete from confirmemail
 
-        except:
-            pass
+        customer.delete()
+
 
     return redirect("/login/")
