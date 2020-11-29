@@ -55,7 +55,7 @@ def send_email_from_app(email, id, template):
 
     result = hashlib.sha384(id.encode())
 
-    data =  {'Email': email, 'uid':id, 'qstr':result.hexdigest()}
+    data =  {'email': email, 'uid':id, 'qstr':result.hexdigest()}
 
     email_html_template = get_template(template).render(data)
     receiver_email = email

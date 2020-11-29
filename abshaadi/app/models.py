@@ -208,7 +208,23 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
+
     email_verified = models.BooleanField(
+        default = False,
+        db_index = True,
+    )
+
+    subscribe_email = models.BooleanField(
+        default = False,
+        db_index = True,
+    )
+
+    subscribe_sms = models.BooleanField(
+        default = False,
+        db_index = True,
+    )
+
+    subscribe_whatsapp = models.BooleanField(
         default = False,
         db_index = True,
     )
