@@ -25,7 +25,6 @@ from app.models import *
 from django.contrib.auth.signals import user_logged_out
 from django.dispatch import receiver
 
-
 #******************************************************************************
 # LOGOUT SIGNALS
 #******************************************************************************
@@ -44,7 +43,6 @@ def post_login(sender, user, request, **kwargs):
 
 def page_403(request):
     return render(request, 'app/base/403_error.html')
-
 
 
 #******************************************************************************
@@ -174,10 +172,18 @@ def register_form(request):
 
                     profile.save()
 
+                    #
+                    # Send confirmation email
+                    #
+
+                    user = CustomUser.objects.get(email = email)
+                    profile = Profile.objects.get(user_id = user.pk)
+                    uid = profile.uid
+                    send_email_from_app(email, uid, template = 'app/users/welcome.html')
+
                     return HttpResponse(json.dumps({'code':'1', 'error':''}))
 
                 else:
-                    print(reg_form.errors)
                     return HttpResponse(json.dumps({'code':'0', 'error':safestring.mark_safe(reg_form.errors)}))
 
         else:

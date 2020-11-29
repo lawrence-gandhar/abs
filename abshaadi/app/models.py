@@ -25,7 +25,7 @@ class Religion(models.Model):
         blank = False,
         unique = True,
     )
-    
+
     is_active = models.BooleanField(
         default = True,
         db_index = True,
@@ -57,7 +57,7 @@ class Caste(models.Model):
         null = True,
         blank = False,
     )
-    
+
     is_active = models.BooleanField(
         default = True,
         db_index = True,
@@ -80,7 +80,7 @@ class Countries(models.Model):
         null = True,
         blank = False,
     )
-    
+
     is_active = models.BooleanField(
         default = True,
         db_index = True,
@@ -104,14 +104,14 @@ class Countries_States(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
-    
+
     state_name = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = False,
-    )    
-    
+    )
+
     is_active = models.BooleanField(
         default = True,
         db_index = True,
@@ -135,7 +135,7 @@ class Countries_Cities(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
-    
+
     state_name = models.ForeignKey(
         Countries_States,
         db_index = True,
@@ -143,14 +143,14 @@ class Countries_Cities(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
-    
+
     city_name = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = False,
-    )    
-    
+    )
+
     is_active = models.BooleanField(
         default = True,
         db_index = True,
@@ -208,7 +208,11 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(_('email address'), unique=True)
-    
+    email_verified = models.BooleanField(
+        default = False,
+        db_index = True,
+    )
+
     online_now = models.BooleanField(
         db_index = True,
         default = False,
@@ -228,7 +232,7 @@ def delete_file(sender, instance, *args, **kwargs):
 
     path = os.path.join(settings.MEDIA_ROOT, str(instance.id))
     try:
-        os.rmdir(path) 
+        os.rmdir(path)
     except:
         pass
 
@@ -239,7 +243,7 @@ def delete_file(sender, instance, *args, **kwargs):
 # PACKAGES
 #***********************************************************************
 
-class Package(models.Model): 
+class Package(models.Model):
 
     TENURE_TYPE = (
         (1, "Years"),
@@ -256,56 +260,56 @@ class Package(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
-    
+
     package_name = models.CharField(
         max_length = 255,
         blank = False,
         null = False,
         unique = True,
     )
-    
+
     value = models.IntegerField(
         db_index = True,
         null = False,
         blank = False,
     )
-    
+
     tenure = models.IntegerField(
         db_index = True,
         null = False,
         blank = False,
     )
-    
+
     tenure_types = models.IntegerField(
         default = 1,
         choices = TENURE_TYPE,
         db_index = True,
     )
-    
+
     description = models.TextField(
         null = True,
         blank = True,
     )
-    
+
     is_active = models.BooleanField(
         default = True,
         choices = IS_TRUE,
         db_index = True,
     )
-    
+
     created_on = models.DateTimeField(
         auto_now_add = True,
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     class Meta:
         verbose_name_plural = "Packages"
-    
-       
-        
-        
+
+
+
+
 #***********************************************************************
 # PROFILE
 #***********************************************************************
@@ -318,34 +322,34 @@ class Profile(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
-    
+
     uid = models.CharField(
         max_length = 20,
         blank = True,
         null = True,
         db_index = True,
     )
-    
+
     package = models.ForeignKey(
         Package,
         db_index = True,
         null = True,
         blank = True,
         on_delete = models.SET_NULL,
-    )    
-    
+    )
+
     fullname = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     MALE = 'M'
     FEMALE = 'F'
-    
+
     gender_choices = ((MALE, 'Male'), (FEMALE, 'Female'))
-    
+
     gender = models.CharField(
         max_length = 1,
         db_index = True,
@@ -353,7 +357,7 @@ class Profile(models.Model):
         blank = False,
         choices = gender_choices,
     )
-    
+
     looking_for_gender = models.CharField(
         max_length = 1,
         db_index = True,
@@ -361,146 +365,151 @@ class Profile(models.Model):
         blank = False,
         choices = gender_choices,
     )
-    
-    
+
+
     father_name = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     father_job = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     mother_job = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     mother_name = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     siblings = models.IntegerField(
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     sibling_male = models.IntegerField(
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     sibling_female = models.IntegerField(
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     sibling_elder = models.IntegerField(
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     sibling_younger = models.IntegerField(
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     sibling_married = models.IntegerField(
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     dob = models.DateField(
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     height = models.IntegerField(
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     weight = models.IntegerField(
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     complexion = models.CharField(
         max_length = 50,
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     religion = models.ForeignKey(
         Religion,
         db_index = True,
         null = True,
         blank = True,
         on_delete = models.SET_NULL,
-    ) 
-    
+    )
+
     caste_creed = models.ForeignKey(
         Caste,
         db_index = True,
         null = True,
         blank = True,
         on_delete = models.SET_NULL,
-    ) 
-    
+    )
+
     qualification = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     job_details = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     phone_number = models.CharField(
         max_length = 20,
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     phone_number_alternative = models.CharField(
         max_length = 20,
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
+    phone_number_verified = models.BooleanField(
+        default = False,
+        db_index = True,
+    )
+
     address = models.TextField(
         null = True,
         blank = False,
     )
-    
+
     country = models.ForeignKey(
         Countries,
         db_index = True,
@@ -509,7 +518,7 @@ class Profile(models.Model):
         on_delete = models.SET_NULL,
         related_name = 'my_country',
     )
-    
+
     state = models.ForeignKey(
         Countries_States,
         db_index = True,
@@ -518,7 +527,7 @@ class Profile(models.Model):
         on_delete = models.SET_NULL,
         related_name = 'my_state',
     )
-    
+
     city = models.ForeignKey(
         Countries_States,
         db_index = True,
@@ -527,66 +536,66 @@ class Profile(models.Model):
         on_delete = models.SET_NULL,
         related_name = 'my_city',
     )
-    
-    
+
+
     biodata = models.FileField(
         upload_to = 'resumes',
         null = True,
         blank = True,
     )
-    
+
     descriptions = models.TextField(
         null = True,
         blank = True,
     )
-    
+
     block_profile_pics = models.BooleanField(
         default = False,
         db_index = True,
         blank = True,
     )
-    
+
     partner_preference = models.TextField(
         blank = True,
         null = True,
     )
-    
+
     created_on = models.DateTimeField(
         auto_now_add = True,
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     updated_on = models.DateTimeField(
         auto_now_add = False,
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
 
     class Meta:
         verbose_name_plural = "User Profiles"
-    
-    
+
+
 @receiver(post_save, sender=Profile)
-def create_uuid(sender, instance, created, **kwargs): 
+def create_uuid(sender, instance, created, **kwargs):
     if created:
         instance.uid = 'AB-{}'.format(1000000 + instance.user.id)
         instance.save()
-        
+
 #***********************************************************************
 #
 #***********************************************************************
- 
+
 def profile_pics_directory(instance, filename):
     f_path = os.path.join(str(instance.user.id), str(uuid.uuid4())+".jpg")
     print(f_path)
     return f_path
-    
- 
-class ProfilePictures(models.Model):    
+
+
+class ProfilePictures(models.Model):
     user = models.ForeignKey(
         CustomUser,
         db_index = True,
@@ -594,28 +603,28 @@ class ProfilePictures(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
-    
+
     picture = models.FileField(
         upload_to = profile_pics_directory,
         null = True,
         blank = True,
     )
-    
+
     set_as_profile_pic = models.BooleanField(
         db_index = True,
         default = False,
         blank = True,
     )
-    
+
     class Meta:
         verbose_name_plural = "User Profile Pictures"
-    
- 
+
+
 #***********************************************************************
 #
 #***********************************************************************
 
-class Looking_For_Attr(models.Model): 
+class Looking_For_Attr(models.Model):
     user = models.ForeignKey(
         CustomUser,
         db_index = True,
@@ -629,20 +638,20 @@ class Looking_For_Attr(models.Model):
         null = True,
         blank = False,
     )
-    
+
     weight = models.IntegerField(
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     complexion = models.CharField(
         max_length = 50,
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     class Meta:
         verbose_name_plural = "Attributes Filters"
 
@@ -650,17 +659,17 @@ class Looking_For_Attr(models.Model):
 #
 #***********************************************************************
 
-class Qualifications(models.Model): 
-    
+class Qualifications(models.Model):
+
     IS_TRUE = ((True, 'YES'), (False, 'NO'))
-    
+
     qualification = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = False,
-    ) 
-    
+    )
+
     is_active = models.BooleanField(
         default = True,
         choices = IS_TRUE,
@@ -668,7 +677,7 @@ class Qualifications(models.Model):
     )
 
     class Meta:
-        verbose_name_plural = "Qualifications Filters"    
+        verbose_name_plural = "Qualifications Filters"
 
 
 #***********************************************************************
@@ -676,25 +685,25 @@ class Qualifications(models.Model):
 #***********************************************************************
 
 class Jobs(models.Model):
-    
+
     IS_TRUE = ((True, 'YES'), (False, 'NO'))
-    
+
     job_details = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = False,
     )
-    
+
     is_active = models.BooleanField(
         default = True,
         choices = IS_TRUE,
         db_index = True,
     )
-    
+
     class Meta:
         verbose_name_plural = "Jobs Filters"
-    
+
 
 #***********************************************************************
 # FILTERS MODEL
@@ -711,94 +720,94 @@ class MyFilters(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
-    
+
     filter_name = models.CharField(
         max_length = 250,
         blank = True,
         null = True,
     )
-    
+
     l_attr = models.ForeignKey(
-        Looking_For_Attr,        
+        Looking_For_Attr,
         db_index = True,
         null = True,
         blank = True,
         on_delete = models.SET_NULL,
     )
-    
+
     l_cities = models.ManyToManyField(
-        Countries_Cities, 
+        Countries_Cities,
         blank = True,
         db_index = True,
     )
-    
+
     l_states = models.ManyToManyField(
-        Countries_States, 
+        Countries_States,
         blank = True,
         db_index = True,
     )
-    
+
     l_countries = models.ManyToManyField(
         Countries,
         blank = True,
         db_index = True,
     )
-    
+
     l_religions = models.ManyToManyField(
-        Religion,     
+        Religion,
         blank = True,
-        db_index = True,        
+        db_index = True,
     )
-    
+
     l_caste = models.ManyToManyField(
         Caste,
         blank = True,
         db_index = True,
     )
-    
+
     l_qualifications = models.ForeignKey(
-        Qualifications,        
+        Qualifications,
         db_index = True,
         null = True,
         blank = True,
         on_delete = models.SET_NULL,
     )
-    
+
     l_jobs = models.ForeignKey(
-        Jobs,        
+        Jobs,
         db_index = True,
         null = True,
         blank = True,
         on_delete = models.SET_NULL,
-    ) 
-    
+    )
+
     aged_from = models.IntegerField(
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     aged_to = models.IntegerField(
         db_index = True,
         null = True,
         blank = True,
-    )    
-    
+    )
+
     is_active = models.BooleanField(
         default = True,
         choices = IS_TRUE,
         db_index = True,
     )
-    
+
     class Meta:
         verbose_name_plural = "Filters Table"
-    
+
 
 #***********************************************************************
 # MESSAGE CENTER MODEL
 #***********************************************************************
 
-class MessageCenter(models.Model):    
+class MessageCenter(models.Model):
     user = models.ForeignKey(
         CustomUser,
         db_index = True,
@@ -806,7 +815,7 @@ class MessageCenter(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
-    
+
     to_user = models.ForeignKey(
         CustomUser,
         db_index = True,
@@ -815,53 +824,53 @@ class MessageCenter(models.Model):
         on_delete = models.CASCADE,
         related_name = 'to_user'
     )
-    
+
     created_on = models.DateTimeField(
         auto_now_add = True,
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     class Meta:
         verbose_name_plural = "Message Thread Center"
 
 
 class MessageHistory(models.Model):
-    
+
     msg = models.ForeignKey(
         MessageCenter,
         on_delete = models.CASCADE,
         db_index = True,
     )
-    
+
     message = models.TextField(
         null = False,
         blank = False,
     )
-    
+
     seen = models.BooleanField(
         db_index = True,
         default = False,
     )
-    
+
     sent_on = models.DateTimeField(
         db_index = True,
         auto_now_add = True,
     )
-    
+
     class Meta:
         verbose_name_plural = "Message History"
-    
 
-    
+
+
 
 #***********************************************************************
 # REPORT USER
 #***********************************************************************
 
-class ReportUser(models.Model):      
-    
+class ReportUser(models.Model):
+
     user = models.ForeignKey(
         CustomUser,
         db_index = True,
@@ -869,7 +878,7 @@ class ReportUser(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
-    
+
     to_user = models.ForeignKey(
         CustomUser,
         db_index = True,
@@ -878,30 +887,30 @@ class ReportUser(models.Model):
         on_delete = models.CASCADE,
         related_name = 'report_user'
     )
-    
+
     report_description = models.TextField(
         blank = False,
         null = True,
     )
-    
+
     created_on = models.DateTimeField(
         auto_now_add = True,
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     class Meta:
         verbose_name_plural = "Report User Center"
-    
-    
+
+
 
 #***********************************************************************
 # PAID USER
 #***********************************************************************
 
-class PaidUser(models.Model):     
-   
+class PaidUser(models.Model):
+
     user = models.ForeignKey(
         CustomUser,
         db_index = True,
@@ -909,7 +918,7 @@ class PaidUser(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
-    
+
     package = models.ForeignKey(
         Package,
         db_index = True,
@@ -917,22 +926,22 @@ class PaidUser(models.Model):
         blank = True,
         on_delete = models.SET_NULL,
     )
-    
+
     is_active = models.BooleanField(
         default = True,
         db_index = True,
     )
-    
+
     class Meta:
         verbose_name_plural = "Paid Users"
-        
-    
+
+
 #***********************************************************************
 # PAYMENT DETAILS
 #***********************************************************************
 
-class PaymentDetails(models.Model):         
-    
+class PaymentDetails(models.Model):
+
     payment_choices = (
         (1, "Credit Card"),
         (2, "Debit Card"),
@@ -940,7 +949,7 @@ class PaymentDetails(models.Model):
         (4, "Cash"),
         (5, "Cheque"),
     )
-    
+
     user = models.ForeignKey(
         PaidUser,
         db_index = True,
@@ -948,21 +957,21 @@ class PaymentDetails(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
-    
+
     payment_type = models.IntegerField(
         choices = payment_choices,
         db_index = True,
         blank = True,
         null = True,
     )
-    
+
     paid_on = models.DateTimeField(
         auto_now_add = False,
         db_index = True,
         null = True,
         blank = True,
     )
-    
+
     package = models.ForeignKey(
         Package,
         db_index = True,
@@ -970,15 +979,15 @@ class PaymentDetails(models.Model):
         blank = True,
         on_delete = models.SET_NULL,
     )
-        
+
     class Meta:
         verbose_name_plural = "Payment Details"
-    
-    
+
+
 #***********************************************************************
 # PROFILE LIKE
 #***********************************************************************
-    
+
 class ProfileLike(models.Model):
     user = models.ForeignKey(
         CustomUser,
@@ -987,7 +996,7 @@ class ProfileLike(models.Model):
         blank = True,
         on_delete = models.CASCADE,
     )
-    
+
     by_user = models.ForeignKey(
         CustomUser,
         db_index = True,
@@ -996,40 +1005,36 @@ class ProfileLike(models.Model):
         on_delete = models.CASCADE,
         related_name = 'by_user'
     )
-    
+
     viewed = models.BooleanField(
         default = False,
         db_index = True,
     )
-    
+
     shortlisted = models.BooleanField(
         default = False,
         db_index = True,
     )
-    
+
     liked = models.BooleanField(
         default = False,
         db_index = True,
     )
-    
-    viewed_on = models.DateTimeField(        
-        db_index = True,
-        null = True,
-    )    
-    
-    shortlisted_on = models.DateTimeField(        
+
+    viewed_on = models.DateTimeField(
         db_index = True,
         null = True,
     )
-    
-    liked_on =  models.DateTimeField(        
+
+    shortlisted_on = models.DateTimeField(
         db_index = True,
         null = True,
-    ) 
-    
+    )
+
+    liked_on =  models.DateTimeField(
+        db_index = True,
+        null = True,
+    )
+
     class Meta:
         verbose_name_plural = "Profile Like & Save"
-    
-    
-    
-    
