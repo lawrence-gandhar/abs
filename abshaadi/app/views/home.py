@@ -184,6 +184,7 @@ def register_form(request):
 
                     hashstr = uid+"<_secret_>"+settings.SECRET_KEY
                     hashstr = hashlib.sha384(hashstr.encode())
+                    hashstr = hashstr.hexdigest()
 
                     conf_email = ConfirmEmail(
                         user = user,
@@ -192,7 +193,7 @@ def register_form(request):
 
                     conf_email.save()
 
-                    send_email_from_app(email, uid, hashstr.hexdigest(), template = 'app/users/welcome.html')
+                    send_email_from_app(email, uid, hashstr, template = 'app/users/welcome.html')
 
                     return HttpResponse(json.dumps({'code':'1', 'error':''}))
 
