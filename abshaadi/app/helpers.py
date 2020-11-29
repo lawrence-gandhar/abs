@@ -4,8 +4,9 @@ from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.conf import settings
 
+from app.models import *
 
-import hashlib
+
 
 #
 # CALCULATE AGE FROM DOB
@@ -49,13 +50,11 @@ def get_birth_full_from_age(age):
 # Send Email
 #******************************************************************************
 
-def send_email_from_app(email, id, template):
+def send_email_from_app(email, id, hashstr, template):
 
-    result = id+"<_secret_>"+settings.SECRET_KEY
 
-    result = hashlib.sha384(result.encode())
 
-    data =  {'base_url':settings.BASE_URL, 'email': email, 'uid':id, 'qstr':result.hexdigest()}
+    data =  {'base_url':settings.BASE_URL, 'email': email, 'uid':id, 'qstr':hashstr.hexdigest()}
 
     email_html_template = get_template(template).render(data)
     receiver_email = email

@@ -93,8 +93,13 @@ urlpatterns += [
     path('connect_msg_save/', never_cache(login_required(profiles_filters.connect_message)), name="connect_msg_save"),
     path('profile_like/<int:to_user_id>/', never_cache(login_required(profiles_filters.profile_like)), name="profile_like"),
     path('partner_profile/<int:user_id>/', never_cache(login_required(profiles_filters.partner_profile_view)), name="partner_profile"),
+]
 
 
+# EMAILS
+urlpatterns += [
+    path('confirmemail/<qstr>', never_cache(login_required(home.confirmemail)), name="confirmemail"),
+    path('confirmemail/<qstr>/', never_cache(login_required(home.confirmemail)), name="confirmemail"),
 ]
 
 #

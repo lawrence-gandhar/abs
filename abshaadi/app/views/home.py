@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from django.contrib.auth import *
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
-import sys, os, json
+import sys, os, json, hashlib
 
 from django.utils import safestring
 
@@ -177,10 +177,22 @@ def register_form(request):
                     # Send confirmation email
                     #
 
+
                     user = CustomUser.objects.get(email = email)
                     profile = Profile.objects.get(user_id = user.pk)
                     uid = profile.uid
-                    send_email_from_app(email, uid, template = 'app/users/welcome.html')
+
+                    hashstr = uid+"<_secret_>"+settings.SECRET_KEY
+                    hashstr = hashlib.sha384(result.encode())
+
+                    conf_email = ConfirmEmail(
+                        user = request.user,
+                        key = hashstr
+                    )
+
+                    conf_email.save()
+
+                    send_email_from_app(email, uid, result, template = 'app/users/welcome.html')
 
                     return HttpResponse(json.dumps({'code':'1', 'error':''}))
 
@@ -215,3 +227,29 @@ def validate_password(password):
     if len(password) < 8:
         return False
     return True
+
+
+#
+#
+#
+
+def confirmemail(request, qstr = None):
+    if qstr is not None:
+        try:
+            customer = ConfirmEmail.objects.get(key = qstr)
+
+            # update CustomUser
+
+            user = CustomUser.objects.get(pk = customer.id)
+            user.email_verified  =  True
+            user.subscribe_email = True
+            user.save()
+
+            # Delete from confirmemail
+
+            customer.delete()
+
+        except:
+            pass
+
+    return redirect("/login/")

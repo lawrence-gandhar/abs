@@ -324,7 +324,28 @@ class Package(models.Model):
         verbose_name_plural = "Packages"
 
 
+#***********************************************************************
+# PROFILE
+#***********************************************************************
 
+class ConfirmEmail(models.Model):
+    user = models.ForeignKey(
+        CustomUser,
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.CASCADE,
+    )
+
+    key = models.CharField(
+        max_length = 50,
+        db_index = True,
+        null = True,
+        blank = True
+    )
+
+    class Meta:
+        verbose_name_plural = "Confirm Emails"
 
 #***********************************************************************
 # PROFILE
