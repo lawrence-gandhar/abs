@@ -186,7 +186,7 @@ def register_form(request):
                     hashstr = hashlib.sha384(hashstr.encode())
 
                     conf_email = ConfirmEmail(
-                        user = request.user,
+                        user = user,
                         key = hashstr
                     )
 
