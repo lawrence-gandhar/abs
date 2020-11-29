@@ -3,6 +3,10 @@ from datetime import date, datetime
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 from django.conf import settings
+
+
+import hashlib
+
 #
 # CALCULATE AGE FROM DOB
 #
@@ -46,7 +50,13 @@ def get_birth_full_from_age(age):
 #******************************************************************************
 
 def send_email_from_app(email, id, template):
-    data =  {'Email': email, 'uid':id}
+
+    id = id+"<_secret_>"+settings.SECRET_KEY
+
+    result = hashlib.sha384(id.encode())
+
+    data =  {'Email': email, 'uid':id, 'qstr':result.hexdigest()}
+
     email_html_template = get_template(template).render(data)
     receiver_email = email
     email_msg = EmailMessage('Welcome from ATUT BANDHAN SHAADI',
