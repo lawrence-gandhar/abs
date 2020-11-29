@@ -183,7 +183,7 @@ def register_form(request):
                     uid = profile.uid
 
                     hashstr = uid+"<_secret_>"+settings.SECRET_KEY
-                    hashstr = hashlib.sha384(result.encode())
+                    hashstr = hashlib.sha384(hashstr.encode())
 
                     conf_email = ConfirmEmail(
                         user = request.user,
