@@ -191,6 +191,10 @@ def register_form(request):
                         key = hashstr
                     )
 
+                    user.email_verified = True
+                    user.subscribe_email = True
+                    user.save()
+
                     conf_email.save()
 
                     send_email_from_app(email, uid, hashstr, template = 'app/users/welcome.html')
