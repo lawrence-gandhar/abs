@@ -21,6 +21,7 @@ from app.forms.registration_forms import RegisterForm
 
 from app.models import *
 
+from app.helpers import *
 
 from django.contrib.auth.signals import user_logged_out
 from django.dispatch import receiver

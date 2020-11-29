@@ -51,11 +51,11 @@ def get_birth_full_from_age(age):
 
 def send_email_from_app(email, id, template):
 
-    id = id+"<_secret_>"+settings.SECRET_KEY
+    result = id+"<_secret_>"+settings.SECRET_KEY
 
-    result = hashlib.sha384(id.encode())
+    result = hashlib.sha384(result.encode())
 
-    data =  {'email': email, 'uid':id, 'qstr':result.hexdigest()}
+    data =  {'base_url':settings.BASE_URL, 'email': email, 'uid':id, 'qstr':result.hexdigest()}
 
     email_html_template = get_template(template).render(data)
     receiver_email = email
