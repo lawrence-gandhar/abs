@@ -1104,3 +1104,42 @@ class ProfileLike(models.Model):
 
     class Meta:
         verbose_name_plural = "Profile Like & Save"
+
+
+#***********************************************************************
+# Contact Us
+#***********************************************************************
+
+class ContactUs(models.Model):
+
+    fullname = models.CharField(
+        max_length = 250,
+        null = False,
+        blank = False,
+    )
+
+    email = models.EmailField(
+        db_index = True,
+        blank = False,
+        null = False,
+    )
+
+    phone = models.CharField(
+        db_index = True,
+        blank = False,
+        null = False,
+        max_length = 20,
+    )
+
+    message = models.TextField(
+        blank = False,
+        null = False,
+    )
+
+    created_on = models.DateTimeField(
+        auto_now_add = True,
+        db_index = True,
+    )
+
+    class Meta:
+        verbose_name_plural = "Contact Us"
