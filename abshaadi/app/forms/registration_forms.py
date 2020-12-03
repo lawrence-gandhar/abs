@@ -61,7 +61,7 @@ class ProfileForm(ModelForm):
         widgets = {
             'fullname' : TextInput(attrs = {'class':'form-control', 'required':'true'}),
             'father_name' : TextInput(attrs = {'class':'form-control',}),
-            'mother_name' : TextInput(attrs = {'class':'form-control',}), 
+            'mother_name' : TextInput(attrs = {'class':'form-control',}),
             'gender' : Select(attrs = {'class':'form-control'}, choices = gender_choices),
             'looking_for_gender' : Select(attrs = {'class':'form-control'}, choices = gender_choices),
             'religion' : Select(attrs = {'class':'form-control'}),
@@ -120,7 +120,19 @@ class FamilyForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('siblings','sibling_male','sibling_female','sibling_elder','sibling_younger','sibling_married','father_job','mother_job' )
+        fields = ('siblings','sibling_male', 'sibling_female', 'sibling_elder', 'sibling_younger', 'sibling_married', 'father_job', 'mother_job',
+            'family_type', 'family_values')
+
+        FAMILY_TYPE = (
+            (1, "Nuclear"),
+            (2, "Single Parent Family"),
+            (3, "Joint Family"),
+            (4, "Grandparent Family"),
+            (5, "Step Family"),
+        )
+
+        
+
 
         widgets = {
             'father_job' : TextInput(attrs = {'class':'form-control',}),
@@ -131,5 +143,6 @@ class FamilyForm(ModelForm):
             'sibling_elder' : TextInput(attrs = {'class':'form-control',}),
             'sibling_younger' : TextInput(attrs = {'class':'form-control',}),
             'sibling_married' : TextInput(attrs = {'class':'form-control',}),
-
+            'family_type' : Select(attrs = {'class':'form-control',}),
+            'family_values' : Select(attrs = {'class':'form-control',})
         }

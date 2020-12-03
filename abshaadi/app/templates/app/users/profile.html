@@ -132,8 +132,6 @@
 
 							</td>
 						</tr>
-
-
 						<tr>
 							<td style="text-align:right;">
 								<strong>State</strong>
@@ -195,10 +193,10 @@
 									<strong>:</strong> {{ profile.sibling_married|default_if_none:'-' }}
 								</td>
 								<td style="text-align:right;">
-									<strong>No. of unmarried sibilings </strong>
+									<strong>Family Type</strong>
 								</td>
 								<td>
-									<strong>:</strong> 0
+									<strong>:</strong> {{profile.get_family_type_display|default_if_none:'-'}}
 								</td>
 							</tr>
 							<tr>
@@ -215,10 +213,10 @@
 									<strong>:</strong> {{ profile.mother_job|default_if_none:'-' }}
 								</td>
 								<td style="text-align:right;">
-									<strong>Family Type</strong>
+									<strong>Family Values </strong>
 								</td>
 								<td>
-									<strong>:</strong> Joint
+									<strong>:</strong> {{profile.get_family_values_display|default_if_none:'-'}}
 								</td>
 							</tr>
 						</table>

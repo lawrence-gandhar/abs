@@ -404,6 +404,35 @@ class Profile(models.Model):
     )
 
 
+    FAMILY_TYPE = (
+        (1, "Nuclear"),
+        (2, "Single Parent Family"),
+        (3, "Joint Family"),
+        (4, "Grandparent Family"),
+        (5, "Step Family"),
+    )
+
+    family_type = models.IntegerField(
+        blank = True,
+        null = True,
+        db_index = True,
+        choices = FAMILY_TYPE
+    )
+
+    FAMILY_VALUES = (
+        (1, "Traditional"),
+        (2, "Liberal"),
+        (3, "Orthodox"),
+        (4, "Religious"),
+    )
+
+    family_values = models.IntegerField(
+        blank = True,
+        null = True,
+        db_index = True,
+        choices = FAMILY_VALUES
+    )
+
     father_name = models.CharField(
         max_length = 250,
         db_index = True,
