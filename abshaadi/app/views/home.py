@@ -191,10 +191,6 @@ def register_form(request):
                         key = hashstr
                     )
 
-                    user.email_verified = True
-                    user.subscribe_email = True
-                    user.save()
-
                     conf_email.save()
 
                     send_email_from_app(email, uid, hashstr, template = 'app/users/welcome.html')
@@ -239,13 +235,15 @@ def validate_password(password):
 #
 
 def confirmemail(request, qstr = None):
+    print('hello')
     if qstr is not None:
-
+        # try:
         customer = ConfirmEmail.objects.get(key = qstr)
+        
 
         # update CustomUser
 
-        user = CustomUser.objects.get(pk = customer)
+        user = CustomUser.objects.get(pk = customer.user_id)
         user.email_verified  =  True
         user.subscribe_email = True
         user.save()
@@ -254,5 +252,7 @@ def confirmemail(request, qstr = None):
 
         customer.delete()
 
+        # except:
+        #     pass
 
     return redirect("/login/")

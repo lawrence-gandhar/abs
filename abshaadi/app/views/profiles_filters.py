@@ -12,7 +12,7 @@ from django.core import serializers
 from app.models import *
 from app.forms import *
 from django.shortcuts import get_object_or_404
-from app.forms.registration_forms import RegisterForm, ProfileForm, SummaryForm, OtherProfileForm, ProfilePicturesForm
+from app.forms.registration_forms import RegisterForm, ProfileForm, SummaryForm, OtherProfileForm, ProfilePicturesForm,FamilyForm
 from django.http import Http404
 from django.utils import timezone
 
@@ -65,7 +65,7 @@ class UserProfileView(View):
         self.data["profile_picture"] = ProfilePicturesForm()
 
 
-        self.data['abc']=1
+        self.data['family_form']=FamilyForm(instance=self.data["profile"])
 
         self.data["edit_form"] = ProfileForm(instance=self.data["profile"])
         self.data["edit_form1"] = OtherProfileForm(instance=self.data["profile"])
@@ -171,6 +171,28 @@ def edit_other_detalis(request):
             return redirect('/page_403/')
 
         pers_info = OtherProfileForm(request.POST, instance=profile)
+
+        if pers_info.is_valid():
+            pers_info.save()
+
+        else:
+            print(pers_info.errors)
+
+        return redirect('/profile/')
+    return redirect('/page_403/')
+
+#******************************************************************************
+# EDIT FAMILY DETAILS
+#******************************************************************************
+def edit_family_detalis(request):
+    if request.POST:
+
+        try:
+            profile = Profile.objects.get(user = request.user)
+        except:
+            return redirect('/page_403/')
+
+        pers_info = FamilyForm(request.POST, instance=profile)
 
         if pers_info.is_valid():
             pers_info.save()

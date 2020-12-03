@@ -52,6 +52,8 @@ def get_birth_full_from_age(age):
 
 def send_email_from_app(email, id, hashstr, template):
 
+
+
     data =  {'base_url':settings.BASE_URL, 'email': email, 'uid':id, 'qstr':hashstr}
 
     email_html_template = get_template(template).render(data)

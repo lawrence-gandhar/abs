@@ -50,8 +50,8 @@ class ProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('fullname','gender' ,'father_name','looking_for_gender', 'mother_name', 'religion', 'caste_creed', 'phone_number',
-                  'phone_number_alternative', 'address', 'dob')
+        fields = ('fullname','gender' ,'father_name','father_job','mother_job','looking_for_gender', 'mother_name', 'religion', 'caste_creed', 'phone_number',
+                  'phone_number_alternative', 'address', 'dob','country','state','city')
 
         MALE = 'M'
         FEMALE = 'F'
@@ -61,7 +61,7 @@ class ProfileForm(ModelForm):
         widgets = {
             'fullname' : TextInput(attrs = {'class':'form-control', 'required':'true'}),
             'father_name' : TextInput(attrs = {'class':'form-control',}),
-            'mother_name' : TextInput(attrs = {'class':'form-control',}),
+            'mother_name' : TextInput(attrs = {'class':'form-control',}), 
             'gender' : Select(attrs = {'class':'form-control'}, choices = gender_choices),
             'looking_for_gender' : Select(attrs = {'class':'form-control'}, choices = gender_choices),
             'religion' : Select(attrs = {'class':'form-control'}),
@@ -70,6 +70,9 @@ class ProfileForm(ModelForm):
             'phone_number_alternative' : TextInput(attrs = {'class':'form-control',}),
             'address' : Textarea(attrs = {'class':'form-control', 'rows':'2'}),
             'dob': TextInput(attrs = {'class':'form-control', 'type':'date'}),
+            'country' : Select(attrs = {'class':'form-control selectpicker country_select' ,'multiple':'true'}),
+            'state' : Select(attrs = {'class':'form-control states_select selectpicker', 'multiple':'true',}),
+            'city' : Select(attrs = {'class':'form-control selectpicker city_select', 'multiple':'true'}),
         }
 
 #******************************************************************************
@@ -100,11 +103,33 @@ class SummaryForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ( 'descriptions', 'biodata')
+        fields = ('descriptions', 'biodata' )
 
         widgets = {
 
             'descriptions' : Textarea(attrs = {'class':'form-control'}),
             'biodata' : FileInput(attrs = {'class':'form-control','accept':'application/pdf,docx',}),
+
+        }
+
+#******************************************************************************
+# FAMILY SUMMARY FORM
+#******************************************************************************
+
+class FamilyForm(ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = ('siblings','sibling_male','sibling_female','sibling_elder','sibling_younger','sibling_married','father_job','mother_job' )
+
+        widgets = {
+            'father_job' : TextInput(attrs = {'class':'form-control',}),
+            'mother_job' : TextInput(attrs = {'class':'form-control',}),
+            'siblings' : TextInput(attrs = {'class':'form-control',}),
+            'sibling_male' : TextInput(attrs = {'class':'form-control',}),
+            'sibling_female' : TextInput(attrs = {'class':'form-control',}),
+            'sibling_elder' : TextInput(attrs = {'class':'form-control',}),
+            'sibling_younger' : TextInput(attrs = {'class':'form-control',}),
+            'sibling_married' : TextInput(attrs = {'class':'form-control',}),
 
         }

@@ -85,6 +85,7 @@
 							{{edit_form.father_name}}
 						</div>
 					</div>
+					
 					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
 						<div class="col-2" style="line-height: 35px;">
 							Mother's Name
@@ -92,6 +93,7 @@
 						<div class="col-4">
 							{{edit_form.mother_name}}
 						</div>
+					
 						<div class="col-2" style="line-height: 35px;">
 							Date Of Birth
 						</div>
@@ -127,6 +129,7 @@
 							{{edit_form.phone_number_alternative}}
 						</div>
 					</div>
+					
 					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
 						<div class="col-2" style="line-height: 35px;">
 							Address
@@ -136,6 +139,36 @@
 						</div>
 					</div>
             	 </div>
+				 <div class="col-12" style="margin-top:10px;">
+				<label>Country</label>
+				</div>
+				<div class="col-8">
+				{{edit_form.country}}
+			</div>
+			
+			<div class="col-12 state-div-spinner hide text-center" style="margin-top:10px;">
+				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
+			</div>
+			
+			<div class="col-12 state-div hide" style="margin-top:10px;">
+				<label>State</label>
+				
+				<div class="col-8">
+				<select name="state" class="form-control selectpicker states_select" multiple></select>
+			</div>
+			</div>
+
+			<div class="col-12 city-div-spinner hide text-center" style="margin-top:10px;">
+				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
+			</div>
+
+			<div class="col-12 city-div hide" style="margin-top:10px;">
+				<label>City</label>
+				
+				<div class="col-8">
+				<select class="form-control selectpicker city_select" name="city" multiple></select>
+			</div>
+			</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-primary" style="width:80px;">Submit</button>
 					<button type="button" class="btn btn-warning" style="width:80px;" data-dismiss="modal">Cancel</button>
@@ -202,6 +235,90 @@
     							{{edit_form1.job_details}}
     						</div>
     					</div>
+
+                	 </div>
+    				  <div class="modal-footer">
+    					<button type="submit" class="btn btn-primary" style="width:80px;">Submit</button>
+    					<button type="button" class="btn btn-warning" style="width:80px;" data-dismiss="modal">Cancel</button>
+    				</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% comment %} Sibling Details {% endcomment %}
+
+<div class="modal" tabindex="1" role="dialog" id="edit_family_form_modal" style="background-color:#464e4ec2;" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+
+          <form method="post" id="edit_family_form_modal" action="{% url 'edit_family_detalis' %}">
+    				{% csrf_token %}
+    				<div class="modal-header">
+    				      <h5 class="modal-title">Update Family Details</h5>
+    					    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    					         <span aria-hidden="true">&times;</span>
+    					    </button>
+    				</div>
+
+    				<div class="modal-body">
+    					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-2" style="line-height: 35px;">
+							Total Siblings 
+						</div>
+						<div class="col-4">
+							{{family_form.siblings}}
+						</div>
+						<div class="col-2" style="line-height: 35px;">
+						   Total Sibling Male 
+						</div>
+						<div class="col-4">
+							{{family_form.sibling_male}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-2" style="line-height: 35px;">
+						   Total Sibling Female 
+						</div>
+						<div class="col-4">
+							{{family_form.sibling_female}}
+						</div>
+						<div class="col-2" style="line-height: 35px;">
+						   Total Sibling Elder 
+						</div>
+						<div class="col-4">
+							{{family_form.sibling_elder}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-2" style="line-height: 35px;">
+							Total Sibling Younger 
+						</div>
+						<div class="col-4">
+							{{family_form.sibling_younger}}
+						</div>
+						<div class="col-2" style="line-height: 35px;">
+							Total Sibling Married 
+						</div>
+						<div class="col-4">
+							{{family_form.sibling_married}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+						<div class="col-2" style="line-height: 35px;">
+							Father Occupation
+						</div>
+						<div class="col-4">
+							{{family_form.father_job}}
+						</div>
+						<div class="col-2" style="line-height: 35px;">
+							Mother Occupation
+						</div>
+						<div class="col-4">
+							{{family_form.mother_job}}
+						</div>
+					</div>
 
                 	 </div>
     				  <div class="modal-footer">

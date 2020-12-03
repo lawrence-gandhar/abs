@@ -287,3 +287,98 @@ function change_password(){
 		alert(data);
 	});
 }
+
+
+
+
+//***********************************************************************
+// Profile validation
+//***********************************************************************
+//
+
+
+$("#id_phone_number").on("focusout", function(){
+	
+	Phone_number = $(this).val();
+	console.log(Phone_number)
+	var phoneno = /^\d{10}$/;
+	if(Phone_number.match(phoneno))
+	{
+		console.log('hhh')
+	}
+	else
+	{
+		   alert("Not a valid Phone Number");
+		// $("#passwd1_error").text("Not a valid Phone Number");
+	
+	}
+	
+	
+});
+
+$("#id_phone_number_alternative").on("focusout", function(){
+	
+	Phone_number = $(this).val();
+	console.log(Phone_number)
+	var phoneno = /^\d{10}$/;
+	if(Phone_number.match(phoneno))
+	{
+		console.log('hhh')
+	}
+	else
+	{
+		   alert("Not a valid Phone Number");
+		// $("#passwd1_error").text("Not a valid Phone Number");
+	
+	}
+	
+	
+});
+
+
+$(function() {
+    $('#id_fullname').keydown(function(e) {
+      if (e.shiftKey || e.ctrlKey || e.altKey) {
+        e.preventDefault();
+      } else {
+        var key = e.keyCode;
+        if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+          e.preventDefault();
+        }
+      }
+    });
+  });
+
+  $(function() {
+    $('#id_father_name').keydown(function(e) {
+      if (e.shiftKey || e.ctrlKey || e.altKey) {
+        e.preventDefault();
+      } else {
+        var key = e.keyCode;
+        if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+          e.preventDefault();
+        }
+      }
+    });
+  });
+
+  $(function() {
+    $('#id_mother_name').keydown(function(e) {
+      if (e.shiftKey || e.ctrlKey || e.altKey) {
+        e.preventDefault();
+      } else {
+        var key = e.keyCode;
+        if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+          e.preventDefault();
+        }
+      }
+    });
+  });
+
+  $("#id_height").keypress(function(event) {
+	return /\d/.test(String.fromCharCode(event.keyCode));
+  });
+  $("#id_weight").keypress(function(event) {
+	return /\d/.test(String.fromCharCode(event.keyCode));
+  });
+	
