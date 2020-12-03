@@ -69,6 +69,7 @@ urlpatterns += [
     path('upload_profile_pic/', never_cache(login_required(profiles_filters.upload_profile_pic)), name="upload_profile_pic"),
     path('edit_other_detalis/', never_cache(login_required(profiles_filters.edit_other_detalis)), name="edit_other_detalis"),
     path('edit_summary_detalis/', never_cache(login_required(profiles_filters.edit_summary_detalis)), name="edit_summary_detalis"),
+    path('edit_family_detalis/', never_cache(login_required(profiles_filters.edit_family_detalis)), name="edit_family_detalis"),
 ]
 
 
