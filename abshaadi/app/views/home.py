@@ -230,29 +230,72 @@ def validate_password(password):
     return True
 
 
-#
-#
+#======================================================================
+# Confirm Email
+#======================================================================
 #
 
 def confirmemail(request, qstr = None):
-    print('hello')
     if qstr is not None:
-        # try:
-        customer = ConfirmEmail.objects.get(key = qstr)
-        
+        try:
+            customer = ConfirmEmail.objects.get(key = qstr)
 
-        # update CustomUser
+            # update CustomUser
 
-        user = CustomUser.objects.get(pk = customer.user_id)
-        user.email_verified  =  True
-        user.subscribe_email = True
-        user.save()
+            user = CustomUser.objects.get(pk = customer.user_id)
+            user.email_verified  =  True
+            user.subscribe_email = True
+            user.save()
 
-        # Delete from confirmemail
+            # Delete from confirmemail
 
-        customer.delete()
+            customer.delete()
 
-        # except:
-        #     pass
+        except:
+             pass
 
     return redirect("/login/")
+
+#======================================================================
+# Forgot Password View
+#======================================================================
+#
+
+def send_forgot_password_mail(request):
+    if request.POST:
+        try:
+            user = CustomUser.objects.get(email = request.POST["email"])
+
+            secret_key = 'absforgotpassword@4321'
+            new_str = hashlib.md5((email+secret_key).encode())
+
+            # reset_password/?email=email_id&qstr=new_str
+            # Email
+
+            return HttpResponse('1')
+
+        except:
+            return HttpResponse('0')
+
+
+def forgot_password(request, email = None, qstr = None):
+    if qstr is not None and email is not None:
+
+        secret_key = 'absforgotpassword@4321'
+
+        new_str = hashlib.md5((email+secret_key).encode())
+
+        if new_str == qstr:
+            return render("forgot_password.html", {})
+    return redirect("page_403")
+
+
+def forgot_password_op(request):
+    if request.POST:
+        if validate_password(request.POST["password1"]):
+            request.user.set_password(request.POST["password1"])
+            update_session_auth_hash(request, request.user)
+            request.user.save()
+            return HttpResponse("Password Changed Successfully")
+        return HttpResponse('This password must contain at least 8 characters.')
+    return HttpResponse(0)
