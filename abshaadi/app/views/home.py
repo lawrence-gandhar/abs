@@ -254,7 +254,7 @@ def confirmemail(request, qstr = None):
         except:
              pass
 
-    return redirect("/login/")
+    return redirect("/")
 
 #======================================================================
 # Forgot Password View
