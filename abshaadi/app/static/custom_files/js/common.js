@@ -298,7 +298,7 @@ function change_password(){
 
 
 $("#id_phone_number").on("focusout", function(){
-	
+
 	Phone_number = $(this).val();
 	console.log(Phone_number)
 	var phoneno = /^\d{10}$/;
@@ -310,14 +310,14 @@ $("#id_phone_number").on("focusout", function(){
 	{
 		   alert("Not a valid Phone Number");
 		// $("#passwd1_error").text("Not a valid Phone Number");
-	
+
 	}
-	
-	
+
+
 });
 
 $("#id_phone_number_alternative").on("focusout", function(){
-	
+
 	Phone_number = $(this).val();
 	console.log(Phone_number)
 	var phoneno = /^\d{10}$/;
@@ -329,10 +329,10 @@ $("#id_phone_number_alternative").on("focusout", function(){
 	{
 		   alert("Not a valid Phone Number");
 		// $("#passwd1_error").text("Not a valid Phone Number");
-	
+
 	}
-	
-	
+
+
 });
 
 
@@ -376,9 +376,12 @@ $(function() {
   });
 
   $("#id_height").keypress(function(event) {
-	return /\d/.test(String.fromCharCode(event.keyCode));
+		return /\d/.test(String.fromCharCode(event.keyCode));
   });
   $("#id_weight").keypress(function(event) {
-	return /\d/.test(String.fromCharCode(event.keyCode));
+		return /\d/.test(String.fromCharCode(event.keyCode));
   });
-	
+
+/*
+* forgot password
+*/
