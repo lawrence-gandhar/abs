@@ -35,6 +35,8 @@ urlpatterns = [
     path('registration/', home.register_form, name='registration'),
     path('my_redirect_page/', home.my_redirect_page, name='my_redirect_page'),
     path('change_password/', home.change_password, name='change_password'),
+    path('send_forgot_password_mail/', home.send_forgot_password_mail, name='send_forgot_password_mail'),
+    path('reset-password', home.forgot_password, name='forgot_password')
 ]
 
 # Site Managers

@@ -381,7 +381,3 @@ $(function() {
   $("#id_weight").keypress(function(event) {
 		return /\d/.test(String.fromCharCode(event.keyCode));
   });
-
-/*
-* forgot password
-*/

@@ -271,14 +271,16 @@ def send_forgot_password_mail(request):
 
             # reset_password/?email=email_id&qstr=new_str
             # Email
-
-            return HttpResponse('1')
-
         except:
-            return HttpResponse('0')
+            pass
+
+    return redirect("/")
 
 
 def forgot_password(request, email = None, qstr = None):
+    return render(request, "app/base/forgot_password.html", {})
+
+    """
     if qstr is not None and email is not None:
 
         secret_key = 'absforgotpassword@4321'
@@ -288,6 +290,7 @@ def forgot_password(request, email = None, qstr = None):
         if new_str == qstr:
             return render("forgot_password.html", {})
     return redirect("page_403")
+    """
 
 
 def forgot_password_op(request):
