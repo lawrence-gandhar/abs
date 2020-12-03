@@ -157,7 +157,7 @@
 				<div class="card-body">
 						<table class="table" style="border:none;">
 							<tr>
-								<td colspan="4" class="bg-info" style="color:#FFFFFF;">
+								<td colspan="6" class="bg-info" style="color:#FFFFFF;">
 									Family Details
 
 									<button class="btn btn-sm btn-warning" style="float:right; margin-right: -10px; margin-top:-3px" data-toggle="modal" data-target="#edit_family_form_modal">
@@ -166,56 +166,60 @@
 								</td>
 							</tr>
 							<tr>
-								<td style="text-align:right;">
-									<strong>Total Sibling Male </strong>
+								<td style="text-align:right; width:200px;">
+									<strong>No. of male siblings</strong>
 								</td>
 								<td>
 									<strong>:</strong> {{ profile.sibling_male|default_if_none:'-' }}
 								</td>
-								<td style="text-align:right;">
-									<strong>Total Sibling Female </strong>
+								<td style="text-align:right; width:200px;">
+									<strong>No. of female siblings</strong>
 								</td>
 								<td><strong>:</strong> {{ profile.sibling_female|default_if_none:'-' }}</td>
-							</tr>
-
-							<tr>
-								<td style="text-align:right;">
-									<strong>Total Sibling Elder </strong>
+								<td style="text-align:right; width:200px;">
+									<strong>No. of elder siblings </strong>
 								</td>
 								<td>
 									<strong>:</strong> {{ profile.sibling_elder|default_if_none:'-' }}
 								</td>
-								<td style="text-align:right;">
-									<strong>Total Sibling Younger </strong>
-								</td>
-								<td><strong>:</strong> {{ profile.sibling_younger|default_if_none:'-' }}</td>
 							</tr>
-
 							<tr>
 								<td style="text-align:right;">
-									<strong>Total Sibling Married </strong>
+									<strong>No. of younger siblings </strong>
+								</td>
+								<td><strong>:</strong> {{ profile.sibling_younger|default_if_none:'-' }}</td>
+								<td style="text-align:right;">
+									<strong>No. of married siblings </strong>
 								</td>
 								<td>
 									<strong>:</strong> {{ profile.sibling_married|default_if_none:'-' }}
 								</td>
 								<td style="text-align:right;">
-									<strong>Total Siblings </strong>
+									<strong>No. of unmarried sibilings </strong>
 								</td>
 								<td>
-									<strong>:</strong> {{ profile.siblings|default_if_none:'-' }}
+									<strong>:</strong> 0
 								</td>
 							</tr>
 							<tr>
 							<td style="text-align:right;">
-									<strong>Father Occupation</strong>
+									<strong>Father's Occupation</strong>
 								</td>
-								<td><strong>:</strong> {{ profile.father_job|default_if_none:'-' }}</td>
-
-
+								<td>
+									<strong>:</strong> {{ profile.father_job|default_if_none:'-' }}
+								</td>
 								<td style="text-align:right;">
-									<strong>Mother Occupation</strong>
+									<strong>Mother's Occupation</strong>
 								</td>
-								<td><strong>:</strong> {{ profile.mother_job|default_if_none:'-' }}</td>
+								<td>
+									<strong>:</strong> {{ profile.mother_job|default_if_none:'-' }}
+								</td>
+								<td style="text-align:right;">
+									<strong>Family Type</strong>
+								</td>
+								<td>
+									<strong>:</strong> Joint
+								</td>
 							</tr>
 						</table>
 					</div>
