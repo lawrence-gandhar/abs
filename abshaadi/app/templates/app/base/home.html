@@ -132,13 +132,13 @@
                     <div class="mobile-menu menu_scroll visible-xs">
                         <nav>
                             <ul>
-                                <li><a href="http://abshaadi.com/">Home</a></li>
+                                <li><a href="{% url 'home' %}">Home</a></li>
                                 <li><a href="#about_us">Who WE Are</a></li>
                                 <li><a href="#FindSoulmate">Find  Soulmate</a></li>
                                 <li><a href="#gallery">Gallery</a></li>
                                 <li><a href="#testimonials">Happy Couples</a></li>
                                 <li><a href="#contact_us">Contact Us</a></li>
-																<li><a href="{% url 'login' %}">Login</a></li>
+																<li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -799,6 +799,15 @@
 				$("#registrationModal").modal('hide');
 				$("#loginModal").modal('show');
 			}
+
+			$("#loginModal, #registrationModal").on('show.bs.modal', function (){
+				$(".mobilemenu").hide();
+			});
+
+			$("#loginModal, #registrationModal").on('hidden.bs.modal', function (){
+				$(".mobilemenu").show();
+			});
+
 
 			function login(){
 
