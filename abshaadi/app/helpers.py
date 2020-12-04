@@ -96,6 +96,9 @@ def send_email_contactus(email,fullname):
     # pr=Profile.objects.get(user=request.user)
     context_data =  {'Email': email}
     email_html_template = get_template(html_tpl_path).render(context_data)
+
+    #email_html_template = email_html_template
+
     receiver_email = email
     email_msg = EmailMessage('Welcome from ATUT BANDHAN SHAADI',
                                 email_html_template,

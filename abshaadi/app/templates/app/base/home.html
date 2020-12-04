@@ -328,7 +328,27 @@
                                 <h2>Find Your<span>Perfact Soulmate!</span></h2>
                             </div>
                             <div class="row">
-                                <div id="find_msg_div"></div>
+                                <div id="find_msg_div">
+																	<div class="col-md-4 col-sm-12">
+																		<label style="color:#FFFFFF;">From Age</label>
+																		<input value="18" type="number" min="18" max="100" name="from_age" class="form-control">
+																	</div>
+																	<div class="col-md-4 col-sm-12">
+																		<label style="color:#FFFFFF;">To Age</label>
+																		<input value="18" type="number" min="18" max="100" name="from_age" class="form-control">
+																	</div>
+																	<div class="col-md-4 col-sm-12">
+																		<label style="color:#FFFFFF;">Looking For</label>
+																		<select name="from_age" class="form-control" required>
+																			<option value=""> -- Select Gender -- </option>
+																			<option value="M">Male</option>
+																			<option value="F">Female</option>
+																		</select>
+																	</div>
+																	<div class="col-md-12 col-sm-12 text-center" style="padding-top:20px;">
+																		<button class="btn btn-info" type="button" onclick="registration()">Submit</button>
+																	</div>
+																</div>
                             </div>
                         </div>
                     </div>
@@ -603,7 +623,7 @@
 									<div class="response response_2"></div>
 
 								</div>
-                                <div class="col-sm-12 text-center">
+                                <div class="col-sm-12 text-center" style="padding-bottom:30px">
 									<button  class="submitForm btn1 mr-t50" form-type="contact">Send a Message</button>
                                 </div>
                             </form>
