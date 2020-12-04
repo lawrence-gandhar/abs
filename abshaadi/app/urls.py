@@ -37,6 +37,7 @@ urlpatterns = [
     path('change_password/', home.change_password, name='change_password'),
     path('send_forgot_password_mail/', home.send_forgot_password_mail, name='send_forgot_password_mail'),
     path('reset-password', home.forgot_password, name='forgot_password')
+    path('Contactus/', home.Contactus, name='Contactus')
 ]
 
 # Site Managers

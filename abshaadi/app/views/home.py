@@ -264,7 +264,7 @@ def confirmemail(request, qstr = None):
 def send_forgot_password_mail(request):
     if request.POST:
         try:
-            user = CustomUser.objects.get(email = request.POST["email"])
+            user = CustomUser.objects.get(email = request.POST["username"])
 
             secret_key = 'absforgotpassword@4321'
             new_str = hashlib.md5((email+secret_key).encode())
