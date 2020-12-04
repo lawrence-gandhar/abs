@@ -58,7 +58,7 @@ def send_email_from_app(email, id, hashstr, template):
     receiver_email = email
     email_msg = EmailMessage('Welcome from ATUT BANDHAN SHAADI',
                                 email_html_template,
-                                settings. APPLICATION_EMAIL,
+                                settings.APPLICATION_EMAIL,
                                 [receiver_email],
                                 reply_to=[settings.APPLICATION_EMAIL]
                                 )
@@ -78,7 +78,7 @@ def send_email_forget_password(email,hashstr, template):
     receiver_email = email
     email_msg = EmailMessage('Welcome from ATUT BANDHAN SHAADI',
                                 email_html_template,
-                                settings. APPLICATION_EMAIL,
+                                settings.APPLICATION_EMAIL,
                                 [receiver_email],
                                 reply_to=[settings.APPLICATION_EMAIL]
                                 )
@@ -99,7 +99,7 @@ def send_email_contactus(email,fullname):
     receiver_email = email
     email_msg = EmailMessage('Welcome from ATUT BANDHAN SHAADI',
                                 email_html_template,
-                                settings. APPLICATION_EMAIL,
+                                settings.APPLICATION_EMAIL,
                                 [receiver_email],
                                 reply_to=[settings.APPLICATION_EMAIL]
                                 )
