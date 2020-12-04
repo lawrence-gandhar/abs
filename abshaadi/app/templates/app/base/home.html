@@ -581,7 +581,8 @@
                     <div class="col-md-8 col-sm-12 " style="padding-top:60px;">
                         <div class="con-form">
                             <div id="msg_div"></div>
-                            <form method="post" id="quick_contact_form" action="" onsubmit="return post();">
+														<form method="post" id="quick_contact_form" action="{% url 'contactus' %}" >
+                                {% csrf_token %}
                                 <div class="col-sm-6">
                                     <fieldset>
 										<input type="text" name="name" placeholder="Full Name" class="require">

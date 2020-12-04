@@ -291,7 +291,7 @@ def forgot_password(request):
         new_str = (hashlib.sha384((email+secret_key).encode())).hexdigest()
 
         if new_str == qstr:
-            return render(request, "app/base/forgot_password.html", {})
+            return render(request, "app/base/forgot_password.html", {"email":email})
     return redirect("page_403")
 
 
@@ -299,9 +299,12 @@ def forgot_password(request):
 def forgot_password_op(request):
     if request.POST:
         if validate_password(request.POST["password1"]):
-            request.user.set_password(request.POST["password1"])
-            update_session_auth_hash(request, request.user)
-            request.user.save()
+            try:
+                user = CustomUser.objects.get(email = request.POST["username"])
+                user.set_password(request.POST["password1"])
+                user.save()
+            except:
+                return HttpResponse("Error Occurred. Please contact the Administrator.")    
             return HttpResponse("Password Changed Successfully")
         return HttpResponse('This password must contain at least 8 characters.')
     return HttpResponse(0)
