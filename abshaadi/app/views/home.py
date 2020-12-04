@@ -269,8 +269,7 @@ def send_forgot_password_mail(request):
             secret_key = 'absforgotpassword@4321'
             new_str = hashlib.md5((email+secret_key).encode())
 
-            # reset_password/?email=email_id&qstr=new_str
-            # Email
+            send_email_forget_password(email, new_str.digest(),template = 'app/email_template/forgot_password.html')
         except:
             pass
 
@@ -278,9 +277,6 @@ def send_forgot_password_mail(request):
 
 
 def forgot_password(request, email = None, qstr = None):
-    return render(request, "app/base/forgot_password.html", {})
-
-    """
     if qstr is not None and email is not None:
 
         secret_key = 'absforgotpassword@4321'
@@ -288,9 +284,9 @@ def forgot_password(request, email = None, qstr = None):
         new_str = hashlib.md5((email+secret_key).encode())
 
         if new_str == qstr:
-            return render("forgot_password.html", {})
+            return render(request, "app/base/forgot_password.html", {})
     return redirect("page_403")
-    """
+
 
 
 def forgot_password_op(request):
