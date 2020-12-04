@@ -1,5 +1,5 @@
 {% load static %}
-{% load common_filters %} 
+{% load common_filters %}
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
@@ -14,14 +14,14 @@
     <!-- Favicon icon -->
     <title></title>
     <!-- Custom CSS -->
-    
+
     <!-- Custom CSS -->
     <link href="{% static 'base_files/css/style.min.css' %}" rel="stylesheet">
 	<link href="{% static 'custom_files/css/custom.css' %}" rel="stylesheet">
 	<link href="{% static 'custom_files/css/bootstrap-select.css' %}" rel="stylesheet">
 	<link href="{% static 'custom_files/css/nouislider.css' %}" rel="stylesheet">
-	
-	
+
+
 	{% load_css_files css_files %}
 </head>
 
@@ -52,7 +52,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="index.html" style="background-color:#36a7f7; text-align:center">                        
+                    <a class="navbar-brand" href="index.html" style="background-color:#36a7f7; text-align:center">
                         <span class="logo-text text-center">
                              <!-- dark Logo text -->
                              <img src="{% static 'images/logo.png' %}" style="width:90%; height:50px;" alt="homepage" class="light-logo" />
@@ -86,13 +86,13 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                        
+
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
-                        
+
 						<i  data-toggle="modal" data-target="#change_password_modal" title="Change Password" style="cursor:pointer; text-decoration:none; color:#FFFFFF; margin-right: 15px; margin-top: 3px;" class="fa fa-key m-r-5 m-l-5"></i>
-						
+
 						<a style="text-decoration:none; color:#FFFFFF" href="{% url 'logout' %}">
 							<i class="fa fa-power-off m-r-5 m-l-5"></i>
 						</a>
@@ -115,22 +115,22 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav" class="p-t-30">
-                        	
+
 						{% if not request.user.is_superuser or not request.user.is_staff %}
-							<li class="sidebar-item"> 
+							<li class="sidebar-item">
 								<a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'dashboard' %}" aria-expanded="false">
 									<i class="mdi mdi-view-dashboard"></i>
 									<span class="hide-menu">Dashboard</span>
 								</a>
 							</li>
-							<li class="sidebar-item"> 
+							<li class="sidebar-item">
 								<a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'user_profile' %}" aria-expanded="false">
 									<i class="mdi mdi-view-dashboard"></i>
 									<span class="hide-menu">My Profile</span>
 								</a>
 							</li>
-							
-							<li class="sidebar-item"> 
+
+							<li class="sidebar-item">
 								<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 									<i class="mdi mdi-receipt"></i>
 									<span class="hide-menu">Message Center</span>
@@ -150,22 +150,22 @@
 									</li>
 								</ul>
 							</li>
-							
+
 						{% else %}
-						
-							<li class="sidebar-item"> 
+
+							<li class="sidebar-item">
 								<a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'staff_dashboard' %}" aria-expanded="false">
 									<i class="mdi mdi-view-dashboard"></i>
 									<span class="hide-menu">Dashboard</span>
 								</a>
 							</li>
-							<li class="sidebar-item"> 
+							<li class="sidebar-item">
 								<a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'staff_package_management_view' %}" aria-expanded="false">
 									<i class="mdi mdi-view-dashboard"></i>
 									<span class="hide-menu">Package Management</span>
 								</a>
 							</li>
-							<li class="sidebar-item"> 
+							<li class="sidebar-item">
 								<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 									<i class="mdi mdi-receipt"></i>
 									<span class="hide-menu">User Management</span>
@@ -185,8 +185,8 @@
 									</li>
 								</ul>
 							</li>
-							
-							<li class="sidebar-item"> 
+
+							<li class="sidebar-item">
 								<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 									<i class="mdi mdi-receipt"></i>
 									<span class="hide-menu">Site Management</span>
@@ -206,9 +206,9 @@
 									</li>
 								</ul>
 							</li>
-						
+
 						{% endif %}
-						
+
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -248,7 +248,7 @@
             <!-- ============================================================== -->
             <div class="container-fluid">
                 {% include included_template %}
-				{% include 'app/base/password_modal.html' %}
+				        {% include 'app/base/password_modal.html' %}
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -266,8 +266,8 @@
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
-			
-		
+
+
     </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
@@ -275,18 +275,18 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-	
+
     <script src="{% static 'base_files/assets/libs/jquery/dist/jquery.min.js' %}"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="{% static 'base_files/assets/libs/popper.js/dist/umd/popper.min.js' %}"></script>
     <script src="{% static 'base_files/assets/libs/bootstrap/dist/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'base_files/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js' %}"></script>
     <script src="{% static 'base_files/assets/extra-libs/sparkline/sparkline.js' %}"></script>
-	
+
 	<!-- -->
-	
+
 	<script src="{% static 'custom_files/js/bootstrap-select.js' %}"></script>
-	
+
 	<!--Wave Effects -->
     <script src="{% static 'base_files/js/waves.js' %}"></script>
     <!--Menu sidebar -->
@@ -296,11 +296,11 @@
 	<script src="{% static 'custom_files/js/wNumb.min.js' %}"></script>
 	<script src="{% static 'custom_files/js/nouislider.min.js' %}"></script>
 	<script src="{% static 'custom_files/js/common.js' %}"></script>
-	
-	
-	
-	
-    {% load_javascript_files js_files %} 
+
+
+
+
+    {% load_javascript_files js_files %}
 </body>
 
 </html>

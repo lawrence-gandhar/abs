@@ -268,21 +268,27 @@ def send_forgot_password_mail(request):
             user = CustomUser.objects.get(email = email)
 
             secret_key = 'absforgotpassword@4321'
-            new_str = hashlib.md5((email+secret_key).encode())
+            new_str = (hashlib.sha384((email+secret_key).encode())).hexdigest()
 
-            send_email_forget_password(email, new_str.digest(),template = 'app/email_template/forgot_password.html')
+            print(new_str)
+
+            send_email_forget_password(email, new_str,template = 'app/email_template/forgot_password.html')
         except:
             pass
 
     return redirect("/")
 
 
-def forgot_password(request, email = None, qstr = None):
+def forgot_password(request):
+
+    email = request.GET.get("email", None)
+    qstr = request.GET.get("qstr", None)
+
     if qstr is not None and email is not None:
 
         secret_key = 'absforgotpassword@4321'
 
-        new_str = hashlib.md5((email+secret_key).encode())
+        new_str = (hashlib.sha384((email+secret_key).encode())).hexdigest()
 
         if new_str == qstr:
             return render(request, "app/base/forgot_password.html", {})
