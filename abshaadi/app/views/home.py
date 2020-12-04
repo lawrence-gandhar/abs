@@ -264,7 +264,8 @@ def confirmemail(request, qstr = None):
 def send_forgot_password_mail(request):
     if request.POST:
         try:
-            user = CustomUser.objects.get(email = request.POST["username"])
+            email = request.POST["username"]
+            user = CustomUser.objects.get(email = email)
 
             secret_key = 'absforgotpassword@4321'
             new_str = hashlib.md5((email+secret_key).encode())
@@ -298,3 +299,23 @@ def forgot_password_op(request):
             return HttpResponse("Password Changed Successfully")
         return HttpResponse('This password must contain at least 8 characters.')
     return HttpResponse(0)
+
+#======================================================================
+# Contact US
+#======================================================================
+#
+def contactus(request):
+    fullname=request.POST.get('name', None)
+    email=request.POST.get('email', None)
+    phone=request.POST.get('contact', None)
+    msg=request.POST.get('msg', None)
+    contact_us = ContactUs(
+            fullname = fullname,
+            email =email,
+            phone = phone,
+            message = msg,
+            )
+
+    contact_us.save()
+    send_email_contactus(email,fullname)
+    return redirect("/#contact_us")
