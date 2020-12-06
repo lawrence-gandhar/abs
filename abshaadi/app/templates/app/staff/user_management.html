@@ -1,8 +1,9 @@
+{% load static %}
 <div class="row">
 
 	<div class="col">
 		<div class="card-header card-header-blue card-header-border">
-			<strong>Users Information</strong>			
+			<strong>Users Information</strong>
 		</div>
 		<div class="card-body" style="padding-top:10px; background:none;">
 			<table class="table table-bordered" style="margin:0px; padding:0px;">
@@ -13,18 +14,29 @@
 					<td>Package</td>
 					<td>Gender</td>
 					<td>Looking For</td>
+					<td>Phone/Mobile</td>
+					<td>Alt. Phone/Mobile</td>
+					<td>Assigned To</td>
 					<td>Action</td>
 				<tr>
 				{% for row in users %}
 					<tr style="font-size:12px;  background-color:#FFF">
 						<td style="padding:5px; line-height: 22px;">{{ row.user.email }}</td>
-						<td style="padding:5px; line-height: 22px;">{{ row.fullname }}</td>
+						<td style="padding:5px; line-height: 22px;">{{ row.fullname|default_if_none:'' }}</td>
 						<td style="padding:5px; line-height: 22px;">{{ row.user.is_active }}</td>
-						<td style="padding:5px; line-height: 22px;">{{ row.package.package_name }}</td>
+						<td style="padding:5px; line-height: 22px;">{{ row.package.package_name|default_if_none:'' }}</td>
 						<td style="padding:5px; line-height: 22px;">{{ row.get_gender_display }}</td>
 						<td style="padding:5px; line-height: 22px;">{{ row.get_looking_for_gender_display }}</td>
+						<td style="padding:5px; line-height: 22px;">{{ row.phone_number|default_if_none:'' }}</td>
+						<td style="padding:5px; line-height: 22px;">{{ row.phone_number_alternative|default_if_none:'' }}</td>
+						<td style="padding:5px; line-height: 22px;">{{ row.assigned_to|default_if_none:'' }}</td>
 						<td style="padding:5px; text-align:center;">
-							<i class="mdi mdi-pencil" style="margin-right:15px; cursor:pointer; font-size:12px;"></i>
+							<a href="{% url 'user_profile_view' row.user.id %}" target="_blank">
+								<i class="mdi mdi-eye"  style="margin-right:15px; cursor:pointer; color:#000000; font-size:15px;"></i>
+							</a>
+							<i class="mdi mdi-pencil" style="margin-right:15px; cursor:pointer; font-size:12px;"
+								onclick="user_edit_modal_form({{row.user.id}})">
+							</i>
 							<i class="mdi mdi-delete" onclick="delete_user({{row.user.id}})" style="cursor:pointer; color:#FF0000; font-size:15px;"></i>
 						</td>
 					</tr>
@@ -36,9 +48,30 @@
 
 
 {% include 'app/base/uploader_gif_modals.html' %}
+{% include 'app/modal_forms/user_edit_modal.html' %}
 
 <script>
 
 var csrfmiddlewaretoken = '{{ csrf_token }}';
+
+function user_edit_modal_form(id){
+
+	$("#user_id").val(id);
+
+	$("#user_edit_modal_form").modal('show');
+
+	$.post("{% url 'fetch_user_details' %}", {"user_id":id, "csrfmiddlewaretoken":csrfmiddlewaretoken}, function(data){
+
+		data = $.parseJSON(data);
+
+		$("#id_phone_number").val(data.phone_number);
+		$("#id_fullname").val(data.fullname);
+		$("#id_phone_number_alternative").val(data.phone_number_alternative);
+		$("#id_package").val(data.package);
+		$("#id_assigned_to").val(data.assigned_to);
+
+		console.log(data);
+	});
+}
 
 </script>

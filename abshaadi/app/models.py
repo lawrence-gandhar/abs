@@ -323,6 +323,9 @@ class Package(models.Model):
     class Meta:
         verbose_name_plural = "Packages"
 
+    def __str__(self):
+        return self.package_name.capitalize()
+
 
 #***********************************************************************
 # PROFILE
@@ -563,7 +566,7 @@ class Profile(models.Model):
         max_length = 20,
         db_index = True,
         null = True,
-        blank = False,
+        blank = True,
     )
 
     phone_number_verified = models.BooleanField(
@@ -638,6 +641,15 @@ class Profile(models.Model):
         db_index = True,
         null = True,
         blank = True,
+    )
+
+    assigned_to = models.ForeignKey(
+        CustomUser,
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.SET_NULL,
+        related_name = "assigned_to_staff"
     )
 
 
