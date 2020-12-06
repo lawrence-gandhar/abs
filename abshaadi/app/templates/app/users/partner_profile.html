@@ -8,7 +8,7 @@
 					<button type="button" class="btn btn-sm btn-warning" style="width:80px; float:right; margin-top: -4px; margin-right: -10px;">
 						Shortlist
 					</button>
-					<button type="button" class="btn btn-sm btn-warning" style="width:80px; float:right; margin-top: -4px; margin-right: -10px;">
+					<button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#connect_modal_form" style="width:80px; float:right; margin-top: -4px; margin-right: -10px;">
 						Message
 					</button>
 				</div>
@@ -153,3 +153,6 @@
 		{% include 'app/html_components/latest_matches.html' %}
 	</div>
 </div>
+
+
+{% include 'app/modal_forms/connect_modal.html' %}

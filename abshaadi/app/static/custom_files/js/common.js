@@ -381,3 +381,49 @@ $(function() {
   $("#id_weight").keypress(function(event) {
 		return /\d/.test(String.fromCharCode(event.keyCode));
   });
+
+
+	//*******************************************************************************
+	// Message Counters
+	//*******************************************************************************
+
+	$("textarea#word_count").on('keyup', function() {
+
+		var mlen = $(this).val().length;
+
+		if(mlen <= 250){
+			$("#display_count").empty().text(250 - mlen);
+		}else{
+			alert("Maximum reached");
+		}
+	});
+
+
+	//*******************************************************************************
+	// Connect/Message Modal
+	//*******************************************************************************
+
+	function open_connect_modal(to_id){
+		$("#connect_modal_form").modal('show');
+		$("#to_user_id").val(to_id);
+	}
+
+
+	function connect_modal_form_cancel(){
+		$("#display_count").empty().text(250);
+		$("#connect_modal_form").modal('hide');
+	}
+
+	function on_connect_save(){
+
+		if($.trim($("textarea#word_count").val()).length == 0){
+			alert('Cannot')
+		}else{
+			formdata = $("#connect_save_form").serialize();
+
+			$.post("/connect_msg_save/", formdata, function(data){
+				alert("Message successfully sent");
+				$("#connect_modal_form").modal('hide');
+			});
+		}
+	}

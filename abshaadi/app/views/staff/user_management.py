@@ -184,8 +184,6 @@ def user_profile_view(request, user_id=None):
 
         data["my_profile"] = Profile.objects.get(user = user)
 
-        print(data["my_profile"].user.last_login)
-
         try:
             data["my_profile_pic"] = ProfilePictures.objects.get(user = user, set_as_profile_pic = True)
         except:

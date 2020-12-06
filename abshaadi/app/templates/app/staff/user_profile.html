@@ -5,7 +5,7 @@
 			<div class="col-md-8 col-sm-12 col-sx-12">
 				<div class="card-header card-header-border">
 					<strong style="margin-left:-10px;">Profile Details</strong>
-					<button type="button" class="btn btn-sm btn-warning" style="width:80px; float:right; margin-top: -4px; margin-right: -10px;">
+					<button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#connect_modal_form" style="width:80px; float:right; margin-top: -4px; margin-right: -10px;">
 						Message
 					</button>
 				</div>
@@ -154,3 +154,6 @@
 		</div>
 	</div>
 </div>
+
+
+{% include 'app/modal_forms/connect_modal.html' %}
