@@ -4,10 +4,14 @@
 	<div class="col">
 		<div class="card-header card-header-blue card-header-border">
 			<strong>Users Information</strong>
+			<button class="btn btn-info" style="float:right; margin-top:-7px;" onclick="delete_selected()">Delete</button>
 		</div>
 		<div class="card-body" style="padding-top:10px; background:none;">
 			<table class="table table-bordered" style="margin:0px; padding:0px;">
 				<tr class="text-center"  style="font-weight:bold; background-color:#ae62e8; color:#FFFFFF;">
+					<td width="30px">
+						<input type="checkbox" id="select_all">
+					</td>
 					<td>Username</td>
 					<td>Fullname</td>
 					<td>Is Active</td>
@@ -21,6 +25,9 @@
 				<tr>
 				{% for row in users %}
 					<tr style="font-size:12px;  background-color:#FFF">
+						<td width="30px">
+							<input type="checkbox" class="checkbox" name="case[]" value="{{row.user.id}}">
+						</td>
 						<td style="padding:5px; line-height: 22px;">{{ row.user.email }}</td>
 						<td style="padding:5px; line-height: 22px;">{{ row.fullname|default_if_none:'' }}</td>
 						<td style="padding:5px; line-height: 22px;">{{ row.user.is_active }}</td>
@@ -73,5 +80,10 @@ function user_edit_modal_form(id){
 		console.log(data);
 	});
 }
+
+function delete_selected(){
+	rr = confirm("Do you want to delete the selected users? All data will be lost for the selected users after this operation");
+}
+
 
 </script>
