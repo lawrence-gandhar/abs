@@ -191,6 +191,8 @@ def user_profile_view(request, user_id=None):
         except:
             data["my_profile_pic"] = None
 
+        data["gallery"] = ProfilePictures.objects.filter(user=user, set_as_profile_pic=False)
+
         return render(request, template_name, data)
 
     return redirect('/page_403/')
