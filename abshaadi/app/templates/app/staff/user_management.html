@@ -4,7 +4,7 @@
 	<div class="col">
 		<div class="card-header card-header-blue card-header-border">
 			<strong>Users Information</strong>
-			<button class="btn btn-info" style="float:right; margin-top:-7px;" onclick="delete_selected()">Delete</button>
+			<button class="btn btn-info" style="float:right; margin-top:-7px;" onclick="delete_selected_users()">Delete</button>
 		</div>
 		<div class="card-body" style="padding-top:10px; background:none;">
 			<table class="table table-bordered" style="margin:0px; padding:0px;">
@@ -60,30 +60,5 @@
 <script>
 
 var csrfmiddlewaretoken = '{{ csrf_token }}';
-
-function user_edit_modal_form(id){
-
-	$("#user_id").val(id);
-
-	$("#user_edit_modal_form").modal('show');
-
-	$.post("{% url 'fetch_user_details' %}", {"user_id":id, "csrfmiddlewaretoken":csrfmiddlewaretoken}, function(data){
-
-		data = $.parseJSON(data);
-
-		$("#id_phone_number").val(data.phone_number);
-		$("#id_fullname").val(data.fullname);
-		$("#id_phone_number_alternative").val(data.phone_number_alternative);
-		$("#id_package").val(data.package);
-		$("#id_assigned_to").val(data.assigned_to);
-
-		console.log(data);
-	});
-}
-
-function delete_selected(){
-	rr = confirm("Do you want to delete the selected users? All data will be lost for the selected users after this operation");
-}
-
 
 </script>

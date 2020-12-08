@@ -207,6 +207,27 @@
 								</ul>
 							</li>
 
+              <li class="sidebar-item">
+								<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+									<i class="mdi mdi-receipt"></i>
+									<span class="hide-menu">Message Centre</span>
+								</a>
+								<ul aria-expanded="false" class="collapse first-level">
+									<li class="sidebar-item">
+										<a href="{% url 'religion_management' %}" class="sidebar-link">
+											<i class="mdi mdi-note-outline"></i>
+											<span class="hide-menu"> Inbox </span>
+										</a>
+									</li>
+									<li class="sidebar-item">
+										<a href="{% url 'add_countries_to_db' %}" class="sidebar-link">
+											<i class="mdi mdi-note-plus"></i>
+											<span class="hide-menu"> Sent </span>
+										</a>
+									</li>
+								</ul>
+							</li>
+
 						{% endif %}
 
                     </ul>
