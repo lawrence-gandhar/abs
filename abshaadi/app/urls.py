@@ -5,10 +5,11 @@ from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
 from django.conf.urls.static import static
 from django.conf import settings
-from app.views import home, dashboard, profiles_filters, site_management
+from app.views import home, dashboard, profiles_filters, site_management, email_management
 from app.views.staff import package_management, user_management
-#from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import user_passes_test
+
+
 
 def staff_member_required(view_func=None, login_url='/page_403/'):
     """
@@ -107,6 +108,7 @@ urlpatterns += [
 urlpatterns += [
     path('confirmemail/<qstr>', home.confirmemail, name="confirmemail"),
     path('confirmemail/<qstr>/', home.confirmemail, name="confirmemail"),
+    path('staff/mails/inbox/', never_cache(staff_member_required(email_management.AdminEmailView.as_view())), name="admin_mails_inbox"),
 ]
 
 #
