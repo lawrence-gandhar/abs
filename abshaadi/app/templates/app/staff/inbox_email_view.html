@@ -28,24 +28,7 @@
                     </ins>
                   </div>
 								</label>
-
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                  Action <span class="caret"></span>
-                </button>
-
-                <!--
-								<div class="btn-group">
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="#">Mark as read</a></li>
-										<li><a href="#">Mark as unread</a></li>
-										<li><a href="#">Mark as important</a></li>
-										<li class="divider"></li>
-										<li><a href="#">Report spam</a></li>
-										<li><a href="#">Delete</a></li>
-									</ul>
-								</div>
 							</div>
-              -->
 
 							<div class="col-md-6 search-form">
 								<form action="#" class="text-right">
@@ -60,27 +43,29 @@
 
 						<div class="padding"></div>
 
-						<div class="table-responsive">
-							<table class="table">
-								<tbody>
-                  {% for msg in mails_list %}
-                  <tr>
-  									<td class="action" style="text-align:center;"><input type="checkbox" class="checkbox"/></td>
-  									<td class="action"><i class="fa fa-star-o"></i></td>
-  									<td class="action"><i class="fa fa-bookmark"></i></td>
-  									<td class="name"><a href="#">
-                      <a href="{% url 'inbox_email_view' msg.msg_id %}">
-                        {{ msg.from }}
-                      </a>
-                    </td>
-  									<td class="subject">
-                      <a href="#" data-toggle="modal" data-target="#show_msg_modal">{{ msg.subject }}</a>
-                    </td>
-  									<td class="time">{{ msg.mail_date }}</td>
-  								</tr>
-  								{% endfor %}
-							  </tbody>
-              </table>
+						<div class="row" style="border:1px solid #eeeeee; margin-top:10px;">
+              <div class="col-md-3" style="overflow:auto; border-right:1px solid #eee;">
+                <ul style="margin:0px; padding:0px;">
+                {% for msg in inbox_details %}
+                  <li style="list-style:none;">
+                    <span style="display:block; font-weight:bold;">{{msg.from}}</span>
+                    <span style="display:block;">{{msg.subject}}</span>
+                  </li>
+                {% endfor %}
+                </ul>
+              </div>
+              <div class="col-md-9">
+                <div class="col">
+                  <h4 style="padding:10px 7px;">{{msg_details.subject}}</h4>
+                </div>
+                <div class="col">
+                    <i class="mdi mdi-account-circle mdi-36px"></i>
+                    <span style="position:absolute; margin-left:5px; font-size:15px">{{msg_details.from}}
+                </div>
+                <div class="col" style="padding-top:20px; margin-top:10px; border-top:1px solid #eeeeee;">
+                  {{msg_details.msg_bdy}}
+                </div>
+              </div>
 						</div>
 					</div>
 					<!-- END INBOX CONTENT -->

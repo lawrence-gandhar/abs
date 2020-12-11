@@ -25,29 +25,135 @@ class EmailManagement():
         self.username = settings.EMAIL_HOST_USER
         self.passwd = settings.EMAIL_HOST_PASSWORD
         self.imap_url = 'imap.gmail.com'
-        self.conn = None
         self.base_url = settings.BASE_URL
         self.reply_email = [settings.APPLICATION_EMAIL]
         self.app_email = settings.APPLICATION_EMAIL
 
-    #
-    #
-    #
-    def connect(self):
         self.conn = imaplib.IMAP4_SSL(self.imap_url)
-        self.conn.login(self.username, self.passwd)
+
 
     #
     #
     #
     def inbox(self):
-        self.conn.select('Inbox')
-        result, mails = con.search(None, key, '"{}"'.format(value))
+        self.conn.login(self.username, self.passwd)
+        status, msgs = self.conn.select('Inbox')
 
-        msgs = [] # all the email data are pushed inside an array
-        for num in mails[0].split():
-            typ, data = con.fetch(num, '(RFC822)')
-            msgs.append(data)
+        mails_list = []
+
+        for num in msgs[0].split():
+            data = self.fetch_mail_details(num)
+            mails_list.append(data)
+
+        return mails_list
+
+    #
+    #
+    #
+    def fetch_mail_details(self, num = None):
+
+        typ, data = self.conn.fetch(num, '(RFC822)')
+
+        mail_details = defaultdict()
+
+        for response in data:
+
+            if isinstance(response, tuple):
+
+                # parse a bytes email into a message object
+                msg = email.message_from_bytes(response[1])
+
+                # decode the email subject
+                subject, encoding = email.header.decode_header(msg["Subject"])[0]
+                if isinstance(subject, bytes):
+                    # if it's a bytes, decode to str
+                    subject = subject.decode(encoding)
+
+                # decode email sender
+                From, encoding = email.header.decode_header(msg.get("From"))[0]
+                if isinstance(From, bytes):
+                    From = From.decode(encoding)
+
+                # decode email sender
+                Date, encoding = email.header.decode_header(msg.get("Date"))[0]
+                if isinstance(From, bytes):
+                    Date = Date.decode(encoding)
+
+                index_st = From.find('<')
+                From = From[:index_st]
+
+                mail_details["msg_id"] = int(num)
+                mail_details["subject"] = subject
+                mail_details["from"] = From
+                mail_details["mail_date"] = Date
+
+        return mail_details
+
+    #
+    #
+    #
+    def fetch_mail(self, mailbox = 'Inbox', num = None):
+
+        #self.conn.login(self.username, self.passwd)
+        status, msgs = self.conn.select(mailbox)
+
+        mail_details = defaultdict()
+
+        msgs = [int(num) for num in msgs[0].split()]
+
+        if num in msgs:
+
+            print(num)
+
+
+            typ, data = self.conn.fetch(str(num), '(RFC822)')
+
+            for response in data:
+
+                if isinstance(response, tuple):
+
+                    # parse a bytes email into a message object
+                    msg = email.message_from_bytes(response[1])
+
+                    # decode the email subject
+                    subject, encoding = email.header.decode_header(msg["Subject"])[0]
+                    if isinstance(subject, bytes):
+                        # if it's a bytes, decode to str
+                        subject = subject.decode(encoding)
+
+                    # decode email sender
+                    From, encoding = email.header.decode_header(msg.get("From"))[0]
+                    if isinstance(From, bytes):
+                        From = From.decode(encoding)
+
+                    # decode email sender
+                    Date, encoding = email.header.decode_header(msg.get("Date"))[0]
+                    if isinstance(From, bytes):
+                        Date = Date.decode(encoding)
+
+                    mail_details["msg_id"] = int(num)
+                    mail_details["subject"] = subject
+                    mail_details["from"] = From
+                    mail_details["mail_date"] = Date
+
+                    # if the email message is multipart
+                    if msg.is_multipart():
+                        # iterate over email parts
+                        for part in msg.walk():
+                            # extract content type of email
+                            content_type = part.get_content_type()
+                            content_disposition = str(part.get("Content-Disposition"))
+
+                            try:
+                                # get the email body
+                                msg_body = part.get_payload(decode=True).decode()
+
+                                mail_details["msg_body"] = msg_body
+                            except:
+                                pass
+
+        return mail_details
+
 
     #
     #
@@ -81,6 +187,11 @@ class AdminEmailView(View):
     #
 
     def get(self, request):
+
+        email_cls = EmailManagement()
+        msgs = email_cls.inbox()
+        self.data["mails_list"] = msgs
+
         return render(request, self.template_name, self.data)
 
     #
@@ -93,3 +204,26 @@ class AdminEmailView(View):
     #
     #
     #
+
+
+#******************************************************************************
+# ADMIN EMAIL VIEW
+#******************************************************************************
+
+def inbox_email_view(request, msg_id = None):
+    template_name = 'app/base/base.html'
+
+    data = defaultdict()
+
+    data["included_template"] = 'app/staff/inbox_email_view.html'
+
+    data["page_title"] = "Email Management - Inbox"
+
+    data["css_files"] = ['custom_files/css/email.css']
+    data["js_files"] = []
+
+    email_cls = EmailManagement()
+    data["inbox_details"] = email_cls.inbox()
+    data["msg_details"] = email_cls.fetch_mail('Inbox', msg_id)
+
+    return render(request, template_name, data)

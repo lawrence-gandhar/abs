@@ -109,6 +109,7 @@ urlpatterns += [
     path('confirmemail/<qstr>', home.confirmemail, name="confirmemail"),
     path('confirmemail/<qstr>/', home.confirmemail, name="confirmemail"),
     path('staff/mails/inbox/', never_cache(staff_member_required(email_management.AdminEmailView.as_view())), name="admin_mails_inbox"),
+    path('staff/mails/inbox/view/<int:msg_id>/', never_cache(staff_member_required(email_management.inbox_email_view)), name="inbox_email_view"),
 ]
 
 #
