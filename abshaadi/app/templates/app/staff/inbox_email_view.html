@@ -63,7 +63,13 @@
                     <span style="position:absolute; margin-left:5px; font-size:15px">{{msg_details.from}}
                 </div>
                 <div class="col" style="padding-top:20px; margin-top:10px; border-top:1px solid #eeeeee;">
-                  {{msg_details.msg_bdy}}
+                  {% for i in msg_details.msg_body %}
+                    {% if i != "" %}
+                    <div class="col" style="padding:10px; border:1px solid #eeeeee; margin-bottom:10px;">
+                      {{i}}
+                    </div>
+                    {% endif %}
+                  {% endfor %}
                 </div>
               </div>
 						</div>

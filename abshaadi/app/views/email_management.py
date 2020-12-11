@@ -11,6 +11,7 @@ from django.conf import settings
 from app.models import *
 from app.forms import *
 from django.core.mail import EmailMessage
+from django.utils.safestring import mark_safe
 
 import json, imaplib, email
 
@@ -135,9 +136,25 @@ class EmailManagement():
                     mail_details["subject"] = subject
                     mail_details["from"] = From
                     mail_details["mail_date"] = Date
+                    mail_details["msg_body"] = []
 
                     # if the email message is multipart
                     if msg.is_multipart():
+                        # iterate over email parts
+                        for part in msg.walk():
+                            # extract content type of email
+
+                            content_type = part.get_content_type()
+                            content_disposition = str(part.get("Content-Disposition"))
+
+                            try:
+                                # get the email body
+                                msg_body = part.get_payload(decode=True).decode()
+
+                                mail_details["msg_body"].append(mark_safe(msg_body))
+                            except:
+                                pass
+                    else:
                         # iterate over email parts
                         for part in msg.walk():
                             # extract content type of email
@@ -148,7 +165,7 @@ class EmailManagement():
                                 # get the email body
                                 msg_body = part.get_payload(decode=True).decode()
 
-                                mail_details["msg_body"] = msg_body
+                                mail_details["msg_body"].append(mark_safe(msg_body))
                             except:
                                 pass
 
