@@ -32,33 +32,7 @@ class EmailManagement():
 
         self.conn = imaplib.IMAP4_SSL(self.imap_url)
         self.conn.login(self.username, self.passwd)
-        print(self.conn.list())
 
-
-    #******************************************************************************
-    # GET INBOX MESSAGE IDs
-    #******************************************************************************
-    def get_inbox_ids(self):
-        self.conn.select('Inbox')
-
-        status, msgs = self.conn.search(None, "ALL")
-
-        ids = msgs[0].split()
-        ids.reverse()
-        return ids
-
-    #******************************************************************************
-    # GET SENT MAIL IDs
-    #******************************************************************************
-    def get_sent_ids(self):
-
-        self.conn.select('"[Gmail]/Sent Mail"')
-
-        status, msgs = self.conn.search(None, "ALL")
-
-        ids = msgs[0].split()
-        ids.reverse()
-        return ids
 
     #******************************************************************************
     # SET MAIL LIMIT TO SHOW
@@ -85,42 +59,6 @@ class EmailManagement():
                     pass
 
         return limi_ids
-
-    #******************************************************************************
-    # FETCH INBOX ITEMS
-    #******************************************************************************
-    def inbox(self, get_all = True, limit = None, start_index = None):
-
-        ids = self.get_inbox_ids()
-
-        if not get_all:
-            ids = self.mail_limit(ids, limit, start_index)
-
-        mails_list = []
-
-        for num in ids:
-            data = self.fetch_mail_details(num)
-            mails_list.append(data)
-
-        return mails_list
-
-    #******************************************************************************
-    # FETCH SENT ITEMS
-    #******************************************************************************
-    def sentmail(self, get_all = True, limit = None, start_index = None):
-
-        ids = self.get_sent_ids()
-
-        if not get_all:
-            ids = self.mail_limit(ids, limit, start_index)
-
-        mails_list = []
-
-        for num in ids:
-            data = self.fetch_mail_details(num)
-            mails_list.append(data)
-
-        return mails_list
 
 
     #******************************************************************************
@@ -260,6 +198,79 @@ class EmailManagement():
                                 pass
         return mail_details
 
+    #******************************************************************************
+    # REMOVE MARKUPS
+    #******************************************************************************
+
+    def extract_msg_body(msg_body = None):
+
+        if msg_body is not None:
+            pass
+        else:
+            pass
+
+
+    #******************************************************************************
+    # GET INBOX MESSAGE IDs
+    #******************************************************************************
+    def get_inbox_ids(self):
+        self.conn.select('Inbox')
+
+        status, msgs = self.conn.search(None, "ALL")
+
+        ids = msgs[0].split()
+        ids.reverse()
+        return ids
+
+    #******************************************************************************
+    # GET SENT MAIL IDs
+    #******************************************************************************
+    def get_sent_ids(self):
+
+        self.conn.select('"[Gmail]/Sent Mail"')
+
+        status, msgs = self.conn.search(None, "ALL")
+
+        ids = msgs[0].split()
+        ids.reverse()
+        return ids
+
+    #******************************************************************************
+    # FETCH INBOX ITEMS
+    #******************************************************************************
+    def inbox(self, get_all = True, limit = None, start_index = None):
+
+        ids = self.get_inbox_ids()
+
+        if not get_all:
+            ids = self.mail_limit(ids, limit, start_index)
+
+        mails_list = []
+
+        for num in ids:
+            data = self.fetch_mail_details(num)
+            mails_list.append(data)
+
+        return mails_list
+
+
+    #******************************************************************************
+    # FETCH SENT ITEMS
+    #******************************************************************************
+    def sentmail(self, get_all = True, limit = None, start_index = None):
+
+        ids = self.get_sent_ids()
+
+        if not get_all:
+            ids = self.mail_limit(ids, limit, start_index)
+
+        mails_list = []
+
+        for num in ids:
+            data = self.fetch_mail_details(num)
+            mails_list.append(data)
+
+        return mails_list
 
     #******************************************************************************
     # SEND NEW MAIL
