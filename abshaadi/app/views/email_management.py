@@ -13,6 +13,8 @@ from app.forms import *
 from django.core.mail import EmailMessage
 from django.utils.safestring import mark_safe
 
+from bs4 import BeautifulSoup
+
 import json, imaplib, email
 
 
@@ -59,6 +61,27 @@ class EmailManagement():
                     pass
 
         return limi_ids
+
+
+    #******************************************************************************
+    # REMOVE MARKUPS
+    #******************************************************************************
+
+    def extract_msg_body(self, msg_body = None):
+
+        if msg_body is not None:
+            soup = BeautifulSoup(msg_body, 'html.parser')
+
+            style = soup.find('style')
+
+            body = soup.find('body')
+            msg_pr = [ str(x) for x in body.findChildren(recursive=False) ]
+
+            msg_pr = ''.join(msg_pr)
+
+            return str(style) + msg_pr
+
+        return ''
 
 
     #******************************************************************************
@@ -122,7 +145,6 @@ class EmailManagement():
         msgs = [int(num) for num in msgs[0].split()]
 
         if num in msgs:
-            print(num)
             typ, data = self.conn.fetch(str(num), '(RFC822)')
 
             for response in data:
@@ -171,15 +193,11 @@ class EmailManagement():
                             content_type = part.get_content_type()
                             content_disposition = str(part.get("Content-Disposition"))
 
-                            try:
-                                # get the email body
-                                msg_body = part.get_payload(decode=True).decode()
+                            # get the email body
+                            msg_body = part.get_payload(decode = True).decode('utf-8')
+                            msg_body = self.extract_msg_body(msg_body)
 
-                                print(msg_body)
-
-                                mail_details["msg_body"].append(mark_safe(msg_body))
-                            except:
-                                pass
+                            mail_details["msg_body"].append(mark_safe(msg_body))
                     else:
                         # iterate over email parts
                         for part in msg.walk():
@@ -187,27 +205,16 @@ class EmailManagement():
                             content_type = part.get_content_type()
                             content_disposition = str(part.get("Content-Disposition"))
 
-                            try:
-                                # get the email body
-                                msg_body = part.get_payload(decode=True).decode()
+                            # get the email body
+                            msg_body = part.get_payload(decode=True).decode()
 
-                                print(msg_body)
+                            msg_body = self.extract_msg_body(msg_body)
 
-                                mail_details["msg_body"].append(mark_safe(msg_body))
-                            except:
-                                pass
+                            mail_details["msg_body"].append(mark_safe(msg_body))
+
         return mail_details
 
-    #******************************************************************************
-    # REMOVE MARKUPS
-    #******************************************************************************
 
-    def extract_msg_body(msg_body = None):
-
-        if msg_body is not None:
-            pass
-        else:
-            pass
 
 
     #******************************************************************************
