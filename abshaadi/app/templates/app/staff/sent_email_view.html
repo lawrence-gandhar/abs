@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col">
+    <div class="card-header card-header-blue card-header-border">
+      <strong>Sent</strong>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+	<!-- BEGIN INBOX -->
+	<div class="col-md-12">
+		<div class="grid email">
+			<div class="grid-body">
+				<div class="row">
+
+					<!-- BEGIN INBOX CONTENT -->
+					<div class="col-md-12 col-sm-12">
+						<div class="row">
+							<div class="col-sm-6">
+								<label style="margin-right: 8px;" class="">
+									<div class="icheckbox_square-blue" style="position: relative;">
+                    <input type="checkbox" id="check-all" class="icheck" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
+                    <ins class="iCheck-helper" style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);">
+                    </ins>
+                  </div>
+								</label>
+							</div>
+
+							<div class="col-md-6 search-form">
+								<form action="#" class="text-right">
+									<div class="input-group">
+										<input type="text" class="form-control input-sm" placeholder="Search">
+										<span class="input-group-btn">
+                    <button type="submit" name="search" class="btn_ btn-primary btn-sm search"><i class="fa fa-search"></i></button></span>
+									</div>
+								</form>
+							</div>
+						</div>
+
+						<div class="padding"></div>
+
+						<div class="row" style="border:1px solid #eeeeee; margin-top:10px;">
+              <div class="col-md-3" style="overflow:auto; border-right:1px solid #eee; padding:0px;">
+                <ul style="margin:0px; padding:0px;">
+                {% for msg in inbox_details %}
+                  <li style="color:#000000; list-style:none; border-bottom:1px solid #eeeeee; padding:5px 10px; cursor:pointer;{% if msg_id == msg.msg_id %} background-color:#eeeeee; {% endif %}" >
+                    <a href="{% url 'sent_email_view' msg.msg_id %}" style="text-decoration:none; color:#000000; ">
+                      <span style="display:block;">{{msg.from}}</span>
+                      <span style="display:block;">{{msg.subject}}</span>
+                    </a>
+                  </li>
+                {% endfor %}
+                </ul>
+              </div>
+              <div class="col-md-9">
+                <div class="col">
+                  <h4 style="padding:10px 7px;">{{msg_details.subject}}</h4>
+                </div>
+                <div class="col">
+                    <i class="mdi mdi-account-circle mdi-36px"></i>
+                    <span style="position:absolute; margin-left:5px; font-size:15px">{{msg_details.from}}
+                </div>
+                <div class="col" style="padding-top:20px; margin-top:10px; border-top:1px solid #eeeeee;">
+                    {{msg_details.msg_body.0}}
+                </div>
+              </div>
+						</div>
+					</div>
+					<!-- END INBOX CONTENT -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END INBOX -->
+</div>

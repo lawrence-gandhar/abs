@@ -150,7 +150,7 @@ class EmailManagement():
                 if isinstance(From, bytes):
                     From = From.decode(encoding)
 
-                # decode email sender
+                # decode email reciever
                 To, encoding = email.header.decode_header(msg.get("To"))[0]
                 if isinstance(From, bytes):
                     To = To.decode(encoding)
@@ -176,8 +176,7 @@ class EmailManagement():
     #******************************************************************************
     def fetch_mail(self, mailbox = 'Inbox', num = None):
 
-        #self.conn.login(self.username, self.passwd)
-        self.conn.select('Inbox')
+        self.conn.select(mailbox)
         status, msgs = self.conn.search(None, "ALL")
 
         mail_details = defaultdict()
@@ -211,11 +210,18 @@ class EmailManagement():
                     if isinstance(From, bytes):
                         Date = Date.decode(encoding)
 
+                    # decode email reciever
+                    To, encoding = email.header.decode_header(msg.get("To"))[0]
+                    if isinstance(From, bytes):
+                        To = To.decode(encoding)
+
                     mail_details["msg_id"] = int(num)
                     mail_details["subject"] = subject
                     mail_details["from"] = From
                     mail_details["mail_date"] = Date
                     mail_details["msg_body"] = []
+                    mail_details["mail_to"] = To
+
 
                     # if the email message is multipart
                     if msg.is_multipart():
@@ -231,6 +237,8 @@ class EmailManagement():
                                 # get the email body
                                 msg_body = part.get_payload(decode=True).decode()
 
+                                print(msg_body)
+
                                 mail_details["msg_body"].append(mark_safe(msg_body))
                             except:
                                 pass
@@ -244,6 +252,8 @@ class EmailManagement():
                             try:
                                 # get the email body
                                 msg_body = part.get_payload(decode=True).decode()
+
+                                print(msg_body)
 
                                 mail_details["msg_body"].append(mark_safe(msg_body))
                             except:
@@ -334,7 +344,7 @@ class AdminEmailSentView(View):
 
     data["included_template"] = 'app/staff/sent_mail.html'
 
-    data["page_title"] = "Email Management - Sent Mails"
+    data["page_title"] = "Email Management - Sent"
 
     data["css_files"] = ['custom_files/css/email.css']
     data["js_files"] = []
@@ -357,3 +367,27 @@ class AdminEmailSentView(View):
 
     def post(self, request):
         pass
+
+
+#******************************************************************************
+# ADMIN EMAIL VIEW
+#******************************************************************************
+
+def sent_email_view(request, msg_id = None):
+    template_name = 'app/base/base.html'
+
+    data = defaultdict()
+
+    data["included_template"] = 'app/staff/sent_email_view.html'
+
+    data["page_title"] = "Email Management - Sent"
+
+    data["css_files"] = ['custom_files/css/email.css']
+    data["js_files"] = []
+
+    email_cls = EmailManagement()
+    data["inbox_details"] = email_cls.sentmail(False)
+    data["msg_details"] = email_cls.fetch_mail('"[Gmail]/Sent Mail"', msg_id)
+    data["msg_id"] = msg_id
+
+    return render(request, template_name, data)

@@ -1,10 +1,7 @@
 <div class="row">
   <div class="col">
     <div class="card-header card-header-blue card-header-border">
-      <strong>Inbox</strong>
-      <button data-toggle="modal" data-target="#compose-modal" style="float:right; margin-right:-16px; margin-top:-7px;" class="btn btn-info">
-        <i class="mdi mdi-plus"></i> Compose
-      </button>
+      <strong>Sent</strong>
     </div>
   </div>
 </div>
@@ -24,7 +21,7 @@
                   <th>
                     <input type="checkbox" id="select_all">
                   </th>
-                  <th>From</th>
+                  <th>To</th>
                   <th>Subject</th>
                   <th>Date</th>
                 </thead>
@@ -33,7 +30,7 @@
                   <tr>
   									<td class="action" style="text-align:center;"><input type="checkbox" class="checkbox"/></td>
   									<td class="name"><a href="#">
-                      <a href="{% url 'inbox_email_view' msg.msg_id %}">
+                      <a href="{% url 'sent_email_view' msg.msg_id %}">
                         {{ msg.mail_to }}
                       </a>
                     </td>
