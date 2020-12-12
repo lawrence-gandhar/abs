@@ -36,17 +36,64 @@ class EmailManagement():
     #
     #
     #
-    def inbox(self):
-        self.conn.login(self.username, self.passwd)
-        status, msgs = self.conn.select('Inbox')
+    def inbox(self, get_all = True, limit = None, start_index = None):
+
+        ids = self.get_inbox_ids()
+
+        if not get_all:
+            ids = self.inbox_limit(ids, limit, start_index)
 
         mails_list = []
 
-        for num in msgs[0].split():
+        for num in ids:
             data = self.fetch_mail_details(num)
             mails_list.append(data)
 
         return mails_list
+
+
+    #
+    #
+    #
+    def inbox_limit(self, ids = [], limit = None, start_index = None):
+
+        limi_ids = []
+
+        if limit is None:
+            limit = 10
+
+
+        if start_index is None:
+            for i in range(limit):
+                try:
+                    limi_ids.append(ids[i])
+                except:
+                    pass
+        else:
+            for i in range(start_index, limit+start_index):
+                try:
+                    limi_ids.append(ids[i])
+                except:
+                    pass
+
+        return limi_ids
+
+
+
+    #
+    #
+    #
+    def get_inbox_ids(self):
+        self.conn.login(self.username, self.passwd)
+        self.conn.select('Inbox')
+
+        status, msgs = self.conn.search(None, "ALL")
+
+        ids = msgs[0].split()
+        ids.reverse()
+        return ids
+
+
 
     #
     #
@@ -96,17 +143,15 @@ class EmailManagement():
     def fetch_mail(self, mailbox = 'Inbox', num = None):
 
         #self.conn.login(self.username, self.passwd)
-        status, msgs = self.conn.select(mailbox)
+        self.conn.select('Inbox')
+        status, msgs = self.conn.search(None, "ALL")
 
         mail_details = defaultdict()
 
         msgs = [int(num) for num in msgs[0].split()]
 
         if num in msgs:
-
             print(num)
-
-
             typ, data = self.conn.fetch(str(num), '(RFC822)')
 
             for response in data:
@@ -140,6 +185,7 @@ class EmailManagement():
 
                     # if the email message is multipart
                     if msg.is_multipart():
+
                         # iterate over email parts
                         for part in msg.walk():
                             # extract content type of email
@@ -150,6 +196,8 @@ class EmailManagement():
                             try:
                                 # get the email body
                                 msg_body = part.get_payload(decode=True).decode()
+
+                                print(msg_body)
 
                                 mail_details["msg_body"].append(mark_safe(msg_body))
                             except:
@@ -164,6 +212,8 @@ class EmailManagement():
                             try:
                                 # get the email body
                                 msg_body = part.get_payload(decode=True).decode()
+
+                                print(msg_body)
 
                                 mail_details["msg_body"].append(mark_safe(msg_body))
                             except:
@@ -206,7 +256,7 @@ class AdminEmailView(View):
     def get(self, request):
 
         email_cls = EmailManagement()
-        msgs = email_cls.inbox()
+        msgs = email_cls.inbox(False)
         self.data["mails_list"] = msgs
 
         return render(request, self.template_name, self.data)
@@ -240,7 +290,7 @@ def inbox_email_view(request, msg_id = None):
     data["js_files"] = []
 
     email_cls = EmailManagement()
-    data["inbox_details"] = email_cls.inbox()
+    data["inbox_details"] = email_cls.inbox(False)
     data["msg_details"] = email_cls.fetch_mail('Inbox', msg_id)
 
     return render(request, template_name, data)

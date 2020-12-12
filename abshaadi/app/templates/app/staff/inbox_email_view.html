@@ -47,9 +47,11 @@
               <div class="col-md-3" style="overflow:auto; border-right:1px solid #eee;">
                 <ul style="margin:0px; padding:0px;">
                 {% for msg in inbox_details %}
-                  <li style="list-style:none;">
-                    <span style="display:block; font-weight:bold;">{{msg.from}}</span>
-                    <span style="display:block;">{{msg.subject}}</span>
+                  <li style="list-style:none; border-bottom:1px solid #eeeeee; padding:5px 10px; cursor:pointer;">
+                    <a href="{% url 'inbox_email_view' msg.msg_id %}">
+                      <span style="display:block; font-weight:bold;">{{msg.from}}</span>
+                      <span style="display:block;">{{msg.subject}}</span>
+                    </a>
                   </li>
                 {% endfor %}
                 </ul>
