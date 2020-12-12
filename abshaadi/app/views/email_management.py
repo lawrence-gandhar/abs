@@ -197,8 +197,6 @@ class EmailManagement():
                                 # get the email body
                                 msg_body = part.get_payload(decode=True).decode()
 
-                                print(msg_body)
-
                                 mail_details["msg_body"].append(mark_safe(msg_body))
                             except:
                                 pass
@@ -212,8 +210,6 @@ class EmailManagement():
                             try:
                                 # get the email body
                                 msg_body = part.get_payload(decode=True).decode()
-
-                                print(msg_body)
 
                                 mail_details["msg_body"].append(mark_safe(msg_body))
                             except:
@@ -292,5 +288,6 @@ def inbox_email_view(request, msg_id = None):
     email_cls = EmailManagement()
     data["inbox_details"] = email_cls.inbox(False)
     data["msg_details"] = email_cls.fetch_mail('Inbox', msg_id)
+    data["msg_id"] = msg_id
 
     return render(request, template_name, data)

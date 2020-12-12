@@ -44,12 +44,12 @@
 						<div class="padding"></div>
 
 						<div class="row" style="border:1px solid #eeeeee; margin-top:10px;">
-              <div class="col-md-3" style="overflow:auto; border-right:1px solid #eee;">
+              <div class="col-md-3" style="overflow:auto; border-right:1px solid #eee; padding:0px;">
                 <ul style="margin:0px; padding:0px;">
                 {% for msg in inbox_details %}
-                  <li style="list-style:none; border-bottom:1px solid #eeeeee; padding:5px 10px; cursor:pointer;">
-                    <a href="{% url 'inbox_email_view' msg.msg_id %}">
-                      <span style="display:block; font-weight:bold;">{{msg.from}}</span>
+                  <li style="color:#000000; list-style:none; border-bottom:1px solid #eeeeee; padding:5px 10px; cursor:pointer;{% if msg_id == msg.msg_id %} background-color:#eeeeee; {% endif %}" >
+                    <a href="{% url 'inbox_email_view' msg.msg_id %}" style="text-decoration:none; color:#000000; ">
+                      <span style="display:block;">{{msg.from}}</span>
                       <span style="display:block;">{{msg.subject}}</span>
                     </a>
                   </li>
@@ -65,13 +65,7 @@
                     <span style="position:absolute; margin-left:5px; font-size:15px">{{msg_details.from}}
                 </div>
                 <div class="col" style="padding-top:20px; margin-top:10px; border-top:1px solid #eeeeee;">
-                  {% for i in msg_details.msg_body %}
-                    {% if i != "" %}
-                    <div class="col" style="padding:10px; border:1px solid #eeeeee; margin-bottom:10px;">
-                      {{i}}
-                    </div>
-                    {% endif %}
-                  {% endfor %}
+                    {{msg_details.msg_body.1}}
                 </div>
               </div>
 						</div>
