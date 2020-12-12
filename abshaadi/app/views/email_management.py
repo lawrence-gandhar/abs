@@ -17,7 +17,7 @@ import json, imaplib, email
 
 
 #******************************************************************************
-# EMAIL MANAGEMENT
+# EMAIL MANAGEMENT CLASS
 #******************************************************************************
 
 class EmailManagement():
@@ -31,31 +31,39 @@ class EmailManagement():
         self.app_email = settings.APPLICATION_EMAIL
 
         self.conn = imaplib.IMAP4_SSL(self.imap_url)
+        self.conn.login(self.username, self.passwd)
+        print(self.conn.list())
 
 
-    #
-    #
-    #
-    def inbox(self, get_all = True, limit = None, start_index = None):
+    #******************************************************************************
+    # GET INBOX MESSAGE IDs
+    #******************************************************************************
+    def get_inbox_ids(self):
+        self.conn.select('Inbox')
 
-        ids = self.get_inbox_ids()
+        status, msgs = self.conn.search(None, "ALL")
 
-        if not get_all:
-            ids = self.inbox_limit(ids, limit, start_index)
+        ids = msgs[0].split()
+        ids.reverse()
+        return ids
 
-        mails_list = []
+    #******************************************************************************
+    # GET SENT MAIL IDs
+    #******************************************************************************
+    def get_sent_ids(self):
 
-        for num in ids:
-            data = self.fetch_mail_details(num)
-            mails_list.append(data)
+        self.conn.select('"[Gmail]/Sent Mail"')
 
-        return mails_list
+        status, msgs = self.conn.search(None, "ALL")
 
+        ids = msgs[0].split()
+        ids.reverse()
+        return ids
 
-    #
-    #
-    #
-    def inbox_limit(self, ids = [], limit = None, start_index = None):
+    #******************************************************************************
+    # SET MAIL LIMIT TO SHOW
+    #******************************************************************************
+    def mail_limit(self, ids = [], limit = None, start_index = None):
 
         limi_ids = []
 
@@ -78,26 +86,46 @@ class EmailManagement():
 
         return limi_ids
 
+    #******************************************************************************
+    # FETCH INBOX ITEMS
+    #******************************************************************************
+    def inbox(self, get_all = True, limit = None, start_index = None):
+
+        ids = self.get_inbox_ids()
+
+        if not get_all:
+            ids = self.mail_limit(ids, limit, start_index)
+
+        mails_list = []
+
+        for num in ids:
+            data = self.fetch_mail_details(num)
+            mails_list.append(data)
+
+        return mails_list
+
+    #******************************************************************************
+    # FETCH SENT ITEMS
+    #******************************************************************************
+    def sentmail(self, get_all = True, limit = None, start_index = None):
+
+        ids = self.get_sent_ids()
+
+        if not get_all:
+            ids = self.mail_limit(ids, limit, start_index)
+
+        mails_list = []
+
+        for num in ids:
+            data = self.fetch_mail_details(num)
+            mails_list.append(data)
+
+        return mails_list
 
 
-    #
-    #
-    #
-    def get_inbox_ids(self):
-        self.conn.login(self.username, self.passwd)
-        self.conn.select('Inbox')
-
-        status, msgs = self.conn.search(None, "ALL")
-
-        ids = msgs[0].split()
-        ids.reverse()
-        return ids
-
-
-
-    #
-    #
-    #
+    #******************************************************************************
+    # FETCH MAIL DETAILS
+    #******************************************************************************
     def fetch_mail_details(self, num = None):
 
         typ, data = self.conn.fetch(num, '(RFC822)')
@@ -123,6 +151,11 @@ class EmailManagement():
                     From = From.decode(encoding)
 
                 # decode email sender
+                To, encoding = email.header.decode_header(msg.get("To"))[0]
+                if isinstance(From, bytes):
+                    To = To.decode(encoding)
+
+                # decode email sender
                 Date, encoding = email.header.decode_header(msg.get("Date"))[0]
                 if isinstance(From, bytes):
                     Date = Date.decode(encoding)
@@ -134,12 +167,13 @@ class EmailManagement():
                 mail_details["subject"] = subject
                 mail_details["from"] = From
                 mail_details["mail_date"] = Date
+                mail_details["mail_to"] = To
 
         return mail_details
 
-    #
-    #
-    #
+    #******************************************************************************
+    # FETCH MAIL BODY AND DETAILS
+    #******************************************************************************
     def fetch_mail(self, mailbox = 'Inbox', num = None):
 
         #self.conn.login(self.username, self.passwd)
@@ -214,13 +248,12 @@ class EmailManagement():
                                 mail_details["msg_body"].append(mark_safe(msg_body))
                             except:
                                 pass
-
         return mail_details
 
 
-    #
-    #
-    #
+    #******************************************************************************
+    # SEND NEW MAIL
+    #******************************************************************************
     def sendmail(self, email_html_template = None, data = None, reciever_email = []):
         email_html_template = get_template(email_html_template).render(data)
         email_msg = EmailMessage(msg_body, email_html_template, self.app_email, receiver_email, reply_to = self.reply_email)
@@ -230,10 +263,10 @@ class EmailManagement():
 
 
 #******************************************************************************
-# ADMIN EMAIL VIEW
+# ADMIN EMAIL INBOX VIEW
 #******************************************************************************
 
-class AdminEmailView(View):
+class AdminEmailInboxView(View):
     template_name = 'app/base/base.html'
 
     data = defaultdict()
@@ -245,9 +278,9 @@ class AdminEmailView(View):
     data["css_files"] = ['custom_files/css/email.css']
     data["js_files"] = []
 
+    #******************************************************************************
     #
-    #
-    #
+    #******************************************************************************
 
     def get(self, request):
 
@@ -257,16 +290,13 @@ class AdminEmailView(View):
 
         return render(request, self.template_name, self.data)
 
+    #******************************************************************************
     #
-    #
-    #
+    #******************************************************************************
 
     def post(self, request):
         pass
 
-    #
-    #
-    #
 
 
 #******************************************************************************
@@ -291,3 +321,39 @@ def inbox_email_view(request, msg_id = None):
     data["msg_id"] = msg_id
 
     return render(request, template_name, data)
+
+
+#******************************************************************************
+# ADMIN EMAIL SENT VIEW
+#******************************************************************************
+
+class AdminEmailSentView(View):
+    template_name = 'app/base/base.html'
+
+    data = defaultdict()
+
+    data["included_template"] = 'app/staff/sent_mail.html'
+
+    data["page_title"] = "Email Management - Sent Mails"
+
+    data["css_files"] = ['custom_files/css/email.css']
+    data["js_files"] = []
+
+    #******************************************************************************
+    #
+    #******************************************************************************
+
+    def get(self, request):
+
+        email_cls = EmailManagement()
+        msgs = email_cls.sentmail(False)
+        self.data["mails_list"] = msgs
+
+        return render(request, self.template_name, self.data)
+
+    #******************************************************************************
+    #
+    #******************************************************************************
+
+    def post(self, request):
+        pass

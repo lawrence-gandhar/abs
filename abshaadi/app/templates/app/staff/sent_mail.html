@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col">
+    <div class="card-header card-header-blue card-header-border">
+      <strong>Inbox</strong>
+      <button data-toggle="modal" data-target="#compose-modal" style="float:right; margin-right:-16px; margin-top:-7px;" class="btn btn-info">
+        <i class="mdi mdi-plus"></i> Compose
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+	<!-- BEGIN INBOX -->
+	<div class="col-md-12">
+		<div class="grid email">
+			<div class="grid-body">
+				<div class="row">
+						<div class="padding"></div>
+
+						<div class="table-responsive">
+							<table class="table">
+                <thead>
+                  <th>
+                    <input type="checkbox" id="select_all">
+                  </th>
+                  <th>From</th>
+                  <th>Subject</th>
+                  <th>Date</th>
+                </thead>
+								<tbody>
+                  {% for msg in mails_list %}
+                  <tr>
+  									<td class="action" style="text-align:center;"><input type="checkbox" class="checkbox"/></td>
+  									<td class="name"><a href="#">
+                      <a href="{% url 'inbox_email_view' msg.msg_id %}">
+                        {{ msg.mail_to }}
+                      </a>
+                    </td>
+  									<td class="subject">
+                      <a href="#" data-toggle="modal" data-target="#show_msg_modal">{{ msg.subject }}</a>
+                    </td>
+  									<td class="time">{{ msg.mail_date }}</td>
+  								</tr>
+  								{% endfor %}
+							  </tbody>
+              </table>
+						</div>
+					</div>
+					<!-- END INBOX CONTENT -->
+				</div>
+			</div>
+		</div>
+	</div>
