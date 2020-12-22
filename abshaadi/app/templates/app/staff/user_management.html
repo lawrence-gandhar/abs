@@ -4,7 +4,7 @@
 	<div class="col">
 		<div class="card-header card-header-blue card-header-border">
 			<strong>Users Information</strong>
-			<button class="btn btn-info" style="float:right; margin-top:-7px;" onclick="delete_selected_users()">Delete</button>
+			<button class="btn btn-info" style="float:right; margin-top:-7px;" class="delete_btn" id="delete_btn">Delete</button>
 		</div>
 		<div class="card-body" style="padding-top:10px; background:none;">
 			<table class="table table-bordered" style="margin:0px; padding:0px;">
@@ -23,8 +23,9 @@
 					<td>Assigned To</td>
 					<td>Action</td>
 				<tr>
-				{% for row in users %}
-					<tr style="font-size:12px;  background-color:#FFF">
+					{% csrf_token %}
+					{% for row in users %}
+					<tr style="font-size:12px;  background-color:#FFF" id="{{row.user.id}}">
 						<td width="30px">
 							<input type="checkbox" class="checkbox" name="case[]" value="{{row.user.id}}">
 						</td>
@@ -59,6 +60,67 @@
 
 <script>
 
-var csrfmiddlewaretoken = '{{ csrf_token }}';
-
-</script>
+	var csrfmiddlewaretoken = '{{ csrf_token }}';
+	
+	function user_edit_modal_form(id){
+	
+		$("#user_id").val(id);
+	
+		$("#user_edit_modal_form").modal('show');
+	
+		$.post("{% url 'fetch_user_details' %}", {"user_id":id, "csrfmiddlewaretoken":csrfmiddlewaretoken}, function(data){
+	
+			data = $.parseJSON(data);
+	
+			$("#id_phone_number").val(data.phone_number);
+			$("#id_fullname").val(data.fullname);
+			$("#id_phone_number_alternative").val(data.phone_number_alternative);
+			$("#id_package").val(data.package);
+			$("#id_assigned_to").val(data.assigned_to);
+	
+			console.log(data);
+		});
+	}
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		$("#delete_btn").click(function(){
+			console.log("hhh")
+			if(confirm("Do you want to delete the selected users? All data will be lost for the selected users after this operation")){
+				var id=[];
+				var csrf=$('input[name=csrfmiddlewaretoken').val()
+		$(".checkbox:checked").each(function(i){
+			id[i]=$(this).val();
+			
+		})
+		if(id.length==0){
+			alert("not delete")
+		}else{
+			console.log(id)
+			$.ajax({
+				url:".",
+				method:"POST",
+				data:{
+					id,
+					csrfmiddlewaretoken:csrf
+				},success:function(response){
+					for(var i=0;i<id.length;i++){
+						$('tr#'+id[i]+'').css('background-color','#ccc');
+						$('tr#'+id[i]+'').fadeOut('slow');
+					}
+				}
+			})
+		}
+			}	
+		});
+	});
+	function delete_selected(){
+		rr = confirm("Do you want to delete the selected users? All data will be lost for the selected users after this operation");
+	
+		
+	}
+	
+	
+	</script>
+	

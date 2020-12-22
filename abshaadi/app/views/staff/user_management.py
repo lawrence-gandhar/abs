@@ -58,7 +58,13 @@ class UserManagementView(View):
 
         except:
             pass
-
+        
+        if request.method=="POST":
+            id=request.POST.getlist('id[]')
+            print(id)
+            for i in id:
+                cus= CustomUser.objects.get(pk=i)
+                cus.delete()
         return redirect("user_management_view")
 
 
@@ -163,6 +169,7 @@ def delete_user(request, ins=None):
 #******************************************************************************
 
 def user_profile_view(request, user_id=None):
+    # print(user_id)
 
     if user_id is not None:
 
@@ -174,8 +181,9 @@ def user_profile_view(request, user_id=None):
 
         data["page_title"] = "User Profile"
 
-        data["css_files"] = []
-        data["js_files"] = []
+        data["css_files"] = ['custom_files/css/Chart.min.css', 'custom_files/css/croppie.css']
+        data["js_files"] = ['custom_files/js/Chart.min.js', 'custom_files/js/croppie.js', 'custom_files/js/site_management.js',
+                        'custom_files/js/common.js']
 
         try:
             user = CustomUser.objects.get(pk = user_id)
@@ -194,3 +202,24 @@ def user_profile_view(request, user_id=None):
         return render(request, template_name, data)
 
     return redirect('/page_403/')
+
+
+def upload_profile_pic(request,id):
+    print(id)
+    # print(request.build_absolute_uri())
+    if request.method == 'POST' and request.FILES['picture']:
+        files = request.FILES
+        # print(request.user)
+        # to_user_id = request.POST.get('to_user_id', None)
+        
+        ProfilePictures.objects.filter(user_id = id).delete()
+
+        profile_pic = ProfilePictures(
+                picture = request.FILES['picture'],
+                user_id = id,
+                set_as_profile_pic = False,
+            )
+
+        profile_pic.save()
+
+        return HttpResponse('1')

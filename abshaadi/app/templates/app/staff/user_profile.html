@@ -43,9 +43,11 @@
 						{% for pics in gallery %}
 							<div class="col-4" style="padding:10px; text-align:center;">
 								<img src="{% get_media_prefix %}{{pics.picture}}" class="img" width="100%" height="150px">
-
+								<div class="col-4">
+									<canvas id="myChart" width="100" height="96" style="margin:5px 10px;"></canvas>
+								</div>
                 <div class="btn-group" style="width:100%; margin-top:10px;">
-                  <button type="button" class="btn btn-primary">Edit</button>
+                  <button type="button" class="btn btn-primary" id="edit_pic" data-toggle="modal" data-target="#profile_picture_modal" value="{{pics.user_id}}" >Edit</button>
                   <a href="{% get_media_prefix %}{{pics.picture}}" download class="btn btn-primary">Download</a>
                 </div>
               </div>
@@ -155,5 +157,18 @@
 	</div>
 </div>
 
-
+{% include 'app/modal_forms/profile_picture_modal.html' %}
 {% include 'app/modal_forms/connect_modal.html' %}
+
+
+<!-- <script>
+
+	var csrfmiddlewaretoken = '{{ csrf_token }}';
+	
+	function user_edit_modal_form(id){
+	
+		// console.log(("#edit_pic").val(id))
+	
+		$("#profile_picture_modal").modal('show');
+	}
+</script> -->

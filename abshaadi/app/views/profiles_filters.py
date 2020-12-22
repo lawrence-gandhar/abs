@@ -117,7 +117,7 @@ class UserProfileEdit(View):
 #******************************************************************************
 
 def upload_profile_pic(request):
-
+    
     if request.method == 'POST' and request.FILES['picture']:
 
         files = request.FILES

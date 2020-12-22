@@ -409,3 +409,22 @@ def sent_email_view(request, msg_id = None):
     data["msg_id"] = msg_id
 
     return render(request, template_name, data)
+
+def sendmail_all(request):
+    if request.POST:
+        
+        subject = request.POST.get('subject',None)
+        message = request.POST.get('message',None)
+        email = request.POST.get('to',None)
+        
+        files = request.FILES.getlist('attachment',None)
+        print(email,files)
+
+        try:
+            mail = EmailMessage(subject, message, settings.EMAIL_HOST_USER, [email])
+            for f in files:
+                mail.attach(f.name, f.read(), f.content_type)
+            mail.send()
+            return redirect('/staff/mails/inbox/')
+        except:
+            pass

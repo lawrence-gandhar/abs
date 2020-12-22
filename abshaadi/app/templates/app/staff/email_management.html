@@ -65,7 +65,8 @@
 				<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-        <form action="#" method="post">
+        <form  id="compose-modal" action="{% url 'sendmail_all' %}" method="post" class="post-form" enctype="multipart/form-data">
+          {% csrf_token %}
           <div class="modal-body">
             <div class="form-group">
               <input name="to" type="email" class="form-control" placeholder="To">
@@ -77,7 +78,7 @@
               <input name="bcc" type="email" class="form-control" placeholder="Bcc">
             </div>
             <div class="form-group">
-              <input name="subject" type="email" class="form-control" placeholder="Subject">
+              <input name="subject" type="text" class="form-control" placeholder="Subject">
             </div>
             <div class="form-group">
               <textarea name="message" id="email_message" class="form-control" placeholder="Message" style="height: 120px;"></textarea>

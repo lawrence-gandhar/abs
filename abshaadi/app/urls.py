@@ -84,6 +84,7 @@ urlpatterns += [
     path('staff/package_management/delete/<int:ins>', never_cache(staff_member_required(package_management.delete_package_management)), name="delete_package_management"),
     path('staff/package_management/edit/', never_cache(staff_member_required(package_management.edit_package_management)), name="edit_package_management"),
     path('staff/user_management/users/view/', never_cache(staff_member_required(user_management.UserManagementView.as_view())), name="user_management_view"),
+    path('upload_profile_pic_view/<int:id>', never_cache(staff_member_required(user_management.upload_profile_pic)), name="upload_profile_pic_view"),
     path('staff/user_management/users/delete/<int:ins>/', never_cache(staff_member_required(user_management.delete_user)), name="delete_user"),
     path('staff/user_management/staff/view/', never_cache(staff_member_required(user_management.StaffManagementView.as_view())), name="staff_management_view"),
     path('staff/user_management/staff/add/', never_cache(staff_member_required(user_management.add_staff)), name="add_staff"),
@@ -114,6 +115,7 @@ urlpatterns += [
     path('staff/mails/inbox/view/<int:msg_id>/', never_cache(staff_member_required(email_management.inbox_email_view)), name="inbox_email_view"),
     path('staff/mails/sent/', never_cache(staff_member_required(email_management.AdminEmailSentView.as_view())), name="admin_mails_sent"),
     path('staff/mails/sent/view/<int:msg_id>/', never_cache(staff_member_required(email_management.sent_email_view)), name="sent_email_view"),
+    path('sendmail_all/', never_cache(staff_member_required(email_management.sendmail_all)), name="sendmail_all"),
 ]
 
 #
