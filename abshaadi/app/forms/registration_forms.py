@@ -70,9 +70,9 @@ class ProfileForm(ModelForm):
             'phone_number_alternative' : TextInput(attrs = {'class':'form-control',}),
             'address' : Textarea(attrs = {'class':'form-control', 'rows':'2'}),
             'dob': TextInput(attrs = {'class':'form-control', 'type':'date'}),
-            'country' : Select(attrs = {'class':'form-control selectpicker country_select' ,'multiple':'true'}),
-            'state' : Select(attrs = {'class':'form-control states_select selectpicker', 'multiple':'true',}),
-            'city' : Select(attrs = {'class':'form-control selectpicker city_select', 'multiple':'true'}),
+            'country' : Select(attrs = {'class':'form-control selectpicker country_select_single' ,}),
+            'state' : Select(attrs = {'class':'form-control states_select_single selectpicker',}),
+            'city' : Select(attrs = {'class':'form-control selectpicker city_select_single',}),
         }
 
 #******************************************************************************
@@ -131,7 +131,7 @@ class FamilyForm(ModelForm):
             (5, "Step Family"),
         )
 
-        
+
 
 
         widgets = {

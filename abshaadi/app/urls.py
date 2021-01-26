@@ -57,6 +57,8 @@ urlpatterns += [
 urlpatterns += [
     path('get_states_dropdown/', never_cache(login_required(site_management.get_states_dropdown)), name="get_states_dropdown"),
     path('get_cities_dropdown/', never_cache(login_required(site_management.get_cities_dropdown)), name="get_cities_dropdown"),
+    path('get_states_dropdown_single/', never_cache(login_required(site_management.get_states_dropdown_single)), name="get_states_dropdown_single"),
+    path('get_cities_dropdown_single/', never_cache(login_required(site_management.get_cities_dropdown_single)), name="get_cities_dropdown_single"),
     path('get_castes_dropdown/', never_cache(login_required(site_management.get_castes_dropdown)), name="get_castes_dropdown"),
 ]
 

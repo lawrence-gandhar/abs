@@ -164,8 +164,10 @@ def register_form(request):
 
                     reg.save()
 
+                    
                     path = os.path.join(settings.MEDIA_ROOT, str(reg.id))
                     os.mkdir(path, 0o777)
+
 
                     profile = Profile(
                         user = reg
@@ -304,7 +306,7 @@ def forgot_password_op(request):
                 user.set_password(request.POST["password1"])
                 user.save()
             except:
-                return HttpResponse("Error Occurred. Please contact the Administrator.")    
+                return HttpResponse("Error Occurred. Please contact the Administrator.")
             return HttpResponse("Password Changed Successfully")
         return HttpResponse('This password must contain at least 8 characters.')
     return HttpResponse(0)

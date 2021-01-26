@@ -1,7 +1,7 @@
 (function ($) {
  "use strict";
 
-// Preloader 
+// Preloader
 	jQuery(window).on('load', function() {
 		jQuery("#status").fadeOut();
 		jQuery("#preloader").delay(350).fadeOut("slow");
@@ -16,7 +16,7 @@
 
 
 /*--------------------------
- 3. Sticky Menu 
+ 3. Sticky Menu
 ---------------------------- */
 	$(window).on('scroll', function(){
 		if( $(window).scrollTop()>900 ){
@@ -24,22 +24,28 @@
 			} else {
 			$('#sticky').removeClass('sticky');
 		}
-	});	
+	});
 
 
 	//Single page scroll js for main menu
 
+  /*
 	$('.menu_scroll ul li a').on('click' , function(e){
 	  $('.menu_scroll ul li').removeClass('active');
 	  $(this).parent().addClass('active');
 	  var target = $('[section-scroll='+$(this).attr('href')+']');
+
+    console.log(target);
+
 	  e.preventDefault();
 	  var targetHeight = target.offset().top-parseInt('60');
 	  $('html, body').animate({
 	   scrollTop: targetHeight
 	  }, 1000);
 	});
-	
+
+  */
+
 	$(window).scroll(function() {
 	  var windscroll = $(window).scrollTop();
 	  var target = $('.menu_scroll ul li');
@@ -61,16 +67,16 @@
 4. wow js active
 ------------------------------ */
 	new WOW().init();
- 
+
 /*----------------------------
 5. owl active
------------------------------- */  
+------------------------------ */
 	//Event slider
 	$(".event-slider").owlCarousel({
-		autoPlay: true, 
+		autoPlay: true,
 		slideSpeed:2000,
 		pagination:false,
-		navigation:false,	  
+		navigation:false,
 		items : 3,
 		/* transitionStyle : "fade", */    /* [This code for animation ] */
 		navigationText:["<i class='fas fa-angle-left'></i>","<i class='fas fa-angle-right'></i>"],
@@ -82,10 +88,10 @@
 
 	//Blgo slider
 	$(".blog-slider").owlCarousel({
-		autoPlay: true, 
+		autoPlay: true,
 		slideSpeed:2000,
 		pagination:true,
-		navigation:false,	  
+		navigation:false,
 		items : 2,
 		/* transitionStyle : "fade", */    /* [This code for animation ] */
 		navigationText:["<i class='fas fa-angle-left'></i>","<i class='fas fa-angle-right'></i>"],
@@ -97,10 +103,10 @@
 
 	//testimonial slider
 	$(".testimonial").owlCarousel({
-		autoPlay: true, 
+		autoPlay: true,
 		slideSpeed:2000,
 		pagination:true,
-		navigation:false,	  
+		navigation:false,
 		items : 1,
 		/* transitionStyle : "fade", */    /* [This code for animation ] */
 		navigationText:["<i class='fas fa-angle-left'></i>","<i class='fas fa-angle-right'></i>"],
@@ -112,10 +118,10 @@
 
 	//registry slider
 	$(".registry_slider").owlCarousel({
-		autoPlay: true, 
+		autoPlay: true,
 		slideSpeed:2000,
 		pagination:false,
-		navigation:true,	  
+		navigation:true,
 		items : 3,
 		/* transitionStyle : "fade", */    /* [This code for animation ] */
 		navigationText:["<i class='fas fa-angle-left'></i>","<i class='fas fa-angle-right'></i>"],
@@ -127,10 +133,10 @@
 
 	//Family slider
 	$(".familyslider").owlCarousel({
-		autoPlay: true, 
+		autoPlay: true,
 		slideSpeed:2000,
 		pagination:true,
-		navigation:false,	  
+		navigation:false,
 		items : 4,
 		/* transitionStyle : "fade", */    /* [This code for animation ] */
 		navigationText:["<i class='fas fa-angle-left'></i>","<i class='fas fa-angle-right'></i>"],
@@ -194,28 +200,30 @@
 	});
 /*--------------------------
 10. bxslider active
----------------------------- */   
-	//Home slider     
-	$('.sliders').bxSlider({
+---------------------------- */
+	//Home slider
+
+  $('.sliders').bxSlider({
 		mode: 'fade',
 	    speed:4000,
     	auto:true
 	});
+  
 /*--------------------------
 11. masonry active
----------------------------- */	
+---------------------------- */
 	$('.gallery').masonry({
 	  itemSelector: '.m-item'
-	});  
+	});
 /*--------------------------
 12. scrollUp
----------------------------- */	
+---------------------------- */
 	$.scrollUp({
         scrollText: '<i class="fas fa-angle-up"></i>',
         easingType: 'linear',
         scrollSpeed: 900,
         animation: 'fade'
-    }); 
+    });
 
 	// Contact Form Submition
 	function checkRequire(formId , targetResp){
@@ -285,7 +293,7 @@
 			});
 		}
 	});
-	
-	
- 
-})(jQuery); 
+
+
+
+})(jQuery);

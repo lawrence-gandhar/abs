@@ -117,7 +117,7 @@ class UserProfileEdit(View):
 #******************************************************************************
 
 def upload_profile_pic(request):
-    
+
     if request.method == 'POST' and request.FILES['picture']:
 
         files = request.FILES
@@ -141,6 +141,9 @@ def upload_profile_pic(request):
 
 def edit_personal_info(request):
     if request.POST:
+
+        print(request.POST)
+
 
         try:
             profile = Profile.objects.get(user = request.user)

@@ -187,6 +187,38 @@ $(".country_select").on('hidden.bs.select', function (e){
 });
 
 
+$(".country_select_single").on('hidden.bs.select', function (e){
+
+	$(".state-div").hide();
+	$(".city-div").hide();
+	$(".city-div-spinner").hide();
+
+	$(".state-div-spinner").show();
+
+
+	e.stopImmediatePropagation();
+
+	kk = $(this).val();
+
+	if(kk!=""){
+		$.post("/get_states_dropdown_single/", {'csrfmiddlewaretoken': csrf, 'ids':kk}, function(data){
+
+			$(".state-div-spinner").hide();
+			$(".state-div").show();
+			$("select.states_select_single").empty().append(data);
+			$("select.states_select_single").selectpicker('refresh');
+		});
+	}else{
+		$(".state-div-spinner").hide();
+		$(".city-div-spinner").hide();
+		$("select.states_select_single").val('');
+		$("select.states_select_single").selectpicker('refresh');
+		$("select.city_select_single").val('');
+		$("select.city_select_single").selectpicker('refresh');
+	}
+});
+
+
 //***********************************************************************
 // Get Cities Dropdown
 //***********************************************************************
@@ -216,6 +248,33 @@ $(".states_select").on('hidden.bs.select', function (e){
 		$(".city-div").hide();
 		$("select.city_select").val('');
 		$("select.city_select").selectpicker('refresh');
+		$(".city-div-spinner").hide();
+	}
+});
+
+$(".states_select_single").on('hidden.bs.select', function (e){
+
+	$(".city-div-spinner").show();
+
+	e.stopImmediatePropagation();
+
+	kk = $(this).val();
+
+
+	if(kk!=""){
+
+		$.post("/get_cities_dropdown_single/", {'csrfmiddlewaretoken': csrf, 'ids':kk}, function(data){
+			$(".city-div-spinner").hide();
+			$(".city-div").show();
+			$("select.city_select_single").empty().append(data);
+			$("select.city_select_single").selectpicker('refresh');
+
+		});
+	}else{
+
+		$(".city-div").hide();
+		$("select.city_select_single").val('');
+		$("select.city_select_single").selectpicker('refresh');
 		$(".city-div-spinner").hide();
 	}
 });

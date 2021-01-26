@@ -447,14 +447,14 @@ class Profile(models.Model):
         max_length = 250,
         db_index = True,
         null = True,
-        blank = False,
+        blank = True,
     )
 
     mother_job = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
-        blank = False,
+        blank = True,
     )
 
     mother_name = models.CharField(
@@ -598,7 +598,7 @@ class Profile(models.Model):
     )
 
     city = models.ForeignKey(
-        Countries_States,
+        Countries_Cities,
         db_index = True,
         null = True,
         blank = False,
