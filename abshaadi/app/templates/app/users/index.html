@@ -33,11 +33,16 @@
 						<div class="col-md-6 col-sm-12 col-xs-12">
 							<div class="row">
 								<div class="col-md-3 col-sm-12 text-center">
-									<img src="{% static 'images/user.png' %}" class="img img-responsive pull-left" width="100px"/>
+
+									{% if pro_pic is not None %}
+										<img src="{% get_media_prefix %}{{ pro_pic }}" class="img img-responsive pull-left" width="100px"/>
+									{% else %}
+										<img src="{% static 'images/user.png' %}" class="img img-responsive pull-left" width="100px"/>
+									{% endif %}
 								</div>
 								<div class="col-md-8 col-sm-12">
 									<ul class="ul">
-										<li> 
+										<li>
 											<a href="{% url 'user_profile' %}">
 												<span class="mdi mdi-account-circle"></span> &nbsp; Update Profile
 											</a>
@@ -47,7 +52,7 @@
 												<span class="mdi mdi-camera"></span> &nbsp; Update Profile Picture
 											</a>
 										</li>
-										<li> 
+										<li>
 											<a href="#">
 												<span class="mdi mdi-filter"></span> &nbsp; Edit Partner Preferences
 											</a>
@@ -69,13 +74,13 @@
 						</div>
 					</div>
 				</div>
-			</div>	
+			</div>
 		</div>
     </div>
 </div>
 
 
-<div class="row" style="margin-top:10px;">	
+<div class="row" style="margin-top:10px;">
 
 	<div class="col-md-9">
 
@@ -94,7 +99,7 @@
 								<td>Total Accepted</td>
 								<td>:</td>
 							</tr>
-							<tr>							
+							<tr>
 								<td>Interest Recieved</td>
 								<td>:</td>
 							</tr>
@@ -103,8 +108,8 @@
 								<td>:</td>
 							</tr>
 							<tr>
-								<td>Waiting for Response</td>	
-								<td>:</td>							
+								<td>Waiting for Response</td>
+								<td>:</td>
 							</tr>
 						</table>
 					</div>
@@ -119,7 +124,7 @@
 								<td>Photo Requested</td>
 								<td>:</td>
 							</tr>
-							<tr>							
+							<tr>
 								<td>Photo Request Recieved</td>
 								<td>:</td>
 							</tr>
@@ -128,8 +133,8 @@
 								<td>:</td>
 							</tr>
 							<tr>
-								<td>Photo Access Denied</td>	
-								<td>:</td>							
+								<td>Photo Access Denied</td>
+								<td>:</td>
 							</tr>
 						</table>
 					</div>
@@ -146,17 +151,17 @@
 								<td>Unread Messages</td>
 								<td>:</td>
 							</tr>
-							<tr>								
+							<tr>
 								<td>Messages Sent</td>
 								<td>:</td>
 							</tr>
-							<tr>							
+							<tr>
 								<td>Messages Recieved</td>
 								<td>:</td>
-							</tr>							
+							</tr>
 							<tr>
-								<td>Tickets Raised</td>	
-								<td>:</td>							
+								<td>Tickets Raised</td>
+								<td>:</td>
 							</tr>
 						</table>
 					</div>
@@ -171,7 +176,7 @@
 								<td>Profiles Viewed</td>
 								<td>:</td>
 							</tr>
-							<tr>							
+							<tr>
 								<td>Profiles Shortlisted</td>
 								<td>:</td>
 							</tr>
@@ -180,26 +185,26 @@
 								<td>:</td>
 							</tr>
 							<tr>
-								<td>Profiles Reported</td>	
-								<td>:</td>							
+								<td>Profiles Reported</td>
+								<td>:</td>
 							</tr>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-		
-		<!-- --> 
-		{% include 'app/html_components/latest_matches.html' %}	
-		
+
+		<!-- -->
+		{% include 'app/html_components/latest_matches.html' %}
+
 	</div>
-	
+
 	<div class="col-md-3">
-		{% include 'app/html_components/recent_profiles.html' %}		
-		{% include 'app/html_components/side_search_filters.html' %}		
+		{% include 'app/html_components/recent_profiles.html' %}
+		{% include 'app/html_components/side_search_filters.html' %}
 		{% include 'app/modal_forms/connect_modal.html' %}
 	</div>
-	
+
 </div>
 
 

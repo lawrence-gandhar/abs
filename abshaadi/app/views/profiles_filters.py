@@ -38,8 +38,8 @@ class UserProfileView(View):
     data["page_title"] = "My Profile"
 
     data["css_files"] = ['custom_files/css/Chart.min.css', 'custom_files/css/croppie.css']
-    data["js_files"] = ['custom_files/js/Chart.min.js', 'custom_files/js/croppie.js', 'custom_files/js/user_dashboard.js',
-                        'custom_files/js/common.js', 'custom_files/js/search_filters.js']
+    data["js_files"] = ['custom_files/js/Chart.min.js', 'custom_files/js/croppie.js',
+                        'custom_files/js/search_filters.js', 'custom_files/js/image_crop.js']
 
     #
     #
@@ -57,7 +57,7 @@ class UserProfileView(View):
 
         self.data["pro_pic"] = pro_pic
         self.data["profile"] = Profile.objects.get(user=request.user)
-        self.data["gallery"] = ProfilePictures.objects.filter(user=request.user, set_as_profile_pic=False)
+        self.data["gallery"] = ProfilePictures.objects.filter(user=request.user)
 
         self.data["packages_list"] = Package.objects.filter(is_active = True)
 
@@ -89,8 +89,8 @@ class UserProfileEdit(View):
 
     data["page_title"] = "My Profile"
 
-    data["css_files"] = ['custom_files/css/Chart.min.css', 'custom_files/css/croppie.css']
-    data["js_files"] = ['custom_files/js/Chart.min.js', 'custom_files/js/croppie.js', 'custom_files/js/user_dashboard.js',
+    data["css_files"] = ['custom_files/css/croppie.css']
+    data["js_files"] = ['custom_files/js/croppie.js', 'custom_files/js/user_dashboard.js',
                     'custom_files/js/common.js', 'custom_files/js/search_filters.js']
 
     def get(self,request,id):
@@ -286,7 +286,7 @@ class MySearchView(View):
     data["page_title"] = "Partner Profile Search"
 
     data["css_files"] = []
-    data["js_files"] = ['custom_files/js/common.js', 'custom_files/js/search_filters.js']
+    data["js_files"] = ['custom_files/js/search_filters.js']
 
     #
     #
@@ -346,7 +346,7 @@ class MySearchView(View):
             search = search.filter(country__in = countries)
 
 
-        search = search.values('user', 'fullname', 'dob', 'city', 'country',)
+        search = search.values('user', 'fullname', 'dob', 'city', 'country', 'uid')
 
 
         profile_like = ProfileLike.objects.filter(by_user = request.user).values_list('user_id', flat = True)

@@ -702,41 +702,6 @@ class ProfilePictures(models.Model):
 #
 #***********************************************************************
 
-class Looking_For_Attr(models.Model):
-    user = models.ForeignKey(
-        CustomUser,
-        db_index = True,
-        null = True,
-        blank = True,
-        on_delete = models.CASCADE,
-    )
-
-    height = models.IntegerField(
-        db_index = True,
-        null = True,
-        blank = False,
-    )
-
-    weight = models.IntegerField(
-        db_index = True,
-        null = True,
-        blank = False,
-    )
-
-    complexion = models.CharField(
-        max_length = 50,
-        db_index = True,
-        null = True,
-        blank = False,
-    )
-
-    class Meta:
-        verbose_name_plural = "Attributes Filters"
-
-#***********************************************************************
-#
-#***********************************************************************
-
 class Qualifications(models.Model):
 
     IS_TRUE = ((True, 'YES'), (False, 'NO'))
@@ -805,12 +770,9 @@ class MyFilters(models.Model):
         null = True,
     )
 
-    l_attr = models.ForeignKey(
-        Looking_For_Attr,
-        db_index = True,
+    l_attr = models.TextField(
         null = True,
         blank = True,
-        on_delete = models.SET_NULL,
     )
 
     l_cities = models.ManyToManyField(
@@ -880,6 +842,94 @@ class MyFilters(models.Model):
     class Meta:
         verbose_name_plural = "Filters Table"
 
+
+#***********************************************************************
+# PARTNER PREFERENCES MODEL
+#***********************************************************************
+
+class Partner_Preferences(models.Model):
+
+    IS_TRUE = ((True, 'YES'), (False, 'NO'))
+
+    user = models.ForeignKey(
+        CustomUser,
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.CASCADE,
+    )
+
+    l_attr = models.TextField(
+        null = True,
+        blank = True,
+    )
+
+    l_cities = models.ManyToManyField(
+        Countries_Cities,
+        blank = True,
+        db_index = True,
+    )
+
+    l_states = models.ManyToManyField(
+        Countries_States,
+        blank = True,
+        db_index = True,
+    )
+
+    l_countries = models.ManyToManyField(
+        Countries,
+        blank = True,
+        db_index = True,
+    )
+
+    l_religions = models.ManyToManyField(
+        Religion,
+        blank = True,
+        db_index = True,
+    )
+
+    l_caste = models.ManyToManyField(
+        Caste,
+        blank = True,
+        db_index = True,
+    )
+
+    l_qualifications = models.ForeignKey(
+        Qualifications,
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.SET_NULL,
+    )
+
+    l_jobs = models.ForeignKey(
+        Jobs,
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.SET_NULL,
+    )
+
+    aged_from = models.IntegerField(
+        db_index = True,
+        null = True,
+        blank = True,
+    )
+
+    aged_to = models.IntegerField(
+        db_index = True,
+        null = True,
+        blank = True,
+    )
+
+    is_active = models.BooleanField(
+        default = True,
+        choices = IS_TRUE,
+        db_index = True,
+    )
+
+    class Meta:
+        verbose_name_plural = "Partner Preferences Table"
 
 #***********************************************************************
 # MESSAGE CENTER MODEL
