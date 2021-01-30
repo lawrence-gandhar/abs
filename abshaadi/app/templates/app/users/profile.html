@@ -266,9 +266,15 @@
 						</tr>
 						<tr>
 							<td style="text-align:right;">
+								<strong>Job Type</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.job_type|default_if_none:'-' }}
+							</td>
+							<td style="text-align:right;">
 								<strong>Job Details</strong>
 							</td>
-							<td colspan="5">
+							<td>
 								<strong>:</strong> {{ profile.job_details|default_if_none:'-' }}
 							</td>
 						</tr>

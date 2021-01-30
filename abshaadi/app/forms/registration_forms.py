@@ -83,15 +83,15 @@ class OtherProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ( 'height', 'weight', 'complexion',  'job_details','qualification')
+        fields = ( 'height', 'weight', 'complexion',  'job_details','qualification', 'job_type')
 
         widgets = {
-
             'height' :  TextInput(attrs = {'class':'form-control', 'type':'integer'}),
             'weight' : TextInput(attrs = {'class':'form-control', 'type':'integer'}),
             'complexion' : Select(attrs = {'class':'form-control'}),
             'qualification' : Select(attrs = {'class':'form-control selectpicker', 'data-live-search':'true'}),
             'job_details' : Select(attrs = {'class':'form-control selectpicker', 'data-live-search':'true'}),
+            'job_type' : Select(attrs = {'class':'form-control selectpicker',}),
 
         }
 
@@ -106,7 +106,6 @@ class SummaryForm(ModelForm):
         fields = ('descriptions', 'biodata' )
 
         widgets = {
-
             'descriptions' : Textarea(attrs = {'class':'form-control'}),
             'biodata' : FileInput(attrs = {'class':'form-control','accept':'application/pdf,docx',}),
 
