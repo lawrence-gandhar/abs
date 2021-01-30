@@ -98,7 +98,7 @@ urlpatterns += [
 # Search Pages
 urlpatterns += [
     path('search_results/', never_cache(login_required(profiles_filters.MySearchView.as_view())), name="user_search_results"),
-    path('save_partner_preferences/', never_cache(login_required(profiles_filters.save_partner_preferences)), name="save_partner_preferences")
+    path('save_myfilters/', never_cache(login_required(profiles_filters.save_myfilters)), name="save_myfilters")
 ]
 
 # Partner Profile Views

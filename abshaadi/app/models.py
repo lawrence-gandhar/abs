@@ -163,6 +163,116 @@ class Countries_Cities(models.Model):
         verbose_name_plural = "Cities List"
 
 
+
+#***********************************************************************
+#
+#***********************************************************************
+
+class Qualifications(models.Model):
+
+    IS_TRUE = ((True, 'YES'), (False, 'NO'))
+
+    qualification = models.CharField(
+        max_length = 250,
+        db_index = True,
+        null = True,
+        blank = False,
+    )
+
+    is_active = models.BooleanField(
+        default = True,
+        choices = IS_TRUE,
+        db_index = True,
+    )
+
+    def __str__(self):
+        return self.qualification.capitalize()
+
+    class Meta:
+        verbose_name_plural = "Qualifications Filters"
+
+#***********************************************************************
+#
+#***********************************************************************
+
+class Job_Types(models.Model):
+
+    IS_TRUE = ((True, 'YES'), (False, 'NO'))
+
+    job_type = models.CharField(
+        max_length = 250,
+        db_index = True,
+        null = True,
+        blank = False,
+    )
+
+    is_active = models.BooleanField(
+        default = True,
+        choices = IS_TRUE,
+        db_index = True,
+    )
+
+    def __str__(self):
+        return self.job_type.capitalize()
+
+    class Meta:
+        verbose_name_plural = "Job Types Filters"
+
+#***********************************************************************
+# JOBS MODEL
+#***********************************************************************
+
+class Jobs(models.Model):
+
+    IS_TRUE = ((True, 'YES'), (False, 'NO'))
+
+    job_details = models.CharField(
+        max_length = 250,
+        db_index = True,
+        null = True,
+        blank = False,
+    )
+
+    is_active = models.BooleanField(
+        default = True,
+        choices = IS_TRUE,
+        db_index = True,
+    )
+
+    def __str__(self):
+        return self.job_details.capitalize()
+
+    class Meta:
+        verbose_name_plural = "Jobs Filters"
+
+
+#***********************************************************************
+# COMPLEXIONS MODEL
+#***********************************************************************
+
+class Complexions(models.Model):
+
+    IS_TRUE = ((True, 'YES'), (False, 'NO'))
+
+    complexion_details = models.CharField(
+        max_length = 250,
+        db_index = True,
+        null = True,
+        blank = False,
+    )
+
+    is_active = models.BooleanField(
+        default = True,
+        choices = IS_TRUE,
+        db_index = True,
+    )
+
+    def __str__(self):
+        return self.complexion_details.capitalize()
+
+    class Meta:
+        verbose_name_plural = "Complexion Filters"
+
 #***********************************************************************
 #
 #***********************************************************************
@@ -518,11 +628,12 @@ class Profile(models.Model):
         blank = False,
     )
 
-    complexion = models.CharField(
-        max_length = 50,
+    complexion = models.ForeignKey(
+        Complexions,
         db_index = True,
         null = True,
-        blank = False,
+        blank = True,
+        on_delete = models.SET_NULL,
     )
 
     religion = models.ForeignKey(
@@ -541,18 +652,29 @@ class Profile(models.Model):
         on_delete = models.SET_NULL,
     )
 
-    qualification = models.CharField(
-        max_length = 250,
+    qualification = models.ForeignKey(
+        Qualifications,
         db_index = True,
         null = True,
-        blank = False,
+        blank = True,
+        on_delete = models.SET_NULL,
     )
 
-    job_details = models.CharField(
-        max_length = 250,
+
+    job_type = models.ForeignKey(
+        Job_Types,
+        db_index = True,
+        blank = True,
+        null = True,
+        on_delete = models.SET_NULL,
+    )
+
+    job_details = models.ForeignKey(
+        Jobs,
         db_index = True,
         null = True,
-        blank = False,
+        blank = True,
+        on_delete = models.SET_NULL,
     )
 
     phone_number = models.CharField(
@@ -699,56 +821,6 @@ class ProfilePictures(models.Model):
 
 
 #***********************************************************************
-#
-#***********************************************************************
-
-class Qualifications(models.Model):
-
-    IS_TRUE = ((True, 'YES'), (False, 'NO'))
-
-    qualification = models.CharField(
-        max_length = 250,
-        db_index = True,
-        null = True,
-        blank = False,
-    )
-
-    is_active = models.BooleanField(
-        default = True,
-        choices = IS_TRUE,
-        db_index = True,
-    )
-
-    class Meta:
-        verbose_name_plural = "Qualifications Filters"
-
-
-#***********************************************************************
-# FILTERS MODEL
-#***********************************************************************
-
-class Jobs(models.Model):
-
-    IS_TRUE = ((True, 'YES'), (False, 'NO'))
-
-    job_details = models.CharField(
-        max_length = 250,
-        db_index = True,
-        null = True,
-        blank = False,
-    )
-
-    is_active = models.BooleanField(
-        default = True,
-        choices = IS_TRUE,
-        db_index = True,
-    )
-
-    class Meta:
-        verbose_name_plural = "Jobs Filters"
-
-
-#***********************************************************************
 # FILTERS MODEL
 #***********************************************************************
 
@@ -805,20 +877,28 @@ class MyFilters(models.Model):
         db_index = True,
     )
 
-    l_qualifications = models.ForeignKey(
+    l_qualifications = models.ManyToManyField(
         Qualifications,
         db_index = True,
-        null = True,
         blank = True,
-        on_delete = models.SET_NULL,
     )
 
-    l_jobs = models.ForeignKey(
+    job_type = models.ManyToManyField(
+        Job_Types,
+        db_index = True,
+        blank = True,
+    )
+
+    l_jobs = models.ManyToManyField(
         Jobs,
         db_index = True,
-        null = True,
         blank = True,
-        on_delete = models.SET_NULL,
+    )
+
+    l_complexions = models.ManyToManyField(
+        Complexions,
+        db_index = True,
+        blank = True,
     )
 
     aged_from = models.IntegerField(
@@ -894,20 +974,28 @@ class Partner_Preferences(models.Model):
         db_index = True,
     )
 
-    l_qualifications = models.ForeignKey(
+    l_qualifications = models.ManyToManyField(
         Qualifications,
         db_index = True,
-        null = True,
         blank = True,
-        on_delete = models.SET_NULL,
     )
 
-    l_jobs = models.ForeignKey(
+    job_type = models.ManyToManyField(
+        Job_Types,
+        db_index = True,
+        blank = True,
+    )
+
+    l_jobs = models.ManyToManyField(
         Jobs,
         db_index = True,
-        null = True,
         blank = True,
-        on_delete = models.SET_NULL,
+    )
+
+    l_complexions = models.ManyToManyField(
+        Complexions,
+        db_index = True,
+        blank = True,
     )
 
     aged_from = models.IntegerField(
@@ -920,12 +1008,6 @@ class Partner_Preferences(models.Model):
         db_index = True,
         null = True,
         blank = True,
-    )
-
-    is_active = models.BooleanField(
-        default = True,
-        choices = IS_TRUE,
-        db_index = True,
     )
 
     class Meta:

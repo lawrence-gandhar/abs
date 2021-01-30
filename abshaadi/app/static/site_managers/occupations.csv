@@ -1,0 +1,1154 @@
+job_details, is_active
+"Accountant", 1
+"Accounts Assistant", 1
+"Accounts Clerk", 1
+"Accounts Manager", 1
+"Accounts Staff", 1
+"Acoustic Engineer", 1
+"Actor", 1
+"Actress", 1
+"Actuary", 1
+"Acupuncturist", 1
+"Adjustor", 1
+"Administration Assistant", 1
+"Administration Clerk", 1
+"Administration Manager", 1
+"Administration Staff", 1
+"Administrator", 1
+"Advertising Agent", 1
+"Advertising Assistant", 1
+"Advertising Clerk", 1
+"Advertising Contractor", 1
+"Advertising Executive", 1
+"Advertising Manager", 1
+"Advertising Staff", 1
+"Aerial Erector", 1
+"Aerobic Instructor", 1
+"Aeronautical Engineer", 1
+"Agent", 1
+"Air Traffic Controller", 1
+"Aircraft Designer", 1
+"Aircraft Engineer", 1
+"Aircraft Maintenance Engineer", 1
+"Aircraft Surface Finisher", 1
+"Airman", 1
+"Airport Controller", 1
+"Airport Manager", 1
+"Almoner", 1
+"Ambulance Controller", 1
+"Ambulance Crew", 1
+"Ambulance Driver", 1
+"Amusement Arcade Worker", 1
+"Anaesthetist", 1
+"Analyst", 1
+"Analytical Chemist", 1
+"Animal Breeder", 1
+"Anthropologist", 1
+"Antique Dealer", 1
+"Applications Engineer", 1
+"Applications Programmer", 1
+"Arbitrator", 1
+"Arborist", 1
+"Archaeologist", 1
+"Architect", 1
+"Archivist", 1
+"Area Manager", 1
+"Armourer", 1
+"Aromatherapist", 1
+"Art Critic", 1
+"Art Dealer", 1
+"Art Historian", 1
+"Art Restorer", 1
+"Artexer", 1
+"Artist", 1
+"Arts", 1
+"Assembly Worker", 1
+"Assessor", 1
+"Assistant", 1
+"Assistant Caretaker", 1
+"Assistant Cook", 1
+"Assistant Manager", 1
+"Assistant Nurse", 1
+"Assistant Teacher", 1
+"Astrologer", 1
+"Astronomer", 1
+"Attendant", 1
+"Au Pair", 1
+"Auction Worker", 1
+"Auctioneer", 1
+"Audiologist", 1
+"Audit Clerk", 1
+"Audit Manager", 1
+"Auditor", 1
+"Auto Electrician", 1
+"Auxiliary Nurse", 1
+"Bacon Curer", 1
+"Baggage Handler", 1
+"Bailiff", 1
+"Baker", 1
+"Bakery Assistant", 1
+"Bakery Manager", 1
+"Bakery Operator", 1
+"Balloonist", 1
+"Bank Clerk", 1
+"Bank Manager", 1
+"Bank Messenger", 1
+"Baptist Minister", 1
+"Bar Manager", 1
+"Bar Steward", 1
+"Barber", 1
+"Barmaid", 1
+"Barman", 1
+"Barrister", 1
+"Beautician", 1
+"Beauty Therapist", 1
+"Betting Shop", 1
+"Bill Poster", 1
+"Bingo Caller", 1
+"Biochemist", 1
+"Biologist", 1
+"Blacksmith", 1
+"Blind Assembler", 1
+"Blind Fitter", 1
+"Blinds Installer", 1
+"Boat Builder", 1
+"Body Fitter", 1
+"Bodyguard", 1
+"Bodyshop", 1
+"Book Binder", 1
+"Book Seller", 1
+"Book-Keeper", 1
+"Booking Agent", 1
+"Booking Clerk", 1
+"Bookmaker", 1
+"Botanist", 1
+"Branch Manager", 1
+"Breeder", 1
+"Brewer", 1
+"Brewery Manager", 1
+"Brewery Worker", 1
+"Bricklayer", 1
+"Broadcaster", 1
+"Builder", 1
+"Builders Labourer", 1
+"Building Advisor", 1
+"Building Control", 1
+"Building Engineer", 1
+"Building Estimator", 1
+"Building Foreman", 1
+"Building Inspector", 1
+"Building Manager", 1
+"Building Surveyor", 1
+"Bursar", 1
+"Bus Company", 1
+"Bus Conductor", 1
+"Bus Driver", 1
+"Bus Mechanic", 1
+"Bus Valeter", 1
+"Business Consultant", 1
+"Business Proprietor", 1
+"Butcher", 1
+"Butchery Manager", 1
+"Butler", 1
+"Buyer", 1
+"Cab Driver", 1
+"Cabinet Maker", 1
+"Cable Contractor", 1
+"Cable Jointer", 1
+"Cable TV Installer", 1
+"Cafe Owner", 1
+"Cafe Staff", 1
+"Cafe Worker", 1
+"Calibration Manager", 1
+"Camera Repairer", 1
+"Cameraman", 1
+"Car Dealer", 1
+"Car Delivery Driver", 1
+"Car Park Attendant", 1
+"Car Salesman", 1
+"Car Valet", 1
+"Car Wash Attendant", 1
+"Care Assistant", 1
+"Care Manager", 1
+"Careers Advisor", 1
+"Careers Officer", 1
+"Caretaker", 1
+"Cargo Operator", 1
+"Carpenter", 1
+"Carpet Cleaner", 1
+"Carpet Fitter", 1
+"Carpet Retailer", 1
+"Carphone Fitter", 1
+"Cartographer", 1
+"Cartoonist", 1
+"Cashier", 1
+"Casual Worker", 1
+"Caterer", 1
+"Catering Consultant", 1
+"Catering Manager", 1
+"Catering Staff", 1
+"Caulker", 1
+"Ceiling Contractor", 1
+"Ceiling Fixer", 1
+"Cellarman", 1
+"Chambermaid", 1
+"Chandler", 1
+"Chaplain", 1
+"Charge Hand", 1
+"Charity Worker", 1
+"Chartered", 1
+"Chartered Accountant", 1
+"Chauffeur", 1
+"Chef", 1
+"Chemist", 1
+"Chicken Chaser", 1
+"Child Minder", 1
+"Childminder", 1
+"Chimney Sweep", 1
+"China Restorer", 1
+"Chiropodist", 1
+"Chiropractor", 1
+"Choreographer", 1
+"Church Officer", 1
+"Church Warden", 1
+"Cinema Manager", 1
+"Circus Proprietor", 1
+"Circus Worker", 1
+"Civil Engineer", 1
+"Civil Servant", 1
+"Claims Adjustor", 1
+"Claims Assessor", 1
+"Claims Manager", 1
+"Clairvoyant", 1
+"Classroom Aide", 1
+"Cleaner", 1
+"Clergyman", 1
+"Cleric", 1
+"Clerk", 1
+"Commissioned", 1
+"Consultant", 1
+"Coroner", 1
+"Councillor", 1
+"Counsellor", 1
+"Dealer", 1
+"Decorator", 1
+"Delivery Driver", 1
+"Doctor", 1
+"Driver", 1
+"Economist", 1
+"Editor", 1
+"Employee", 1
+"Employment", 1
+"Engineer", 1
+"English Teacher", 1
+"Entertainer", 1
+"Envoy", 1
+"Executive", 1
+"Farmer", 1
+"Fireman", 1
+"Floor Layer", 1
+"Floor Manager", 1
+"Florist", 1
+"Flour Miller", 1
+"Flower Arranger", 1
+"Flying Instructor", 1
+"Foam Convertor", 1
+"Food Processor", 1
+"Footballer", 1
+"Foreman", 1
+"Forensic Scientist", 1
+"Forest Ranger", 1
+"Forester", 1
+"Fork Lift Truck Driver", 1
+"Forwarding Agent", 1
+"Foster Parent", 1
+"Foundry Worker", 1
+"Fraud Investigator", 1
+"French Polisher", 1
+"Fruiterer", 1
+"Fuel Merchant", 1
+"Fund Raiser", 1
+"Funeral Director", 1
+"Funeral Furnisher", 1
+"Furnace Man", 1
+"Furniture Dealer", 1
+"Furniture Remover", 1
+"Furniture Restorer", 1
+"Furrier", 1
+"Gallery Owner", 1
+"Gambler", 1
+"Gamekeeper", 1
+"Gaming Board Inspector", 1
+"Gaming Club Manager", 1
+"Gaming Club Proprietor", 1
+"Garage Attendant", 1
+"Garage Foreman", 1
+"Garage Manager", 1
+"Garda", 1
+"Garden Designer", 1
+"Gardener", 1
+"Gas Fitter", 1
+"Gas Mechanic", 1
+"Gas Technician", 1
+"Gate Keeper", 1
+"Genealogist", 1
+"General Practitioner", 1
+"Geologist", 1
+"Geophysicist", 1
+"Gilder", 1
+"Glass Worker", 1
+"Glazier", 1
+"Goldsmith", 1
+"Golf Caddy", 1
+"Golf Club Professional", 1
+"Golfer", 1
+"Goods Handler", 1
+"Governor", 1
+"Granite Technician", 1
+"Graphic Designer", 1
+"Graphologist", 1
+"Grave Digger", 1
+"Gravel Merchant", 1
+"Green Keeper", 1
+"Greengrocer", 1
+"Grocer", 1
+"Groom", 1
+"Ground Worker", 1
+"Groundsman", 1
+"Guest House Owner", 1
+"Guest House Proprietor", 1
+"Gun Smith", 1
+"Gynaecologist", 1
+"HGV Driver", 1
+"HGV Mechanic", 1
+"Hairdresser", 1
+"Handyman", 1
+"Hardware Dealer", 1
+"Haulage Contractor", 1
+"Hawker", 1
+"Health Advisor", 1
+"Health And Safety", 1
+"Health Care Assistant", 1
+"Health Consultant", 1
+"Health Nurse", 1
+"Health Planner", 1
+"Health Service", 1
+"Health Therapist", 1
+"Health Visitor", 1
+"Hearing Therapist", 1
+"Heating Engineer", 1
+"Herbalist", 1
+"Highway Inspector", 1
+"Hire Car Driver", 1
+"Historian", 1
+"History Teacher", 1
+"Hod Carrier", 1
+"Home Economist", 1
+"Home Help", 1
+"Homecare Manager", 1
+"Homeopath", 1
+"Homeworker", 1
+"Hop Merchant", 1
+"Horse Breeder", 1
+"Horse Dealer", 1
+"Horse Riding Instructor", 1
+"Horse Trader", 1
+"Horticultural Consultant", 1
+"Horticulturalist", 1
+"Hosiery Mechanic", 1
+"Hosiery Worker", 1
+"Hospital Consultant", 1
+"Hospital Doctor", 1
+"Hospital Manager", 1
+"Hospital Orderly", 1
+"Hospital Technician", 1
+"Hospital Warden", 1
+"Hospital Worker", 1
+"Hostess", 1
+"Hot Foil Printer", 1
+"Hotel Consultant", 1
+"Hotel Worker", 1
+"Hotelier", 1
+"Househusband", 1
+"Housekeeper", 1
+"Housewife", 1
+"Housing Assistant", 1
+"Housing Officer", 1
+"Housing Supervisor", 1
+"Hygienist", 1
+"Hypnotherapist", 1
+"Hypnotist", 1
+"IT Consultant", 1
+"IT Manager", 1
+"IT Trainer", 1
+"Ice Cream Vendor", 1
+"Illustrator", 1
+"Immigration Officer", 1
+"Import Consultant", 1
+"Importer", 1
+"Independent Means", 1
+"Induction Moulder", 1
+"Industrial Chemist", 1
+"Industrial Consultant", 1
+"Injection Moulder", 1
+"Inspector", 1
+"Instructor", 1
+"Instrument Engineer", 1
+"Instrument Maker", 1
+"Instrument Supervisor", 1
+"Instrument Technician", 1
+"Insurance Agent", 1
+"Insurance Assessor", 1
+"Insurance Broker", 1
+"Insurance Consultant", 1
+"Insurance Inspector", 1
+"Insurance Staff", 1
+"Interior Decorator", 1
+"Interior Designer", 1
+"Interpreter", 1
+"Interviewer", 1
+"Inventor", 1
+"Investigator", 1
+"Investment Advisor", 1
+"Investment Banker", 1
+"Investment Manager", 1
+"Investment Strategist", 1
+"Ironmonger", 1
+"Janitor", 1
+"Jazz Composer", 1
+"Jeweller", 1
+"Jewellery", 1
+"Jockey", 1
+"Joiner", 1
+"Joinery Consultant", 1
+"Journalist", 1
+"Judge", 1
+"Keep Fit Instructor", 1
+"Kennel Hand", 1
+"Kitchen Worker", 1
+"Knitter", 1
+"Labelling Operator", 1
+"Laboratory Analyst", 1
+"Labourer", 1
+"Laminator", 1
+"Lampshade Maker", 1
+"Land Agent", 1
+"Land Surveyor", 1
+"Landlady", 1
+"Landlord", 1
+"Landowner", 1
+"Landworker", 1
+"Lathe Operator", 1
+"Laundry Staff", 1
+"Laundry Worker", 1
+"Lavatory Attendant", 1
+"Law Clerk", 1
+"Lawn Mower", 1
+"Lawyer", 1
+"Leaflet Distributor", 1
+"Leather Worker", 1
+"Lecturer", 1
+"Ledger Clerk", 1
+"Legal Advisor", 1
+"Legal Assistant", 1
+"Legal Executive", 1
+"Legal Secretary", 1
+"Letting Agent", 1
+"Liaison Officer", 1
+"Librarian", 1
+"Library Manager", 1
+"Licensed Premises", 1
+"Licensee", 1
+"Licensing", 1
+"Lifeguard", 1
+"Lift Attendant", 1
+"Lift Engineer", 1
+"Lighterman", 1
+"Lighthouse Keeper", 1
+"Lighting Designer", 1
+"Lighting Technician", 1
+"Lime Kiln Attendant", 1
+"Line Manager", 1
+"Line Worker", 1
+"Lineman", 1
+"Linguist", 1
+"Literary Agent", 1
+"Literary Editor", 1
+"Lithographer", 1
+"Litigation Manager", 1
+"Loans Manager", 1
+"Local Government", 1
+"Lock Keeper", 1
+"Locksmith", 1
+"Locum Pharmacist", 1
+"Log Merchant", 1
+"Lorry Driver", 1
+"Loss Adjustor", 1
+"Loss Assessor", 1
+"Lumberjack", 1
+"Machine Fitters", 1
+"Machine Minder", 1
+"Machine Operator", 1
+"Machine Setter", 1
+"Machine Tool", 1
+"Machine Tool Fitter", 1
+"Machinist", 1
+"Magician", 1
+"Magistrate", 1
+"Magistrates Clerk", 1
+"Maid", 1
+"Maintenance Fitter", 1
+"Make Up Artist", 1
+"Manicurist", 1
+"Manufacturing", 1
+"Map Mounter", 1
+"Marble Finisher", 1
+"Marble Mason", 1
+"Marine Broker", 1
+"Marine Consultant", 1
+"Marine Electrician", 1
+"Marine Engineer", 1
+"Marine Geologist", 1
+"Marine Pilot", 1
+"Marine Surveyor", 1
+"Market Gardener", 1
+"Market Research", 1
+"Market Researcher", 1
+"Market Trader", 1
+"Marketing Agent", 1
+"Marketing Assistant", 1
+"Marketing Coordinator", 1
+"Marketing Director", 1
+"Marketing Manager", 1
+"Marquee Erector", 1
+"Massage Therapist", 1
+"Masseur", 1
+"Masseuse", 1
+"Master Mariner", 1
+"Materials Controller", 1
+"Materials Manager", 1
+"Mathematician", 1
+"Maths Teacher", 1
+"Matron", 1
+"Mattress Maker", 1
+"Meat Inspector", 1
+"Meat Wholesaler", 1
+"Mechanic", 1
+"Medal Dealer", 1
+"Medical Advisor", 1
+"Medical Assistant", 1
+"Medical Consultant", 1
+"Medical Officer", 1
+"Medical Physicist", 1
+"Medical Practitioner", 1
+"Medical Researcher", 1
+"Medical Secretary", 1
+"Medical Student", 1
+"Medical Supplier", 1
+"Medical Technician", 1
+"Merchandiser", 1
+"Merchant", 1
+"Merchant Banker", 1
+"Merchant Seaman", 1
+"Messenger", 1
+"Metal Dealer", 1
+"Metal Engineer", 1
+"Metal Polisher", 1
+"Metal Worker", 1
+"Metallurgist", 1
+"Meteorologist", 1
+"Meter Reader", 1
+"Microbiologist", 1
+"Midwife", 1
+"Military Leader", 1
+"Milklady", 1
+"Milkman", 1
+"Mill Operator", 1
+"Mill Worker", 1
+"Miller", 1
+"Milliner", 1
+"Millwright", 1
+"Miner", 1
+"Mineralologist", 1
+"Minibus Driver", 1
+"Minicab Driver", 1
+"Mining Consultant", 1
+"Mining Engineer", 1
+"Money Broker", 1
+"Moneylender", 1
+"Mooring Contractor", 1
+"Mortgage Broker", 1
+"Mortician", 1
+"Motor Dealer", 1
+"Motor Engineer", 1
+"Motor Fitter", 1
+"Motor Mechanic", 1
+"Motor Racing", 1
+"Motor Trader", 1
+"Museum Assistant", 1
+"Museum Attendant", 1
+"Music Teacher", 1
+"Musician", 1
+"Nanny", 1
+"Navigator", 1
+"Negotiator", 1
+"Neurologist", 1
+"Newsagent", 1
+"Night Porter", 1
+"Night Watchman", 1
+"Nuclear Scientist", 1
+"Nun", 1
+"Nurse", 1
+"Nursery Assistant", 1
+"Nursery Nurse", 1
+"Nursery Worker", 1
+"Nurseryman", 1
+"Nursing Assistant", 1
+"Nursing Auxiliary", 1
+"Nursing Manager", 1
+"Nursing Sister", 1
+"Nutritionist", 1
+"Off Shore", 1
+"Office Manager", 1
+"Office Worker", 1
+"Oil Broker", 1
+"Oil Rig Crew", 1
+"Opera Singer", 1
+"Operations", 1
+"Operative", 1
+"Operator", 1
+"Optical", 1
+"Optical Advisor", 1
+"Optical Assistant", 1
+"Optician", 1
+"Optometrist", 1
+"Orchestral", 1
+"Organiser", 1
+"Organist", 1
+"Ornamental", 1
+"Ornithologist", 1
+"Orthopaedic", 1
+"Orthoptist", 1
+"Osteopath", 1
+"Outdoor Pursuits", 1
+"Outreach Worker", 1
+"Packaging", 1
+"Packer", 1
+"Paediatrician", 1
+"Paint Consultant", 1
+"Painter", 1
+"Palaeobotanist", 1
+"Palaeontologist", 1
+"Pallet Maker", 1
+"Panel Beater", 1
+"Paramedic", 1
+"Park Attendant", 1
+"Park Keeper", 1
+"Park Ranger", 1
+"Partition Erector", 1
+"Parts Man", 1
+"Parts Manager", 1
+"Parts Supervisor", 1
+"Party Planner", 1
+"Pasteuriser", 1
+"Pastry Chef", 1
+"Patent Agent", 1
+"Patent Attorney", 1
+"Pathologist", 1
+"Patrolman", 1
+"Pattern Cutter", 1
+"Pattern Maker", 1
+"Pattern Weaver", 1
+"Pawnbroker", 1
+"Payroll Assistant", 1
+"Payroll Clerk", 1
+"Payroll Manager", 1
+"Payroll Supervisor", 1
+"Personnel Officer", 1
+"Pest Controller", 1
+"Pet Minder", 1
+"Pharmacist", 1
+"Philatelist", 1
+"Photographer", 1
+"Physician", 1
+"Physicist", 1
+"Physiologist", 1
+"Physiotherapist", 1
+"Piano Teacher", 1
+"Piano Tuner", 1
+"Picture Editor", 1
+"Picture Framer", 1
+"Picture Reseacher", 1
+"Pig Man", 1
+"Pig Manager", 1
+"Pilot", 1
+"Pipe Fitter", 1
+"Pipe Inspector", 1
+"Pipe Insulator", 1
+"Pipe Layer", 1
+"Planning Engineer", 1
+"Planning Manager", 1
+"Planning Officer", 1
+"Planning Technician", 1
+"Plant Attendant", 1
+"Plant Driver", 1
+"Plant Engineer", 1
+"Plant Fitter", 1
+"Plant Manager", 1
+"Plant Operator", 1
+"Plasterer", 1
+"Plastics Consultant", 1
+"Plastics Engineer", 1
+"Plate Layer", 1
+"Plater", 1
+"Playgroup Assistant", 1
+"Playgroup Leader", 1
+"Plumber", 1
+"Podiatrist", 1
+"Police Officer", 1
+"Polisher", 1
+"Pool Attendant", 1
+"Pools Collector", 1
+"Porter", 1
+"Portfolio Manager", 1
+"Post Sorter", 1
+"Postman", 1
+"Postmaster", 1
+"Postwoman", 1
+"Potter", 1
+"Practice Manager", 1
+"Preacher", 1
+"Precision Engineer", 1
+"Premises", 1
+"Premises Security", 1
+"Press Officer", 1
+"Press Operator", 1
+"Press Setter", 1
+"Presser", 1
+"Priest", 1
+"Print Finisher", 1
+"Printer", 1
+"Prison Chaplain", 1
+"Prison Officer", 1
+"Private Investigator", 1
+"Probation Officer", 1
+"Probation Worker", 1
+"Procurator Fiscal", 1
+"Produce Supervisor", 1
+"Producer", 1
+"Product Installer", 1
+"Product Manager", 1
+"Production Engineer", 1
+"Production Hand", 1
+"Production Manager", 1
+"Production Planner", 1
+"Professional Boxer", 1
+"Professional Racing", 1
+"Professional Wrestler", 1
+"Progress Chaser", 1
+"Progress Clerk", 1
+"Project Co-ordinator", 1
+"Project Engineer", 1
+"Project Leader", 1
+"Project Manager", 1
+"Project Worker", 1
+"Projectionist", 1
+"Promoter", 1
+"Proof Reader", 1
+"Property Buyer", 1
+"Property Dealer", 1
+"Property Developer", 1
+"Property Manager", 1
+"Property Valuer", 1
+"Proprietor", 1
+"Psychiatrist", 1
+"Psychoanalyst", 1
+"Psychologist", 1
+"Psychotherapist", 1
+"Public House Manager", 1
+"Public Relations Officer", 1
+"Publican", 1
+"Publicity Manager", 1
+"Publisher", 1
+"Publishing Manager", 1
+"Purchase Clerk", 1
+"Purchase Ledger Clerk", 1
+"Purchasing Assistant", 1
+"Purchasing Manager", 1
+"Purser", 1
+"Quality Controller", 1
+"Quality Engineer", 1
+"Quality Inspector", 1
+"Quality Manager", 1
+"Quality Technician", 1
+"Quantity Surveyor", 1
+"Quarry Worker", 1
+"Racehorse Groom", 1
+"Racing Organiser", 1
+"Radio Controller", 1
+"Radio Director", 1
+"Radio Engineer", 1
+"Radio Operator", 1
+"Radio Presenter", 1
+"Radio Producer", 1
+"Radiographer", 1
+"Radiologist", 1
+"Rally Driver", 1
+"Receptionist", 1
+"Recorder", 1
+"Records Supervisor", 1
+"Recovery Vehicle Coordinator", 1
+"Recreational", 1
+"Recruitment Consultant", 1
+"Rector", 1
+"Reflexologist", 1
+"Refractory Engineer", 1
+"Refrigeration Engineer", 1
+"Refuse Collector", 1
+"Registrar", 1
+"Regulator", 1
+"Relocation Agent", 1
+"Remedial Therapist", 1
+"Rent Collector", 1
+"Rent Officer", 1
+"Repair Man", 1
+"Repairer", 1
+"Reporter", 1
+"Representative", 1
+"Reprographic Assistant", 1
+"Research Analyst", 1
+"Research Consultant", 1
+"Research Director", 1
+"Research Scientist", 1
+"Research Technician", 1
+"Researcher", 1
+"Resin Caster", 1
+"Restaurant Manager", 1
+"Restaurateur", 1
+"Restorer", 1
+"Retired", 1
+"Revenue Clerk", 1
+"Revenue Officer", 1
+"Riding Instructor", 1
+"Rig Worker", 1
+"Rigger", 1
+"Riveter", 1
+"Road Safety Officer", 1
+"Road Sweeper", 1
+"Road Worker", 1
+"Roof Tiler", 1
+"Roofer", 1
+"Rose Grower", 1
+"Royal Marine", 1
+"Rug Maker", 1
+"Saddler", 1
+"Safety Officer", 1
+"Sail Maker", 1
+"Sales Administrator", 1
+"Sales Assistant", 1
+"Sales Director", 1
+"Sales Engineer", 1
+"Sales Executive", 1
+"Sales Manager", 1
+"Sales Representative", 1
+"Sales Support", 1
+"Salesman", 1
+"Saleswoman", 1
+"Sand Blaster", 1
+"Saw Miller", 1
+"Scaffolder", 1
+"School Crossing", 1
+"School Inspector", 1
+"Scientific Officer", 1
+"Scientist", 1
+"Scrap Dealer", 1
+"Screen Printer", 1
+"Screen Writer", 1
+"Script Writer", 1
+"Sculptor", 1
+"Seaman", 1
+"Seamstress", 1
+"Secretary", 1
+"Security Consultant", 1
+"Security Controller", 1
+"Security Guard", 1
+"Security Officer", 1
+"Servant", 1
+"Service Engineer", 1
+"Service Manager", 1
+"Share Dealer", 1
+"Sheet Metal Worker", 1
+"Shelf Filler", 1
+"Shelter Warden", 1
+"Shepherd", 1
+"Sheriff", 1
+"Sheriff Clerk", 1
+"Sheriff Principal", 1
+"Shift Controller", 1
+"Ship Broker", 1
+"Ship Builder", 1
+"Shipping Clerk", 1
+"Shipping Officer", 1
+"Shipwright", 1
+"Shipyard Worker", 1
+"Shoe Maker", 1
+"Shoe Repairer", 1
+"Shooting Instructor", 1
+"Shop Assistant", 1
+"Shop Fitter", 1
+"Shop Keeper", 1
+"Shop Manager", 1
+"Shop Proprietor", 1
+"Shot Blaster", 1
+"Show Jumper", 1
+"Showman", 1
+"Shunter", 1
+"Sign Maker", 1
+"Signalman", 1
+"Signwriter", 1
+"Site Agent", 1
+"Site Engineer", 1
+"Skipper", 1
+"Slater", 1
+"Slaughterman", 1
+"Smallholder", 1
+"Social Worker", 1
+"Software Consultant", 1
+"Software Engineer", 1
+"Soldier", 1
+"Solicitor", 1
+"Song Writer", 1
+"Sound Artist", 1
+"Sound Engineer", 1
+"Sound Technician", 1
+"Special Constable", 1
+"Special Needs", 1
+"Speech Therapist", 1
+"Sports Administrator", 1
+"Sports Coach", 1
+"Sports Commentator", 1
+"Sportsman", 1
+"Sportsperson", 1
+"Sportswoman", 1
+"Spring Maker", 1
+"Stable Hand", 1
+"Staff Nurse", 1
+"Stage Director", 1
+"Stage Hand", 1
+"Stage Manager", 1
+"Stage Mover", 1
+"Station Manager", 1
+"Stationer", 1
+"Statistician", 1
+"Steel Erector", 1
+"Steel Worker", 1
+"Steeplejack", 1
+"Stenographer", 1
+"Steward", 1
+"Stewardess", 1
+"Stock Controller", 1
+"Stock Manager", 1
+"Stockbroker", 1
+"Stockman", 1
+"Stocktaker", 1
+"Stone Cutter", 1
+"Stone Sawyer", 1
+"Stonemason", 1
+"Store Detective", 1
+"Storeman", 1
+"Storewoman", 1
+"Street Entertainer", 1
+"Street Trader", 1
+"Stud Hand", 1
+"Student", 1
+"Student Nurse", 1
+"Student Teacher", 1
+"Studio Manager", 1
+"Sub-Postmaster", 1
+"Sub-Postmistress", 1
+"Supervisor", 1
+"Supply Teacher", 1
+"Surgeon", 1
+"Surveyor", 1
+"Systems Analyst", 1
+"Systems Engineer", 1
+"Systems Manager", 1
+"TV Editor", 1
+"Tachograph Analyst", 1
+"Tacker", 1
+"Tailor", 1
+"Tank Farm Operative", 1
+"Tanker Driver", 1
+"Tanner", 1
+"Tattooist", 1
+"Tax Advisor", 1
+"Tax Analyst", 1
+"Tax Assistant", 1
+"Tax Consultant", 1
+"Tax Inspector", 1
+"Tax Manager", 1
+"Tax Officer", 1
+"Taxi Controller", 1
+"Taxi Driver", 1
+"Taxidermist", 1
+"Tea Blender", 1
+"Tea Taster", 1
+"Teacher", 1
+"Teachers Assistant", 1
+"Technical Advisor", 1
+"Technical Analyst", 1
+"Technical Assistant", 1
+"Technical Author", 1
+"Technical Clerk", 1
+"Technical Co-ordinator", 1
+"Technical Director", 1
+"Technical Editor", 1
+"Technical Engineer", 1
+"Technical Illustrator", 1
+"Technical Instructor", 1
+"Technical Liaison", 1
+"Technical Manager", 1
+"Technician", 1
+"Telecommunication", 1
+"Telecommunications", 1
+"Telegraphist", 1
+"Telemarketeer", 1
+"Telephone Engineer", 1
+"Telephonist", 1
+"Telesales Person", 1
+"Television Director", 1
+"Television Engineer", 1
+"Television Presenter", 1
+"Television Producer", 1
+"Telex Operator", 1
+"Temperature Time", 1
+"Tennis Coach", 1
+"Textile Consultant", 1
+"Textile Engineer", 1
+"Textile Technician", 1
+"Textile Worker", 1
+"Thatcher", 1
+"Theatre Manager", 1
+"Theatre Technician", 1
+"Theatrical Agent", 1
+"Therapist", 1
+"Thermal Engineer", 1
+"Thermal Insulator", 1
+"Ticket Agent", 1
+"Ticket Inspector", 1
+"Tiler", 1
+"Timber Inspector", 1
+"Timber Worker", 1
+"Tobacconist", 1
+"Toll Collector", 1
+"Tool Maker", 1
+"Tour Agent", 1
+"Tour Guide", 1
+"Town Clerk", 1
+"Town Planner", 1
+"Toy Maker", 1
+"Toy Trader", 1
+"Track Worker", 1
+"Tractor Driver", 1
+"Tractor Mechanic", 1
+"Trade Mark Agent", 1
+"Trade Union Official", 1
+"Trading Standards", 1
+"Traffic Warden", 1
+"Train Driver", 1
+"Trainee Manager", 1
+"Training Advisor", 1
+"Training Assistant", 1
+"Training Co-ordinator", 1
+"Training Consultant", 1
+"Training Instructor", 1
+"Training Manager", 1
+"Training Officer", 1
+"Transcriber", 1
+"Translator", 1
+"Transport Clerk", 1
+"Transport Consultant", 1
+"Transport Controller", 1
+"Transport Engineer", 1
+"Transport Manager", 1
+"Transport Officer", 1
+"Transport Planner", 1
+"Travel Agent", 1
+"Travel Clerk", 1
+"Travel Consultant", 1
+"Travel Courier", 1
+"Travel Guide", 1
+"Travel Guide Writer", 1
+"Travel Representative", 1
+"Travelling Showman", 1
+"Treasurer", 1
+"Tree Feller", 1
+"Tree Surgeon", 1
+"Trichologist", 1
+"Trinity House Pilot", 1
+"Trout Farmer", 1
+"Tug Skipper", 1
+"Tunneller", 1
+"Turf Accountant", 1
+"Turkey Farmer", 1
+"Turner", 1
+"Tutor", 1
+"Typesetter", 1
+"Typewriter Engineer", 1
+"Typist", 1
+"Tyre Builder", 1
+"Tyre Fitter", 1
+"Tyre Inspector", 1
+"Tyre Technician", 1
+"Undertaker", 1
+"Underwriter", 1
+"Upholsterer", 1
+"Valuer", 1
+"Valve Technician", 1
+"Van Driver", 1
+"Vehicle Assessor", 1
+"Vehicle Body Worker", 1
+"Vehicle Engineer", 1
+"Vehicle Technician", 1
+"Ventriloquist", 1
+"Verger", 1
+"Veterinary Surgeon", 1
+"Vicar", 1
+"Video Artist", 1
+"Violin Maker", 1
+"Violinist", 1
+"Voluntary Worker", 1
+"Wages Clerk", 1
+"Waiter", 1
+"Waitress", 1
+"Warden", 1
+"Warehouse Manager", 1
+"Warehouseman", 1
+"Warehousewoman", 1
+"Watchmaker", 1
+"Weaver", 1
+"Weighbridge Clerk", 1
+"Weighbridge Operator", 1
+"Welder", 1
+"Welfare Assistant", 1
+"Welfare Officer", 1
+"Welfare Rights Officer", 1
+"Wheel Clamper", 1
+"Wholesale Newspaper", 1
+"Window Cleaner", 1
+"Window Dresser", 1
+"Windscreen Fitter", 1
+"Wine Merchant", 1
+"Wood Carver", 1
+"Wood Cutter", 1
+"Wood Worker", 1
+"Word Processing Operator", 1
+"Works Manager", 1
+"Writer", 1
+"Yacht Master", 1
+"Yard Manager", 1
+"Youth Hostel Warden", 1
+"Youth Worker", 1
+"Zoo Keeper", 1
+"Zoo Manager", 1
+"Zoologist", 1

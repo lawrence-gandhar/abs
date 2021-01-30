@@ -321,7 +321,7 @@ function save_partner_search(elem, inp_name){
 
 		f_data = formdata + "&inp="+inp;
 
-		$.post("/save_partner_preferences/", f_data, function(data){
+		$.post("/save_myfilters/", f_data, function(data){
 			$(".processing-div-spinner").hide();
 			$(".message_div").append(success_msg('Data Saved'));
 		});

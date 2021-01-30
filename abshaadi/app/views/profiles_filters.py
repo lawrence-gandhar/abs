@@ -248,7 +248,7 @@ def handle_uploaded_file(f,user_id):
 #******************************************************************************
 
 
-def save_partner_preferences(request):
+def save_myfilters(request):
 
     if request.POST:
         form = search_forms.MyFiltersForm(request.POST)
@@ -465,3 +465,8 @@ def partner_profile_view(request, user_id=None):
         return render(request, template_name, data)
 
     return redirect('/page_403/')
+
+
+#******************************************************************************
+# PARTNER PREFERENCES
+#******************************************************************************

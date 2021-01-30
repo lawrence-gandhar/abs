@@ -1,0 +1,88 @@
+{% load static %}
+
+<div class="modal" tabindex="-1" role="dialog" id="edit_partner_preferences_form" style="background-color:#464e4ec2;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form method="post" action="" enctype="multipart/form-data">
+        <div class="modal-header">
+          <h5 class="modal-title">Add/Edit Partner Preferences</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {% csrf_token %}
+          <div class="row" style="margin-top:0px; padding-left:10px; padding-right:10px;">
+            <div class="col-12" style="margin-top:10px;">
+      				<label>Religion</label>
+      				{{search_profile.l_religions}}
+      			</div>
+
+      			<div class="col-12 caste-div-spinner hide text-center" style="margin-top:10px;">
+      				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
+      			</div>
+
+      			<div class="col-12 caste-div hide" style="margin-top:10px;">
+      				<label>Caste/Denomination/Ethinicity</label>
+      				<select name="l_caste" class="form-control selectpicker castes_select" multiple></select>
+      			</div>
+
+      			<div class="col-12" style="margin-top:10px;">
+      				<label>Country</label>
+      				{{search_profile.l_countries}}
+      			</div>
+
+      			<div class="col-12 state-div-spinner hide text-center" style="margin-top:10px;">
+      				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
+      			</div>
+
+      			<div class="col-12 state-div hide" style="margin-top:10px;">
+      				<label>State</label>
+      				<select name="l_states" class="form-control selectpicker states_select" multiple></select>
+      			</div>
+
+      			<div class="col-12 city-div-spinner hide text-center" style="margin-top:10px;">
+      				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
+      			</div>
+
+      			<div class="col-12 city-div hide" style="margin-top:10px;">
+      				<label>City</label>
+      				<select class="form-control selectpicker city_select" name="l_cities" multiple></select>
+      			</div>
+
+      			<div class="col-12" style="margin-top:10px;">
+      				<label>Select Age</label>
+      				{{search_profile.aged_from}}
+      				{{search_profile.aged_to}}
+      			</div>
+
+            <div class="col-12 city-div hide" style="margin-top:10px;">
+              <label>Height</label>
+              <select class="form-control selectpicker city_select" name="l_cities" multiple></select>
+            </div>
+
+            <div class="col-12 city-div hide" style="margin-top:10px;">
+              <label>Weight</label>
+              <select class="form-control selectpicker city_select" name="l_cities" multiple></select>
+            </div>
+
+      			<div class="col-12" style="margin-top:20px;">
+      				<label>Complexion</label>
+      				<select></select>
+      			</div>
+
+      			<div class="col-12" style="margin-top:10px;">
+      				<label>Job</label>
+      				<select></select>
+      			</div>
+
+      			<div class="col-12" style="margin-top:10px;">
+      				<label>Qualification</label>
+      				<select></select>
+      			</div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
