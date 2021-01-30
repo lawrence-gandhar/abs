@@ -32,7 +32,7 @@ class Religion(models.Model):
     )
 
     def __str__(self):
-        return self.religion_name.capitalize()
+        return self.religion_name.title()
 
     class Meta:
         verbose_name_plural = "Religions"
@@ -64,7 +64,7 @@ class Caste(models.Model):
     )
 
     def __str__(self):
-        return self.caste_name.capitalize()
+        return self.caste_name.title()
 
     class Meta:
         verbose_name_plural = "Religious Castes"
@@ -87,7 +87,7 @@ class Countries(models.Model):
     )
 
     def __str__(self):
-        return self.country_name.capitalize()
+        return self.country_name.title()
 
     class Meta:
         verbose_name_plural = "Countries List"
@@ -118,7 +118,7 @@ class Countries_States(models.Model):
     )
 
     def __str__(self):
-        return self.state_name.capitalize()
+        return self.state_name.title()
 
     class Meta:
         verbose_name_plural = "States List"
@@ -157,7 +157,7 @@ class Countries_Cities(models.Model):
     )
 
     def __str__(self):
-        return self.city_name.capitalize()
+        return self.city_name.title()
 
     class Meta:
         verbose_name_plural = "Cities List"
@@ -186,7 +186,7 @@ class Qualifications(models.Model):
     )
 
     def __str__(self):
-        return self.qualification.capitalize()
+        return self.qualification.title()
 
     class Meta:
         verbose_name_plural = "Qualifications Filters"
@@ -213,7 +213,7 @@ class Job_Types(models.Model):
     )
 
     def __str__(self):
-        return self.job_type.capitalize()
+        return self.job_type.title()
 
     class Meta:
         verbose_name_plural = "Job Types Filters"
@@ -553,25 +553,29 @@ class Profile(models.Model):
         blank = True,
     )
 
-    father_job = models.CharField(
-        max_length = 250,
-        db_index = True,
-        null = True,
-        blank = True,
-    )
-
-    mother_job = models.CharField(
-        max_length = 250,
-        db_index = True,
-        null = True,
-        blank = True,
-    )
-
     mother_name = models.CharField(
         max_length = 250,
         db_index = True,
         null = True,
         blank = True,
+    )
+
+    father_job = models.ForeignKey(
+        Jobs,
+        related_name = 'father_job',
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.SET_NULL,
+    )
+
+    mother_job = models.ForeignKey(
+        Jobs,
+        related_name = 'mother_job',
+        db_index = True,
+        null = True,
+        blank = True,
+        on_delete = models.SET_NULL,
     )
 
     siblings = models.IntegerField(

@@ -96,3 +96,14 @@ class JobsAdmin(admin.ModelAdmin):
     model = Jobs
     list_display = ('job_details', 'is_active',)
     ordering = ('id',)
+
+
+#******************************************************************************
+#
+#******************************************************************************
+
+@admin.register(Qualifications)
+class QualificationsAdmin(admin.ModelAdmin):
+    model = Qualifications
+    list_display = ('qualification', 'is_active',)
+    ordering = ('id',)

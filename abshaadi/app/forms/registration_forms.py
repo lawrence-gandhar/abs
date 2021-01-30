@@ -89,9 +89,9 @@ class OtherProfileForm(ModelForm):
 
             'height' :  TextInput(attrs = {'class':'form-control', 'type':'integer'}),
             'weight' : TextInput(attrs = {'class':'form-control', 'type':'integer'}),
-            # 'complexion' : Select(attrs = {'class':'form-control'}),
-            'qualification' : TextInput(attrs = {'class':'form-control',}),
-            'job_details' : Textarea(attrs = {'class':'form-control',}),
+            'complexion' : Select(attrs = {'class':'form-control'}),
+            'qualification' : Select(attrs = {'class':'form-control selectpicker', 'data-live-search':'true'}),
+            'job_details' : Select(attrs = {'class':'form-control selectpicker', 'data-live-search':'true'}),
 
         }
 
