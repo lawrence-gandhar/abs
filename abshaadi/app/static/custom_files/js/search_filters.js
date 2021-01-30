@@ -45,3 +45,17 @@ $(document).ready(function(){
 function profile_like(to_user){
 	$.get("/profile_like/"+to_user+"/", function(data){});
 }
+
+
+//*******************************************************************************
+// FETCH CASTE CREED
+//*******************************************************************************
+
+function fetch_caste_creed(elem){
+
+	kk = $(elem).val();
+
+	$.post("/get_castes_dropdown/", {'csrfmiddlewaretoken': csrf, 'ids':kk}, function(data){
+			$("#id_caste_creed").html(data);
+	});
+}

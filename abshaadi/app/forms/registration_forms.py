@@ -64,7 +64,7 @@ class ProfileForm(ModelForm):
             'mother_name' : TextInput(attrs = {'class':'form-control',}),
             'gender' : Select(attrs = {'class':'form-control'}, choices = gender_choices),
             'looking_for_gender' : Select(attrs = {'class':'form-control'}, choices = gender_choices),
-            'religion' : Select(attrs = {'class':'form-control'}),
+            'religion' : Select(attrs = {'class':'form-control', 'onchange':'fetch_caste_creed($(this))'}),
             'caste_creed' : Select(attrs = {'class':'form-control'}),
             'phone_number': TextInput(attrs = {'class':'form-control',}),
             'phone_number_alternative' : TextInput(attrs = {'class':'form-control',}),
@@ -131,12 +131,9 @@ class FamilyForm(ModelForm):
             (5, "Step Family"),
         )
 
-
-
-
         widgets = {
-            'father_job' : TextInput(attrs = {'class':'form-control',}),
-            'mother_job' : TextInput(attrs = {'class':'form-control',}),
+            'father_job' : Select(attrs = {'class':'form-control selectpicker', 'data-live-search':'true'}),
+            'mother_job' : Select(attrs = {'class':'form-control selectpicker', 'data-live-search':'true'}),
             'siblings' : TextInput(attrs = {'class':'form-control',}),
             'sibling_male' : TextInput(attrs = {'class':'form-control',}),
             'sibling_female' : TextInput(attrs = {'class':'form-control',}),

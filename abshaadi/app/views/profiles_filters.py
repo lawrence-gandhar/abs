@@ -184,9 +184,11 @@ def edit_other_detalis(request):
         return redirect('/profile/')
     return redirect('/page_403/')
 
+
 #******************************************************************************
 # EDIT FAMILY DETAILS
 #******************************************************************************
+
 def edit_family_detalis(request):
     if request.POST:
 

@@ -324,13 +324,16 @@ def get_castes_dropdown(request):
 
     if request.POST:
 
-        id = request.POST.getlist("ids[]")
+        html = []
+
+        if request.POST.getlist("ids[]"):
+            id = request.POST.getlist("ids[]")
+        else:
+            id = request.POST.getlist("ids")
 
         if len(id) > 0 :
-
-            html = []
-
             castes = Caste.objects.filter(religion__in = id)
+
 
             if castes is not None:
                 for caste in castes:
@@ -338,3 +341,5 @@ def get_castes_dropdown(request):
                 return HttpResponse(safestring.mark_safe(''.join(html)))
             else:
                 return HttpResponse('')
+        return HttpResponse('')
+    return HttpResponse('')

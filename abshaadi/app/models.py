@@ -718,7 +718,7 @@ class Profile(models.Model):
         Countries_States,
         db_index = True,
         null = True,
-        blank = False,
+        blank = True,
         on_delete = models.SET_NULL,
         related_name = 'my_state',
     )
@@ -727,7 +727,7 @@ class Profile(models.Model):
         Countries_Cities,
         db_index = True,
         null = True,
-        blank = False,
+        blank = True,
         on_delete = models.SET_NULL,
         related_name = 'my_city',
     )

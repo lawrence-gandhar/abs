@@ -137,37 +137,48 @@
 						<div class="col-10">
 							{{edit_form.address}}
 						</div>
-					</div>
-            	 </div>
-				 <div class="col-12" style="margin-top:10px;">
-				<label>Country</label>
-				</div>
-				<div class="col-8">
-				{{edit_form.country}}
-			</div>
+          </div>
 
-			<div class="col-12 state-div-spinner hide text-center" style="margin-top:10px;">
-				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
-			</div>
+        <div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+          <div class="col-2" style="line-height: 35px;">
+            Country
+          </div>
+          <div class="col-10">
+  				   {{edit_form.country}}
+  			 </div>
+       </div>
 
-			<div class="col-12 state-div hide" style="margin-top:10px;">
-				<label>State</label>
 
-				<div class="col-8">
-				<select name="state" class="form-control selectpicker states_select_single"></select>
-			</div>
-			</div>
+      <div class="state-div-spinner hide" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+  			<div class="col-12 text-center">
+  				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
+  			</div>
+      </div>
 
-			<div class="col-12 city-div-spinner hide text-center" style="margin-top:10px;">
-				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
-			</div>
+      <div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+        <div class="col-md-2" style="line-height:35px;">
+          State
+        </div>
+        <div class="col-10">
+  				{{edit_form.state}}
+  			</div>
+      </div>
 
-			<div class="col-12 city-div hide" style="margin-top:10px;">
-				<label>City</label>
+      <div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+        <div class="col-12 city-div-spinner hide text-center" style="margin-top:10px;">
+  				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
+  			</div>
+      </div>
 
-				<div class="col-8">
-				<select class="form-control selectpicker city_select_single" name="city"></select>
-			</div>
+      <div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+        <div class="col-md-2" style="line-height:35px;">
+          City
+        </div>
+        <div class="col-10">
+  				{{edit_form.city}}
+  			</div>
+      </div>
+
 			</div>
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-primary" style="width:80px;">Submit</button>
