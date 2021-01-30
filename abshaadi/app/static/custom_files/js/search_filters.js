@@ -39,6 +39,38 @@ $(document).ready(function(){
 	stepsSlider.noUiSlider.on('update', function (values, handle) {
 		inputs[handle].value = values[handle];
 	});
+
+	// preference filters
+
+	pref_age_to = document.getElementById('id_for_pref_aged_from');
+	pref_age_from = document.getElementById('id_for_pref_aged_to');
+
+	var pref_inputs = [pref_age_to, pref_age_from];
+
+	if(pref_age_to.value == '') pref_age_to_val = 25;
+	else pref_age_to_val = pref_age_to.value;
+
+	if(pref_age_from.value == '') pref_age_from_val = 18;
+	else pref_age_from_val = pref_age_from.value;
+
+	var pref_stepsSlider  = document.getElementById('pref_age_slider');
+
+	noUiSlider.create(pref_stepsSlider , {
+		start: [pref_age_from_val, pref_age_to_val],
+		connect: true,
+		step: 1,
+		range: {
+			'min': 18,
+			'max': 70
+		},
+		tooltips: [true, wNumb({decimals: false,})],
+		format : wNumb({decimals: false,}),
+	});
+
+	pref_stepsSlider.noUiSlider.on('update', function (values, handle) {
+		inputs[handle].value = values[handle];
+	});
+
 });
 
 
