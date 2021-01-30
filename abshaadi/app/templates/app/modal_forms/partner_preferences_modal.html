@@ -50,13 +50,13 @@
       				<select class="form-control selectpicker city_select" name="l_cities" data-live-serach="true" multiple></select>
       			</div>
 
-      			<div class="col-12" style="margin-top:10px;">
+      			<div class="col-12" style="margin-top:10px;margin-bottom:10px;">
       				<label>Select Age</label>
       				{{partner_preference.aged_from}}
       				{{partner_preference.aged_to}}
       			</div>
             <div class="col-12" style="margin-top:35px;">
-      				<div id="pref_age_slider" style="width:94%"></div>
+      				<div id="pref_age_slider" style="width:97%"></div>
       			</div>
 
             <div class="col-12 city-div hide" style="margin-top:10px;">
@@ -89,6 +89,10 @@
       				{{partner_preference.l_qualifications}}
       			</div>
           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" style="width:80px;">Submit</button>
+          <button type="button" class="btn btn-warning" style="width:80px;" data-dismiss="modal">Cancel</button>
         </div>
       </form>
     </div>
