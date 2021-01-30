@@ -1,6 +1,6 @@
 {% load static %}
 
-<div class="modal" tabindex="-1" role="dialog" id="edit_partner_preferences_form" style="background-color:#464e4ec2;">
+<div class="modal" tabindex="-1" role="dialog" id="edit_partner_preferences_form" style="background-color:#464e4ec2;" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <form method="post" action="" enctype="multipart/form-data">
@@ -38,7 +38,7 @@
 
       			<div class="col-12 state-div hide" style="margin-top:10px;">
       				<label>State</label>
-      				<select name="l_states" class="form-control selectpicker states_select" multiple></select>
+      				<select name="l_states" class="form-control selectpicker states_select" data-live-search="true" multiple></select>
       			</div>
 
       			<div class="col-12 city-div-spinner hide text-center" style="margin-top:10px;">
@@ -47,7 +47,7 @@
 
       			<div class="col-12 city-div hide" style="margin-top:10px;">
       				<label>City</label>
-      				<select class="form-control selectpicker city_select" name="l_cities" multiple></select>
+      				<select class="form-control selectpicker city_select" name="l_cities" data-live-serach="true" multiple></select>
       			</div>
 
       			<div class="col-12" style="margin-top:10px;">
@@ -68,17 +68,22 @@
 
       			<div class="col-12" style="margin-top:20px;">
       				<label>Complexion</label>
-      				<select></select>
+      				{{search_profile.l_complexions}}
+      			</div>
+
+            <div class="col-12" style="margin-top:10px;">
+      				<label>Job Type</label>
+      				{{search_profile.job_type}}
       			</div>
 
       			<div class="col-12" style="margin-top:10px;">
       				<label>Job</label>
-      				<select></select>
+      				{{search_profile.l_jobs}}
       			</div>
 
       			<div class="col-12" style="margin-top:10px;">
       				<label>Qualification</label>
-      				<select></select>
+      				{{search_profile.l_qualifications}}
       			</div>
           </div>
         </div>
