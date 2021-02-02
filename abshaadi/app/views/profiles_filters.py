@@ -471,3 +471,8 @@ def partner_profile_view(request, user_id=None):
 #******************************************************************************
 # PARTNER PREFERENCES
 #******************************************************************************
+
+def save_partner_preferences(request):
+
+    if request.POST:
+        pass
