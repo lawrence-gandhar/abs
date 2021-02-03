@@ -516,13 +516,27 @@ def save_partner_preferences(request):
 
             # complexions
             ins.l_complexions.clear()
-
             complexion = Complexions.objects.filter(pk__in = l_complexions)
 
             for i in complexion:
                 ins.l_complexions.add(i)
 
-            ins.save()    
+            # job_type
+            ins.job_type.clear()
+            job_types = Job_Types.objects.filters(pk__in = job_type)
+
+            for i in job_types:
+                ins.job_type.add(i)
+
+            # jobs
+            ins.l_jobs.clear()
+            jobs = Jobs.objects.filters(pk__in = l_jobs)
+
+            for i in jobs:
+                ins.l_jobs.add(i)
+
+
+            ins.save()
 
             print(complexion)
 
