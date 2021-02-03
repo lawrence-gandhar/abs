@@ -34,3 +34,14 @@ $(document).ready(function(){
     });
 
 });
+
+
+
+function save_partner_preferences(){
+
+  $.post("/save_partner_preferences/", $("#save_partner_preferences_form").serialize(), function(data){
+    console.log(data);
+  });
+
+  return false;
+}

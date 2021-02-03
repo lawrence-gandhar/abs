@@ -473,6 +473,59 @@ def partner_profile_view(request, user_id=None):
 #******************************************************************************
 
 def save_partner_preferences(request):
-
     if request.POST:
-        pass
+
+        aged_from = request.POST.get('aged_from')
+        aged_to = request.POST.get('aged_to')
+
+        l_complexions = request.POST.getlist('l_complexions', None)
+        job_type = request.POST.getlist('job_type', None)
+        l_jobs = request.POST.getlist('l_jobs', None)
+        l_qualifications = request.POST.getlist('l_qualifications', None)
+        l_religions = request.POST.getlist('l_religions', None)
+        l_caste = request.POST.getlist('l_caste', None)
+        l_cities = request.POST.getlist('l_cities', None)
+        l_states = request.POST.getlist('l_states', None)
+        l_countries = request.POST.getlist('l_countries', None)
+
+        ins = None
+
+        try:
+            ins = Partner_Preferences.objects.get(user = request.user)
+            print(request.POST)
+
+        except Partner_Preferences.DoesNotExist:
+
+            pp = Partner_Preferences(
+                user = request.user,
+            )
+            pp.save()
+
+            ins = Partner_Preferences.objects.get(user = request.user)
+
+        #
+        #
+        #
+
+        if ins is not None:
+
+            ins.aged_to = int(aged_to)
+            ins.aged_from = int(aged_from)
+
+            ins.save()
+
+            # complexions
+            ins.l_complexions.clear()
+
+            complexion = Complexions.objects.filter(pk__in = l_complexions)
+
+            for i in complexion:
+                ins.l_complexions.add(i)
+
+            ins.save()    
+
+            print(complexion)
+
+
+
+    return HttpResponse(0)

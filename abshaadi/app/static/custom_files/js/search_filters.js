@@ -40,7 +40,9 @@ $(document).ready(function(){
 		inputs[handle].value = values[handle];
 	});
 
+	//*****************************************************
 	// preference filters
+	//*****************************************************
 
 	pref_age_to = document.getElementById('id_for_pref_aged_from');
 	pref_age_from = document.getElementById('id_for_pref_aged_to');
@@ -68,7 +70,7 @@ $(document).ready(function(){
 	});
 
 	pref_stepsSlider.noUiSlider.on('update', function (values, handle) {
-		inputs[handle].value = values[handle];
+		pref_inputs[handle].value = values[handle];
 	});
 
 });

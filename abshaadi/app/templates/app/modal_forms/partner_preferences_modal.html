@@ -3,7 +3,7 @@
 <div class="modal" tabindex="-1" role="dialog" id="edit_partner_preferences_form" style="background-color:#464e4ec2;" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form method="post" action="" enctype="multipart/form-data">
+      <form method="post" id="save_partner_preferences_form" action="{% url 'save_partner_preferences' %}">
         <div class="modal-header">
           <h5 class="modal-title">Add/Edit Partner Preferences</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -91,7 +91,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" style="width:80px;">Submit</button>
+          <button type="submit"  class="btn btn-primary" style="width:80px;">Submit</button>
           <button type="button" class="btn btn-warning" style="width:80px;" data-dismiss="modal">Cancel</button>
         </div>
       </form>

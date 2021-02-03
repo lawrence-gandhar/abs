@@ -75,8 +75,14 @@ class UserDashboardView(View):
         except:
             self.data["pro_pic"] = None
 
+        try:
+            pp = Partner_Preferences.objects.get(user = request.user)
+            self.data["partner_preference"] = search_forms.PartnerProfileForm(auto_id = 'id_for_pref_%s', instance = pp)
+        except:
+            self.data["partner_preference"] = search_forms.PartnerProfileForm(auto_id = 'id_for_pref_%s')
+
 
         self.data["search_profile"] = search_forms.MyFiltersForm()
-        self.data["partner_preference"] = search_forms.PartnerProfileForm(auto_id = 'id_for_pref_%s')
+
 
         return render(request, self.template_name, self.data)
