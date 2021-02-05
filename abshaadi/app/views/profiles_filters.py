@@ -535,10 +535,31 @@ def save_partner_preferences(request):
             for i in jobs:
                 ins.l_jobs.add(i)
 
+            # religion_select
+            ins.l_religions.clear()
+            religions = Religions.objects.filters(pk__in = l_religions)
+
+            for i in religions:
+                ins.l_religions.add(i)
+
+            # castes
+            ins.l_caste.clear()
+            castes = Caste.objects.filters(pk__in = l_caste)
+
+            for i in castes:
+                ins.l_caste.add(i)
+
+            # l_qualifications
+            ins.l_qualifications.clear()
+            qual = Qualifications.objects.filter(pk__in = l_qualifications)
+
+            for i in qual:
+                ins.l_qualifications.add(i)
+
+            
+
 
             ins.save()
-
-            print(complexion)
 
 
 
