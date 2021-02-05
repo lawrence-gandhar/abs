@@ -29,12 +29,12 @@
       			</div>
         </div>
         <div class="row" style="margin-top:20px; padding-left:10px; padding-right:10px;">
-      			<div class="col-4">
-      				<label>Select Age</label>
-      				{{partner_preference.aged_from}}
-      				{{partner_preference.aged_to}}
-      				<div id="pref_age_slider" style="width:97%; margin-top:35px;"></div>
-      			</div>
+      		<div class="col-4">
+    				<label>Select Age</label>
+    				{{partner_preference.aged_from}}
+    				{{partner_preference.aged_to}}
+    				<div id="pref_age_slider" style="width:97%; margin-top:35px;"></div>
+    			</div>
           <div class="col-4" style="margin-top:10px;">
             <label>Religion</label>
             {{partner_preference.l_religions}}
@@ -44,40 +44,41 @@
             <label>Caste</label>
             {{partner_preference.l_caste}}
           </div>
-        </div>
-            <div class="col-12" style="margin-top:10px;">
-              <label class="sr-only" for="inlineFormInputGroup">Height</label>
+          </div>
+          <div class="row" style="margin-top:20px; padding-left:10px; padding-right:10px;">
+            <div class="col-4" style="margin-top:10px;">
+              <label>Height</label>
               <div class="input-group mb-2">
-              <div class="input-group-prepend">
-              <div class="input-group-text">cms</div>
+                <div class="input-group-prepend">
+                  <div class="input-group-text">cms</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroup">
               </div>
-              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
-              </div>
-
-
             </div>
-
-            <div class="col-12" style="margin-top:10px;">
+            <div class="col-4" style="margin-top:10px;">
               <label>Weight</label>
-              <input type="integer" name="weight" min="120" max="250">
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">kgs</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroup">
+              </div>
             </div>
-
-      			<div class="col-12" style="margin-top:20px;">
+      			<div class="col-4" style="margin-top:10px;">
       				<label>Complexion</label>
       				{{partner_preference.l_complexions}}
       			</div>
-
-            <div class="col-12" style="margin-top:10px;">
+          </div>
+          <div class="row" style="margin-top:20px; padding-left:10px; padding-right:10px;">
+            <div class="col-4" style="margin-top:10px;">
       				<label>Job Type</label>
       				{{partner_preference.job_type}}
       			</div>
-
-      			<div class="col-12" style="margin-top:10px;">
+      			<div class="col-4" style="margin-top:10px;">
       				<label>Job</label>
       				{{partner_preference.l_jobs}}
       			</div>
-
-      			<div class="col-12" style="margin-top:10px;">
+      			<div class="col-4" style="margin-top:10px;">
       				<label>Qualification</label>
       				{{partner_preference.l_qualifications}}
       			</div>
