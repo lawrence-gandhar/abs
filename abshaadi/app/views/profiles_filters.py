@@ -521,7 +521,7 @@ def save_partner_preferences(request):
             if weight is not None:
                 l_attr["weight"] = weight
 
-
+            ins.l_attr = json.dumps(l_attr)
 
             ins.aged_to = int(aged_to)
             ins.aged_from = int(aged_from)
