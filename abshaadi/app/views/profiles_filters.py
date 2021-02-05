@@ -492,8 +492,7 @@ def save_partner_preferences(request):
 
         try:
             ins = Partner_Preferences.objects.get(user = request.user)
-            print(request.POST)
-
+            
         except Partner_Preferences.DoesNotExist:
 
             pp = Partner_Preferences(
@@ -556,8 +555,26 @@ def save_partner_preferences(request):
             for i in qual:
                 ins.l_qualifications.add(i)
 
-            
+            # l_countries
+            ins.l_countries.clear()
+            countries = Countries.objects.filter(pk__in = l_countries)
 
+            for i in countries:
+                ins.l_countries.add(i)
+
+            # l_cities
+            ins.l_cities.clear()
+            cities = Countries_Cities.objects.filter(pk__in = l_cities)
+
+            for i in cities:
+                ins.l_cities.add(i)
+
+            # l_states
+            ins.l_states.clear()
+            states = Countries_States.objects.filter(pk__in = l_states)
+
+            for i in states:
+                ins.l_states.add(i)
 
             ins.save()
 
