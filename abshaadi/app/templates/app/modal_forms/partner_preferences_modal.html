@@ -46,20 +46,20 @@
           </div>
           </div>
           <div class="row" style="margin-top:20px; padding-left:10px; padding-right:10px;">
-            <div class="col-4" style="margin-top:10px;">
+            <div class="col-4">
               <label>Height (cms)</label>
               <input type="hidden" name="height_to" id="id_for_pref_height_to">
               <input type="hidden" name="height_from" id="id_for_pref_height_from">
               <div id="pref_height_slider" style="width:97%; margin-top:35px;"></div>
             </div>
             <div class="col-4" style="margin-top:10px;">
-              <label>Weight</label>
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">kgs</div>
-                </div>
-                <input type="text" class="form-control" id="inlineFormInputGroup">
-              </div>
+              <label>Body Type</label>
+              <select name="bodytype" multiple class="form-control selectpicker">
+                <option value="1">Slim</option>
+                <option value="2">Atheletic</option>
+                <option value="3">Average</option>
+                <option value="4">Fat</option>
+              </select>
             </div>
       			<div class="col-4" style="margin-top:10px;">
       				<label>Complexion</label>

@@ -487,8 +487,9 @@ def save_partner_preferences(request):
         l_cities = request.POST.getlist('l_cities', None)
         l_states = request.POST.getlist('l_states', None)
         l_countries = request.POST.getlist('l_countries', None)
-        height = request.POST.get('height')
-        weight = request.POST.get('weight')
+        height_to = request.POST.get('height_to')
+        height_from = request.POST.get('height_from')
+        weight = request.POST.getlist('weight', None)
 
         ins = None
 
@@ -512,15 +513,15 @@ def save_partner_preferences(request):
             #
             # l_attr
 
-            l_attr = {"height":"", "weight":""}
+            l_attr = {"height":[], "weight":[]}
 
             if height is not None:
-                l_attr["height"] = height
+                l_attr["height"] = [height_to, height_from]
 
             if weight is not None:
                 l_attr["weight"] = weight
 
-            
+
 
             ins.aged_to = int(aged_to)
             ins.aged_from = int(aged_from)
