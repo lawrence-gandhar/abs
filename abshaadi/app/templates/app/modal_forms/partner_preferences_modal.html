@@ -47,13 +47,10 @@
           </div>
           <div class="row" style="margin-top:20px; padding-left:10px; padding-right:10px;">
             <div class="col-4" style="margin-top:10px;">
-              <label>Height</label>
-              <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                  <div class="input-group-text">cms</div>
-                </div>
-                <input type="text" class="form-control" id="inlineFormInputGroup">
-              </div>
+              <label>Height (cms)</label>
+              <input type="hidden" name="height_to" id="id_for_pref_height_to">
+              <input type="hidden" name="height_from" id="id_for_pref_height_from">
+              <div id="pref_height_slider" style="width:97%; margin-top:35px;"></div>
             </div>
             <div class="col-4" style="margin-top:10px;">
               <label>Weight</label>
