@@ -24,7 +24,7 @@
 
       			<div class="col-12 caste-div hide" style="margin-top:10px;">
       				<label>Caste/Denomination/Ethinicity</label>
-      				<select name="l_caste" class="form-control selectpicker castes_select" multiple></select>
+              {{partner_preference.l_caste}}
       			</div>
 
       			<div class="col-12" style="margin-top:10px;">
@@ -38,7 +38,7 @@
 
       			<div class="col-12 state-div hide" style="margin-top:10px;">
       				<label>State</label>
-      				<select name="l_states" class="form-control selectpicker states_select" data-live-search="true" multiple></select>
+      				{{partner_preference.l_states}}
       			</div>
 
       			<div class="col-12 city-div-spinner hide text-center" style="margin-top:10px;">
@@ -47,7 +47,7 @@
 
       			<div class="col-12 city-div hide" style="margin-top:10px;">
       				<label>City</label>
-      				<select class="form-control selectpicker city_select" name="l_cities" data-live-serach="true" multiple></select>
+              {{partner_preference.l_cities}}
       			</div>
 
       			<div class="col-12" style="margin-top:10px;margin-bottom:10px;">
@@ -61,7 +61,7 @@
 
             <div class="col-12 city-div hide" style="margin-top:10px;">
               <label>Height</label>
-              <select class="form-control selectpicker city_select" name="l_cities" multiple></select>
+              <input type="integer" name="height" min="120" max="250">
             </div>
 
             <div class="col-12 city-div hide" style="margin-top:10px;">
@@ -91,7 +91,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit"  class="btn btn-primary" style="width:80px;">Submit</button>
+          <button type="save_partner_preferences()"  class="btn btn-primary" style="width:80px;">Submit</button>
           <button type="button" class="btn btn-warning" style="width:80px;" data-dismiss="modal">Cancel</button>
         </div>
       </form>

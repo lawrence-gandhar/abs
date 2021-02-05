@@ -492,7 +492,7 @@ def save_partner_preferences(request):
 
         try:
             ins = Partner_Preferences.objects.get(user = request.user)
-            
+
         except Partner_Preferences.DoesNotExist:
 
             pp = Partner_Preferences(
@@ -522,28 +522,28 @@ def save_partner_preferences(request):
 
             # job_type
             ins.job_type.clear()
-            job_types = Job_Types.objects.filters(pk__in = job_type)
+            job_types = Job_Types.objects.filter(pk__in = job_type)
 
             for i in job_types:
                 ins.job_type.add(i)
 
             # jobs
             ins.l_jobs.clear()
-            jobs = Jobs.objects.filters(pk__in = l_jobs)
+            jobs = Jobs.objects.filter(pk__in = l_jobs)
 
             for i in jobs:
                 ins.l_jobs.add(i)
 
             # religion_select
             ins.l_religions.clear()
-            religions = Religions.objects.filters(pk__in = l_religions)
+            religions = Religion.objects.filter(pk__in = l_religions)
 
             for i in religions:
                 ins.l_religions.add(i)
 
             # castes
             ins.l_caste.clear()
-            castes = Caste.objects.filters(pk__in = l_caste)
+            castes = Caste.objects.filter(pk__in = l_caste)
 
             for i in castes:
                 ins.l_caste.add(i)
