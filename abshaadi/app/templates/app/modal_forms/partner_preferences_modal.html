@@ -1,7 +1,7 @@
 {% load static %}
 
 <div class="modal" tabindex="-1" role="dialog" id="edit_partner_preferences_form" style="background-color:#464e4ec2;" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <form method="post" id="save_partner_preferences_form" action="{% url 'save_partner_preferences' %}">
         <div class="modal-header">
@@ -13,58 +13,51 @@
         <div class="modal-body">
           {% csrf_token %}
           <div class="row" style="margin-top:0px; padding-left:10px; padding-right:10px;">
-            <div class="col-12" style="margin-top:10px;">
-      				<label>Religion</label>
-      				{{partner_preference.l_religions}}
-      			</div>
-
-      			<div class="col-12 caste-div-spinner hide text-center" style="margin-top:10px;">
-      				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
-      			</div>
-
-      			<div class="col-12 caste-div hide" style="margin-top:10px;">
-      				<label>Caste/Denomination/Ethinicity</label>
-              {{partner_preference.l_caste}}
-      			</div>
-
-      			<div class="col-12" style="margin-top:10px;">
+      			<div class="col-4" style="margin-top:10px;">
       				<label>Country</label>
       				{{partner_preference.l_countries}}
       			</div>
 
-      			<div class="col-12 state-div-spinner hide text-center" style="margin-top:10px;">
-      				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
-      			</div>
-
-      			<div class="col-12 state-div hide" style="margin-top:10px;">
+      			<div class="col-4 state-div" style="margin-top:10px;">
       				<label>State</label>
       				{{partner_preference.l_states}}
       			</div>
 
-      			<div class="col-12 city-div-spinner hide text-center" style="margin-top:10px;">
-      				<img class="img" src="{% static 'images/uploader_gifs/Spin-1s-24px.svg' %}">
-      			</div>
-
-      			<div class="col-12 city-div hide" style="margin-top:10px;">
+      			<div class="col-4 city-div" style="margin-top:10px;">
       				<label>City</label>
               {{partner_preference.l_cities}}
       			</div>
-
-      			<div class="col-12" style="margin-top:10px;margin-bottom:10px;">
+        </div>
+        <div class="row" style="margin-top:20px; padding-left:10px; padding-right:10px;">
+      			<div class="col-4">
       				<label>Select Age</label>
       				{{partner_preference.aged_from}}
       				{{partner_preference.aged_to}}
+      				<div id="pref_age_slider" style="width:97%; margin-top:35px;"></div>
       			</div>
-            <div class="col-12" style="margin-top:35px;">
-      				<div id="pref_age_slider" style="width:97%"></div>
-      			</div>
+          <div class="col-4" style="margin-top:10px;">
+            <label>Religion</label>
+            {{partner_preference.l_religions}}
+          </div>
 
-            <div class="col-12 city-div hide" style="margin-top:10px;">
-              <label>Height</label>
-              <input type="integer" name="height" min="120" max="250">
+          <div class="col-4 state-div" style="margin-top:10px;">
+            <label>Caste</label>
+            {{partner_preference.l_caste}}
+          </div>
+        </div>
+            <div class="col-12" style="margin-top:10px;">
+              <label class="sr-only" for="inlineFormInputGroup">Height</label>
+              <div class="input-group mb-2">
+              <div class="input-group-prepend">
+              <div class="input-group-text">cms</div>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+              </div>
+
+
             </div>
 
-            <div class="col-12 city-div hide" style="margin-top:10px;">
+            <div class="col-12" style="margin-top:10px;">
               <label>Weight</label>
               <input type="integer" name="weight" min="120" max="250">
             </div>

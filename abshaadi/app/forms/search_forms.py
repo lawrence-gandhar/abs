@@ -71,6 +71,6 @@ class PartnerProfileForm(ModelForm):
             'job_type' : Select(attrs = {'class':'form-control selectpicker', 'multiple':'true'}),
             'l_jobs' : Select(attrs = {'class':'form-control selectpicker', 'multiple':'true', 'data-live-search':'true' }),
             'l_complexions' : Select(attrs = {'class':'form-control selectpicker', 'multiple':'true'}),
-            'aged_to' : TextInput(attrs = {'class':'form-control', }),
-            'aged_from' : TextInput(attrs = {'class':'form-control', }),
+            'aged_to' : TextInput(attrs = {'class':'form-control hide', }),
+            'aged_from' : TextInput(attrs = {'class':'form-control hide', }),
         }
