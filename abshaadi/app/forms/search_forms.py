@@ -62,12 +62,12 @@ class PartnerProfileForm(ModelForm):
         fields = ( 'aged_to', 'aged_from', 'l_cities', 'l_states', 'l_countries', 'l_religions', 'l_caste', 'l_qualifications', 'l_jobs', 'l_complexions', 'job_type')
 
         widgets = {
-            'l_religions' : Select(attrs = {'class':'form-control selectpicker religion_select', 'multiple':'true'}),
-            'l_cities' : Select(attrs = {'class':'form-control selectpicker city_select', 'multiple':'true'}),
-            'l_states' : Select(attrs = {'class':'form-control selectpicker states_select', 'multiple':'true'}),
-            'l_countries' : Select(attrs = {'class':'form-control selectpicker country_select', 'data-live-search':'true', 'multiple':'true'}),
-            'l_caste' : Select(attrs = {'class':'form-control selectpicker castes_select', 'multiple':'true'}),
-            'l_qualifications' : Select(attrs = {'class':'form-control selectpicker qualification_select', 'multiple':'true'}),
+            'l_religions' : Select(attrs = {'class':'form-control selectpicker pref_religion_select', 'multiple':'true'}),
+            'l_cities' : Select(attrs = {'class':'form-control selectpicker pref_city_select', 'multiple':'true', 'data-live-search':'true'}),
+            'l_states' : Select(attrs = {'class':'form-control selectpicker pref_states_select', 'data-live-search':'true', 'multiple':'true'}),
+            'l_countries' : Select(attrs = {'class':'form-control selectpicker pref_country_select', 'data-live-search':'true', 'multiple':'true'}),
+            'l_caste' : Select(attrs = {'class':'form-control selectpicker pref_castes_select', 'multiple':'true'}),
+            'l_qualifications' : Select(attrs = {'class':'form-control selectpicker pref_qualification_select', 'multiple':'true'}),
             'job_type' : Select(attrs = {'class':'form-control selectpicker', 'multiple':'true'}),
             'l_jobs' : Select(attrs = {'class':'form-control selectpicker', 'multiple':'true', 'data-live-search':'true' }),
             'l_complexions' : Select(attrs = {'class':'form-control selectpicker', 'multiple':'true'}),

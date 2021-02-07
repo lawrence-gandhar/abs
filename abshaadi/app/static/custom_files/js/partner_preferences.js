@@ -4,8 +4,8 @@ $(document).ready(function(){
 	// preference filters
 	//*****************************************************
 
-	pref_age_to = document.getElementById('id_for_pref_aged_from');
-	pref_age_from = document.getElementById('id_for_pref_aged_to');
+	pref_age_to = document.getElementById('id_for_pref_aged_to');
+	pref_age_from = document.getElementById('id_for_pref_aged_from');
 
 	var pref_inputs = [pref_age_to, pref_age_from];
 
@@ -38,8 +38,8 @@ $(document).ready(function(){
   // height filters
   //*****************************************************
 
-  pref_height_to = document.getElementById('id_for_pref_height_from');
-  pref_height_from = document.getElementById('id_for_pref_height_to');
+  pref_height_to = document.getElementById('id_for_pref_height_to');
+  pref_height_from = document.getElementById('id_for_pref_height_from');
 
   var height_inputs = [pref_height_to, pref_height_from];
 
@@ -71,6 +71,14 @@ $(document).ready(function(){
   //
   //
   //
+
+  if($("#id_for_pref_l_countries").val()!=""){
+    kk = $("#id_for_pref_l_countries").val();
+    $.post("/get_states_dropdown/", {'csrfmiddlewaretoken': csrf, 'ids':kk}, function(data){
+      $("select#id_for_pref_l_states").empty().append(data);
+			$("select#id_for_pref_l_states").selectpicker('refresh');
+    });
+  }
 
 
 });
