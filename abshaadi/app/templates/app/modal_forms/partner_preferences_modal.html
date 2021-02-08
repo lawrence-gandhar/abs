@@ -20,12 +20,12 @@
 
       			<div class="col-4" style="margin-top:10px;">
       				<label>State</label>
-      				{{partner_preference.l_states}}
+      				<select class="form-control selectpicker" name="l_states" id="id_for_pref_l_states" multiple></select>
       			</div>
 
       			<div class="col-4" style="margin-top:10px;">
       				<label>City</label>
-              {{partner_preference.l_cities}}
+              <select class="form-control selectpicker" name="l_cities" id="id_for_pref_l_cities" multiple></select>
       			</div>
         </div>
         <div class="row" style="margin-top:20px; padding-left:10px; padding-right:10px;">
@@ -89,3 +89,25 @@
     </div>
   </div>
 </div>
+
+<script>
+
+
+
+var l_countries = [];
+var l_states = [];
+var l_cities = [];
+
+{% for i in l_countries %}
+  l_countries.push({{i.id}});
+{% endfor %}
+
+{% for i in l_states %}
+  l_states.push({{i.id}});
+{% endfor %}
+
+{% for i in l_cities %}
+  l_cities.push({{i.id}});
+{% endfor %}
+
+</script>

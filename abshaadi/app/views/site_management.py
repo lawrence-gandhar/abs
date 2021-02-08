@@ -144,12 +144,7 @@ def get_states_dropdown(request):
 
 def get_states_dropdown_single(request):
 
-    print(request.POST)
-
     id = request.POST.getlist("ids")
-
-    print("jlkdkld")
-    print(id)
 
     if len(id) > 0 :
 

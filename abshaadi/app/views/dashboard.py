@@ -81,6 +81,13 @@ class UserDashboardView(View):
         except:
             self.data["partner_preference"] = search_forms.PartnerProfileForm(auto_id = 'id_for_pref_%s')
 
+        #
+        #
+        self.data["job_type"] = pp.job_type.all()
+        self.data["l_cities"] = pp.l_cities.all()
+        self.data["l_countries"] = pp.l_countries.all()
+        self.data["l_states"] = pp.l_states.all()
+        print(self.data)
 
         self.data["search_profile"] = search_forms.MyFiltersForm()
 
