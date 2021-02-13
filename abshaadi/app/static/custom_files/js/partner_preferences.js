@@ -13,7 +13,7 @@ $(document).ready(function(){
   	pref_age_to = document.getElementById('id_for_pref_aged_to');
   	pref_age_from = document.getElementById('id_for_pref_aged_from');
 
-  	var pref_inputs = [pref_age_to, pref_age_from];
+  	var pref_inputs = [pref_age_from, pref_age_to];
 
   	if(pref_age_to.value == '') pref_age_to_val = 25;
   	else pref_age_to_val = pref_age_to.value;
@@ -21,12 +21,12 @@ $(document).ready(function(){
   	if(pref_age_from.value == '') pref_age_from_val = 18;
   	else pref_age_from_val = pref_age_from.value;
 
-    console.log(pref_age_to_val, pref_age_from_val);
+    console.log( pref_age_from_val, pref_age_to_val);
 
   	var pref_stepsSlider  = document.getElementById('pref_age_slider');
 
   	noUiSlider.create(pref_stepsSlider , {
-  		start: [pref_age_to_val, pref_age_from_val],
+  		start: [pref_age_from_val, pref_age_to_val],
   		connect: true,
   		step: 1,
   		range: {
@@ -49,7 +49,7 @@ $(document).ready(function(){
     pref_height_to = document.getElementById('id_for_pref_height_to');
     pref_height_from = document.getElementById('id_for_pref_height_from');
 
-    var height_inputs = [pref_height_to, pref_height_from];
+    var height_inputs = [pref_height_from, pref_height_to];
 
   	if(pref_height_to.value == '') pref_height_to_val = 180;
   	else pref_height_to_val = pref_height_to.value;

@@ -11,10 +11,10 @@ $(document).ready(function(){
 	// AGE SLIDER
 	//*******************************************************************************
 
-	age_to = document.getElementById('id_aged_from');
-	age_from = document.getElementById('id_aged_to');
+	age_to = document.getElementById('id_aged_to');
+	age_from = document.getElementById('id_aged_from');
 
-	var inputs = [age_to, age_from];
+	var inputs = [age_from, age_to];
 
 	if(age_to.value == '') age_to_val = 25;
 	else age_to_val = age_to.value;

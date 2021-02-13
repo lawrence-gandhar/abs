@@ -4,30 +4,47 @@
 </div>
 <div class="card-body card-body-border" style="font-size:10px;">
 	<div class="row" style="padding:10px;">
-
-		<div class="col-md-3 col-sm-6 col-xs-12" style="padding:5px 10px 0px 10px;">
-			<div class="card card-body-border">
-				<img class="img" src="{% static 'images/user.png' %}" height="175px">
-				<div style="padding:4px;">
-					<label style="font-size:13px; display:block; margin-bottom:20px;">
-						<span style="float:left; display:inline-block;">Priyanka S</span>
-						<span style="float:right; display:inline-block;"> (23 yrs)</span>
-					</label>
-					<label style="font-size:13px; display:block; line-height:30px; margin-bottom: 0px;">
-						Kolkata
-					</label>
-				</div>
-				<div style="padding:4px;" class="col-md-12 text-center">
-					<button type="button" class="btn bg-dark-green btn-sm" style="width: 80px" onclick="open_connect_modal(3)">
-						<i class="mdi mdi-comment"></i> Connect
-					</button>
-					<button type="button" class="btn bg-dark-red btn-sm" style="width: 80px">
-						<i class="mdi mdi-heart"></i> Like
-					</button>
-				</div>
-			</div>
-		</div>
-		
+    {% for row in search_results %}
+      <div class="col-md-3 col-sm-6 col-xs-12" style="padding:5px 10px 0px 10px;">
+        <div class="card card-body-border">
+          <img class="img" src="{% static 'images/user.png' %}" height="230px">
+          <div style="padding:2px 8px">
+            <label style="font-size:13px; display:block; padding:10px 0px;">
+              <span style="float:left; display:inline-block; font-weight:bold">{{row.uid}}</span>
+            </label>
+            <label style="font-size:13px; display:block; padding:10px 0px;">
+              <span style="float:left; display:inline-block;">{{row.fullname}}</span>
+              <span style="float:right; display:inline-block;"> ({{row.age}} yrs)</span>
+            </label>
+            <label style="font-size:13px; display:block; padding:10px 0px;">sss
+              {% if row.city %}
+                {{row.city.city_name}}
+                {% if row.country %}
+                   - {{row.country}}
+                {% endif %}
+              {% else %}
+                {% if row.country %}
+                  {{row.country}}
+                {% endif %}
+              {% endif %}
+            </label>
+          </div>
+          <div style="padding:4px; padding-top:0px; margin-top: -5px;" class="col-md-12 text-center">
+            <button type="button" class="btn bg-dark-green btn-sm" style="width: 80px" onclick="open_connect_modal({{row.user}})">
+              <i class="mdi mdi-comment"></i> Connect
+            </button>
+            <button type="button" class="btn bg-dark-red btn-sm" style="width: 80px" onclick="profile_like({{row.user}})" {% if row.profile_counter %} disabled {% endif %} >
+              <i class="mdi mdi-heart"></i> Like
+            </button>
+          </div>
+          <div style="padding:6px; padding-top:0px;" class="col-md-12 text-center">
+            <a href="" target="_blank" class="btn btn-sm" style="width: 100%; background-color:#7c6cb9; color:#FFFFFF;">
+              <i class="mdi mdi-eye"></i> View
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
 
 	</div>
 </div>
