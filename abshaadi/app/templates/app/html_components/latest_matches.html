@@ -16,9 +16,9 @@
               <span style="float:left; display:inline-block;">{{row.fullname}}</span>
               <span style="float:right; display:inline-block;"> ({{row.age}} yrs)</span>
             </label>
-            <label style="font-size:13px; display:block; padding:10px 0px;">sss
+            <label style="font-size:13px; display:block; padding:10px 0px;">
               {% if row.city %}
-                {{row.city.city_name}}
+                {{row.city}}
                 {% if row.country %}
                    - {{row.country}}
                 {% endif %}

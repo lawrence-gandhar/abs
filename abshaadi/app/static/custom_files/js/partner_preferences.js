@@ -21,7 +21,7 @@ $(document).ready(function(){
   	if(pref_age_from.value == '') pref_age_from_val = 18;
   	else pref_age_from_val = pref_age_from.value;
 
-    console.log( pref_age_from_val, pref_age_to_val);
+    console.log( pref_age_from_val, pref_age_from_val);
 
   	var pref_stepsSlider  = document.getElementById('pref_age_slider');
 

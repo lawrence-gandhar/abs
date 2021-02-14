@@ -363,6 +363,18 @@ class MySearchView(View):
                 row["profile_counter"] = True
             search_res.append(row)
 
+        for i in range(len(search_res)):
+            coun = search_res[i]['country']
+            city = search_res[i]['city']
+
+            city = Countries_Cities.objects.get(pk=city)
+            country = Countries.objects.get(pk=coun)
+
+            search_res[i]['city']=city.city_name
+            search_res[i]['country']=country
+
+        print(search_res)
+
         self.data["search_results"] = search_res
 
         return render(request, self.template_name, self.data)
