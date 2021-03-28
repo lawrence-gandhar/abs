@@ -338,3 +338,29 @@ def get_castes_dropdown(request):
                 return HttpResponse('')
         return HttpResponse('')
     return HttpResponse('')
+
+
+#******************************************************************************
+# PAYMENT GATEWAY SETTINGS
+#******************************************************************************
+
+class PaymentGatewaySettingsView(View):
+
+    data = defaultdict()
+
+    template_name = 'app/base/base.html'
+
+    data["included_template"] = 'app/staff/payment_gateway_management.html'
+
+    data["page_title"] = "Payment Gateway Management"
+
+    data["css_files"] = []
+    data["js_files"] = []
+
+
+    def get(self, request):
+        self.data["payment_gateways"] = PaymentGatewayDetails.objects.all()
+        return HttpResponse('')
+
+    def post(self, request):
+        pass

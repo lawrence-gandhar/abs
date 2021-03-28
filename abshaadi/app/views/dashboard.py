@@ -40,13 +40,15 @@ class StaffDashboardView(View):
 
         users = CustomUser.objects.filter(is_superuser = False, is_staff = False).values_list('id', flat = True)
 
-        print(list(users))
-
         self.data["registered_users"] = users.count()
+        self.data["active_users"] = users.filter(is_active = True).count()
+        self.data["inactive_users"] = users.filter(is_active = False).count()
 
         profiles = Profile.objects.filter(user__in = list(users))
         self.data["female"] = profiles.filter(gender = 'F').count()
         self.data["male"] = profiles.filter(gender = 'M').count()
+
+        self.data["premium_users"] = PaidUser.objects.filter(user__in = list(users), is_active = True).count()
 
 
         print(self.data)
