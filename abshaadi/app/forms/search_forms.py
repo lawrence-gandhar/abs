@@ -34,7 +34,7 @@ class MyFiltersForm(ModelForm):
     class Meta:
         model = MyFilters
 
-        fields = ( 'aged_to', 'aged_from', 'l_cities', 'l_states', 'l_countries', 'l_religions', 'l_caste', 'l_qualifications', 'l_jobs', 'l_complexions', 'job_type')
+        fields = ( 'aged_to', 'aged_from', 'l_religions', 'l_caste', 'l_qualifications', 'l_jobs', 'l_complexions', 'job_type')
 
         widgets = {
             'l_religions' : Select(attrs = {'class':'form-control selectpicker religion_select', 'multiple':'true'}),

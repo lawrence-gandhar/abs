@@ -105,6 +105,7 @@ class UserDashboardView(View):
         l_caste = []
         l_cities = []
         l_states = []
+        l_caste_main = []
 
         try:
             pp = Partner_Preferences.objects.get(user = request.user)

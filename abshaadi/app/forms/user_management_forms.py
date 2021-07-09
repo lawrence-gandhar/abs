@@ -52,8 +52,7 @@ class EditProfileForm(ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('fullname', 'father_name', 'mother_name', 'height', 'weight', 'complexion', 'religion', 'caste_creed', 'qualification',
-            'job_details', 'phone_number', 'phone_number_alternative', 'address', 'descriptions', 'biodata', 'block_profile_pics'
+        fields = ('fullname', 'father_name', 'mother_name', 'height', 'weight', 'phone_number', 'phone_number_alternative', 'address', 'descriptions', 'biodata', 'block_profile_pics'
         )
 
         widgets = {

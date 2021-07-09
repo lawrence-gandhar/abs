@@ -164,7 +164,7 @@ def register_form(request):
 
                     reg.save()
 
-                    
+
                     path = os.path.join(settings.MEDIA_ROOT, str(reg.id))
                     os.mkdir(path, 0o777)
 

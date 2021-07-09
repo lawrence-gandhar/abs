@@ -38,7 +38,12 @@
 
 			<div class="col-12" style="margin-top:10px;">
 				<label>Country</label>
-				{{search_profile.l_countries}}
+        <select name="ids[]" class="form-control selectpicker country_select" data-live-search=true multiple>
+          <option value="">------------</option>
+          {% for row in countries %}
+           <option value="{{row.id}}">{{row.country_name}}</option>
+          {% endfor %}
+        </select>
 			</div>
 
 			<div class="col-12 state-div-spinner hide text-center" style="margin-top:10px;">

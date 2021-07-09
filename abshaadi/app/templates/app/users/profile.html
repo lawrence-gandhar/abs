@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="row">
-			<div class="col-8">
+			<div class="col-md-9 col-sm-12 col-xs-12">
 				<div class="card-body">
 					<table class="table" style="border:none;">
 						<tr>
@@ -39,7 +39,7 @@
 					</table>
 				</div>
 
-				<div class="card-body">
+				<div class="card-body table-responsive">
 					<table class="table" style="border:none;">
 						<tr>
 							<td colspan="4" class="bg-info" style="color:#FFFFFF;">
@@ -57,40 +57,41 @@
 							<td>
 								<strong>:</strong> {{ profile.fullname }}
 							</td>
-							<td width="150px" style="text-align:right;">
-								<strong>Gender</strong>
-							</td>
-							<td>
-								<strong>:</strong> {{ profile.get_gender_display }}
-							</td>
-						</tr>
-						<tr>
-							<td style="text-align:right;">
-								<strong>Looking For</strong>
-							</td>
-							<td>
-								<strong>:</strong> {{ profile.get_looking_for_gender_display }}
-							</td>
-							<td style="text-align:right;">
-								<strong>Father's Name</strong>
-							</td>
-							<td>
-								<strong>:</strong> {{ profile.father_name|default_if_none:'-' }}
-							</td>
-						</tr>
-						<tr>
-							<td style="text-align:right;">
-								<strong>Mother's Name</strong>
-							</td>
-							<td>
-								<strong>:</strong> {{ profile.mother_name|default_if_none:'-' }}
-							</td>
 							<td style="text-align:right;">
 								<strong>Date Of Birth</strong>
 							</td>
 							<td>
 								<strong>:</strong> {{ profile.dob|default_if_none:'-' }}
 							</td>
+						</tr>
+						<tr>
+							<td width="150px" style="text-align:right;">
+								<strong>Gender</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.get_gender_display }}
+							</td>
+							<td style="text-align:right;">
+								<strong>Looking For</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.get_looking_for_gender_display }}
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right;">
+								<strong>Father's Name</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.father_name|default_if_none:'-' }}
+							</td>
+							<td style="text-align:right;">
+								<strong>Mother's Name</strong>
+							</td>
+							<td>
+								<strong>:</strong> {{ profile.mother_name|default_if_none:'-' }}
+							</td>
+
 						</tr>
 						<tr>
 							<td style="text-align:right;">
@@ -129,7 +130,6 @@
 							</td>
 							<td colspan="3">
 								<strong>:</strong> {{ profile.country |default_if_none:'-' }}
-
 							</td>
 						</tr>
 						<tr>
@@ -288,7 +288,7 @@
 
 
 
-			<div class="col-4">
+			<div class="col-md-3 col-sm-12 col-xs-12">
 				<div class="card-header card-header-border">
 					<strong>My Pics</strong>
 					<button class="btn btn-sm btn-primary" style="float:right; margin-right: -10px; margin-top:-3px" data-toggle="modal" data-target="#profile_picture_modal"><i class="mdi mdi-plus"></i> Add</button>

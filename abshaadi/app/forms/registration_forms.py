@@ -51,7 +51,7 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ('fullname','gender' ,'father_name','father_job','mother_job','looking_for_gender', 'mother_name', 'religion', 'caste_creed', 'phone_number',
-                  'phone_number_alternative', 'address', 'dob','country','state','city')
+                  'phone_number_alternative', 'address', 'dob')
 
         MALE = 'M'
         FEMALE = 'F'

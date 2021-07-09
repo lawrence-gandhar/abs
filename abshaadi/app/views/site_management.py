@@ -56,6 +56,9 @@ def load_religions_into_db(request):
     return HttpResponse('1')
 
 
+def add_countries_to_db(request):
+    return redirect(request.META.get("HTTP_REFERSR"))
+
 #******************************************************************************
 # LOAD COUNTRIES INTO DB
 #******************************************************************************
@@ -63,8 +66,7 @@ def load_religions_into_db(request):
 COUNTRIES_LIST = os.path.join(settings.STATICFILES_DIRS[0], 'site_managers')
 COUNTRIES_LIST = os.path.join(COUNTRIES_LIST,'countries+states+cities.txt')
 
-
-def add_countries_to_db(request):
+def add_countries_to_db_2(request):
 
     with open(COUNTRIES_LIST, 'r', encoding='utf-8') as file:
         data = json.load(file)
@@ -124,7 +126,7 @@ def add_countries_to_db(request):
 
 def get_states_dropdown(request):
 
-    id = request.POST.getlist("ids[]")
+    id = list(filter(None, request.POST.getlist("ids[]", None)))
 
     if len(id) > 0 :
 
@@ -144,7 +146,7 @@ def get_states_dropdown(request):
 
 def get_states_dropdown_single(request):
 
-    id = request.POST.getlist("ids")
+    id = list(filter(None, request.POST.getlist("ids", None)))
 
     if len(id) > 0 :
 
@@ -167,7 +169,7 @@ def get_states_dropdown_single(request):
 
 def get_cities_dropdown(request):
 
-    id = request.POST.getlist("ids[]")
+    id = list(filter(None, request.POST.getlist("ids[]", None)))
 
     if len(id) > 0 :
 
@@ -186,7 +188,7 @@ def get_cities_dropdown(request):
 
 def get_cities_dropdown_single(request):
 
-    id = request.POST.getlist("ids")
+    id = list(filter(None, request.POST.getlist("ids", None)))
 
     if len(id) > 0 :
 

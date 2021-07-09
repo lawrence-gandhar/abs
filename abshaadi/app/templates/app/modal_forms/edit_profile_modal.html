@@ -64,41 +64,40 @@
 						<div class="col-4">
 							{{edit_form.fullname}}
 						</div>
-						<div class="col-2" style="line-height: 35px; text-align:right;">
+            <div class="col-2" style="line-height: 35px;">
+							Date Of Birth
+						</div>
+						<div class="col-4">
+							{{edit_form.dob}}
+						</div>
+					</div>
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+            <div class="col-2" style="line-height: 35px;">
 							Gender
 						</div>
 						<div class="col-4">
 							{{edit_form.gender}}
 						</div>
-					</div>
-					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
 						<div class="col-2" style="line-height: 35px;">
 							Looking For
 						</div>
 						<div class="col-4">
 							{{edit_form.looking_for_gender}}
 						</div>
-						<div class="col-2" style="line-height: 35px; text-align:right;">
+					</div>
+
+					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+            <div class="col-2" style="line-height: 35px;">
 							Father's Name
 						</div>
 						<div class="col-4">
 							{{edit_form.father_name}}
 						</div>
-					</div>
-
-					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
 						<div class="col-2" style="line-height: 35px;">
 							Mother's Name
 						</div>
 						<div class="col-4">
 							{{edit_form.mother_name}}
-						</div>
-
-						<div class="col-2" style="line-height: 35px;">
-							Date Of Birth
-						</div>
-						<div class="col-4">
-							{{edit_form.dob}}
 						</div>
 					</div>
 					<div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
@@ -144,7 +143,11 @@
             Country
           </div>
           <div class="col-10">
-  				   {{edit_form.country}}
+  				   <select name="country" class="form-control country_select_box" onchange="con_selection($(this))">
+               {% for row in countries %}
+                <option value="{{row.id}}" {% if user_country  == row.id %} selected {% endif %}>{{row.country_name}}</option>
+               {% endfor %}
+             </select>
   			 </div>
        </div>
 
@@ -155,12 +158,12 @@
   			</div>
       </div>
 
-      <div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+      <div class="row state-div" style="margin-top:10px; padding-left:10px; padding-right:10px;">
         <div class="col-md-2" style="line-height:35px;">
           State
         </div>
         <div class="col-10">
-  				{{edit_form.state}}
+  				<select name="l_states" class="form-control selectpicker states_select" multiple></select>
   			</div>
       </div>
 
@@ -170,12 +173,12 @@
   			</div>
       </div>
 
-      <div class="row" style="margin-top:10px; padding-left:10px; padding-right:10px;">
+      <div class="row city-div" style="margin-top:10px; padding-left:10px; padding-right:10px;">
         <div class="col-md-2" style="line-height:35px;">
           City
         </div>
         <div class="col-10">
-  				{{edit_form.city}}
+  				<select class="form-control selectpicker city_select" name="l_cities" multiple></select>
   			</div>
       </div>
 

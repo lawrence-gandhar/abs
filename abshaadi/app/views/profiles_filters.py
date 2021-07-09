@@ -61,55 +61,23 @@ class UserProfileView(View):
 
         self.data["packages_list"] = Package.objects.filter(is_active = True)
 
+        self.data["countries"] = Countries.objects.all()
+
         self.data["search_profile"] = search_forms.MyFiltersForm()
         self.data["profile_picture"] = ProfilePicturesForm()
 
 
-        self.data['family_form']=FamilyForm(instance=self.data["profile"])
+        self.data['family_form'] = FamilyForm(instance=self.data["profile"])
 
         self.data["edit_form"] = ProfileForm(instance=self.data["profile"])
-        self.data["edit_form1"] = OtherProfileForm(instance=self.data["profile"])
+        self.data["edit_form1"] = OtherProfileForm(instance=self.data["profile"], prefix="oth_details-")
         self.data["edit_form2"] = SummaryForm(instance=self.data["profile"])
+
+        self.data["user_country"] = self.data["profile"].country_id
 
 
         return render(request, self.template_name, self.data)
 
-
-#******************************************************************************
-# USER PROFILE VIEW
-#******************************************************************************
-
-class UserProfileEdit(View):
-    template_name = 'app/base/base.html'
-
-    data = defaultdict()
-
-    data["included_template"] = 'app/users/profile.html'
-
-
-    data["page_title"] = "My Profile"
-
-    data["css_files"] = ['custom_files/css/croppie.css']
-    data["js_files"] = ['custom_files/js/croppie.js', 'custom_files/js/user_dashboard.js',
-                    'custom_files/js/common.js', 'custom_files/js/search_filters.js']
-
-    def get(self,request,id):
-        try:
-            profile_pic = ProfilePictures.objects.get(user=request.user, set_as_profile_pic=True)
-            pro_pic = profile_pic.picture
-
-        except:
-            pro_pic = ""
-            pass
-
-        self.data["pro_pic"] = pro_pic
-        self.data["profile"] = Profile.objects.get(user=request.user)
-        self.data["gallery"] = ProfilePictures.objects.filter(user=request.user, set_as_profile_pic=False)
-
-        self.data['profile'] = Profile.objects.get(id=id)
-
-        # print(profile.user)
-        return render(request,self.template_name,self.data)
 
 
 #******************************************************************************
@@ -142,9 +110,6 @@ def upload_profile_pic(request):
 def edit_personal_info(request):
     if request.POST:
 
-        print(request.POST)
-
-
         try:
             profile = Profile.objects.get(user = request.user)
         except:
@@ -153,7 +118,13 @@ def edit_personal_info(request):
         pers_info = ProfileForm(request.POST, instance=profile)
 
         if pers_info.is_valid():
-            pers_info.save()
+            ins = pers_info.save(commit = False)
+
+            if request.POST["country"] !="":
+                ins.country_id = request.POST["country"]
+
+            ins.save()
+
         else:
             print(pers_info.errors)
 
