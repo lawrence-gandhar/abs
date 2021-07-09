@@ -452,7 +452,7 @@ class ConfirmEmail(models.Model):
     )
 
     key = models.CharField(
-        max_length = 50,
+        max_length = 255,
         db_index = True,
         null = True,
         blank = True
